@@ -6,8 +6,8 @@ import { updateCode } from "../redux/code/codeActions.js";
 
 function mapStateToProps(state){
   const { width, height } = state.split;
-
-  return { width, height };
+  const code = state.code;
+  return { width, height, code };
 }
 
 function mapDispatchToProps(dispatch){

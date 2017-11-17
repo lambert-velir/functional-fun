@@ -1,13 +1,18 @@
 import * as babel from "babel-core";
+import pako from "./pako.js";
 import { clearConsole } from "./redux/console/consoleActions.js";
 
 export default (store) => (newCode) => {
 
   // make sure all the window setIntervals and setTimeouts are clear
   clearAllIntervals();
-console.log(newCode);
-  try {
-    store.dispatch(clearConsole());
+
+  // do this first so the hash updates even if the babel transform fails
+  window.location.hash = pako.encryptCode(newCode);
+
+  store.dispatch(clearConsole());
+
+  try {  
     eval(babel.transform(newCode).code);
   }
   catch(e){

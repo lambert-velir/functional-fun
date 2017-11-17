@@ -1,5 +1,3 @@
-// import babel from "babel-core";
-
 
 export default function hijackConsole(onLog, onError) {
 

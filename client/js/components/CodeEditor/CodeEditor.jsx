@@ -1,7 +1,7 @@
 import React from "react";
 import AceEditor from "react-ace";
 
-import { func, number } from "prop-types";
+import { func, number, string } from "prop-types";
 
 import "brace/mode/javascript";
 import "brace/theme/tomorrow";
@@ -12,6 +12,7 @@ export default class CodeEditor extends React.Component {
   static propTypes = {
     width: number.isRequired,
     height: number.isRequired,
+    code: string.isRequired,
     onCodeChange: func.isRequired,
     onSizeChange: func.isRequired
   }
@@ -41,7 +42,7 @@ export default class CodeEditor extends React.Component {
   }
 
   render = () => {
-    const { width, height } = this.props;
+    const { width, height, code } = this.props;
 
     return (
       <AceEditor
@@ -52,6 +53,7 @@ export default class CodeEditor extends React.Component {
         theme="tomorrow"
         fontSize={16}
         tabSize={2}
+        value={code}
         onChange={this.handleChange}
         name="code-editor"
         editorProps={{ $blockScrolling: true }}
