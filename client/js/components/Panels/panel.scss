@@ -1,0 +1,13 @@
+.panel {
+  display: flex;
+}
+
+.panel__left {
+  flex: none;
+  width: 70%;
+}
+
+.panel__right {
+  flex: none;
+  width: 30%;
+}
