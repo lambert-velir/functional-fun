@@ -8,6 +8,14 @@
 }
 
 .panel__right {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+
   flex: none;
   width: 30%;
+
+  > * {
+    flex: auto;
+  }
 }

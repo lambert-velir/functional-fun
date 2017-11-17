@@ -2,20 +2,18 @@ import React from "react";
 
 
 import CodeContainer from "../../containers/CodeContainer.js";
+import ConsoleContainer from "../../containers/ConsoleContainer.js";
 
 const Panels = (props) => {
 
-  const handleChange = size => {
-    console.log("SIZE", size);
-  };
 
   return (
     <div className="panel">
       <div className="panel__left">
-        <CodeContainer width={500} height={500} />
+        <CodeContainer />
       </div>
       <div className="panel__right">
-        console
+        <ConsoleContainer />
       </div>
     </div>
   );

@@ -51,6 +51,7 @@ export default class CodeEditor extends React.Component {
         mode="javascript"
         theme="tomorrow"
         fontSize={16}
+        tabSize={2}
         onChange={this.handleChange}
         name="code-editor"
         editorProps={{ $blockScrolling: true }}

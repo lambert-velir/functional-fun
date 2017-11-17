@@ -1,0 +1,35 @@
+@import "../../../scss/_colors.scss";
+
+.console {
+
+  display: flex;
+
+  flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
+
+  border-left: 1px solid $grey-ddd;
+}
+
+.console__text {
+  position: relative;
+  flex: 1 1 auto;
+  padding: 1rem;
+  background: white;
+  font-family: "Source Code Pro", monospace;
+  font-size: 16px;
+  color: #666;
+  overflow: auto;
+}
+
+.console__error,
+.console__log {
+  border-bottom: 1px solid #eee;
+  padding: 0.5rem 0 0.1rem;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.console__error {
+  color: red;
+}
