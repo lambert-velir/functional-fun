@@ -5,14 +5,14 @@ import { clearConsole } from "./redux/console/consoleActions.js";
 export default (store) => (newCode) => {
 
   // make sure all the window setIntervals and setTimeouts are clear
-  clearAllIntervals();
+  // clearAllIntervals(); //THIS IS BREAKING CTRL+Z UNDO!!!
 
   // do this first so the hash updates even if the babel transform fails
   window.location.hash = pako.encryptCode(newCode);
 
   store.dispatch(clearConsole());
 
-  try {  
+  try {
     eval(babel.transform(newCode).code);
   }
   catch(e){
