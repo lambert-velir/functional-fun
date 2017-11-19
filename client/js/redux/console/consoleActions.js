@@ -1,7 +1,6 @@
 
 export const CLEAR_CONSOLE = "CONSOLE/CLEAR_CONSOLE";
-export const CONSOLE_LOG = "CONSOLE/CONSOLE_LOG";
-export const CONSOLE_ERROR = "CONSOLE/CONSOLE_ERROR";
+export const CONSOLE_MESSAGE = "CONSOLE/CONSOLE_MESSAGE";
 
 
 export function clearConsole(){
@@ -11,16 +10,9 @@ export function clearConsole(){
   };
 }
 
-export function consoleLog(message){
+export function consoleMessage({ type, message}){
   return {
-    type: CONSOLE_LOG,
-    payload: { message }
-  };
-}
-
-export function consoleError(message){
-  return {
-    type: CONSOLE_ERROR,
-    payload: { message }
+    type: CONSOLE_MESSAGE,
+    payload: { type, message }
   };
 }

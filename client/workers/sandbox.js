@@ -1,15 +1,22 @@
-import hijackConsole from "./hijackConsole.js";
+/* eslint-disable no-console */
+
+import getConsoleOutput from "./getConsoleOutput.js";
 import * as babel from "babel-core";
 
 // hijack any console calls so we can display them on screen
-hijackConsole(
-  (message) => postMessage({ type: "log", message }),
-  (message) => postMessage({ type: "error", message })
-);
+const hijack = (type) => function(){
+  const message = getConsoleOutput([].slice.apply(arguments));
+  self.postMessage({ type, message });
+};
+
+console.log = hijack("log");
+console.error = hijack("error");
+console.warn = hijack("warn");
+
 
 // when we get new code, compile and run it
 // the hijackConsole above will pick up any console.logs
-self.onmessage = function(e){
+self.addEventListener("message", e => {
 
   const newCode = e.data;
 
@@ -17,13 +24,19 @@ self.onmessage = function(e){
   clearAllIntervals();
 
   try {
-    eval(babel.transform(newCode).code);
+    self.eval(babel.transform(newCode).code);
   }
   catch(e){
     console.error(e.message);
   }
 
-};
+});
+
+// catch any random errors on the page (eg. inside a setTimeout)
+self.addEventListener("error", e => {
+  console.error(e);
+});
+
 
 
 function clearAllIntervals() {

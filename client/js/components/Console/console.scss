@@ -1,35 +1,47 @@
 @import "../../../scss/_colors.scss";
 
+
 .console {
-
-  display: flex;
-
-  flex-direction: column;
-  position: relative;
-  box-sizing: border-box;
-
-  border-left: 1px solid $grey-ddd;
-}
-
-.console__text {
   position: relative;
   flex: 1 1 auto;
-  padding: 1rem;
+  padding: 16px 0;
   background: white;
   font-family: "Source Code Pro", monospace;
   font-size: 16px;
   color: #666;
   overflow: auto;
+  border-left: 1px solid $grey-ddd;
 }
 
-.console__error,
-.console__log {
-  border-bottom: 1px solid #eee;
-  padding: 0.5rem 0 0.1rem;
+.console__message {
   white-space: pre-wrap;
   word-break: break-all;
-}
+  padding: 0 16px;
 
-.console__error {
-  color: red;
+  .console__text {
+    border-bottom: 1px solid #eee;
+    padding: 8px 0;
+  }
+
+
+  // make border full width for these types
+  &.is-error,
+  &.is-warn {
+    border-bottom: 1px solid #eee;
+
+    .console__text {
+      border: 0;
+    }
+  }
+
+  &.is-error {
+    color: #ff0000;
+    background-color: #fff0f0;
+  }
+
+  &.is-warn {
+    background-color: #fffbe7;
+  }
+
+
 }

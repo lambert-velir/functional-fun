@@ -18,6 +18,7 @@ const store = configureStore(rootReducer, []);
 // sandbox worker
 initSandbox(store);
 
+
 ReactDom.render(
   <Provider store={store}>
     <App />
