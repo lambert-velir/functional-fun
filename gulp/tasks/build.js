@@ -1,9 +1,10 @@
 const runSequence = require("run-sequence");
 
-const quench = require("../quench/quench.js");
-const createCopyTask = require("../quench/createCopyTask.js");
-const createJsTask   = require("../quench/createJsTask.js");
-const createCssTask   = require("../quench/createCssTask.js");
+const quench                = require("../quench/quench.js");
+const createCopyTask        = require("../quench/createCopyTask.js");
+const createJsTask          = require("../quench/createJsTask.js");
+const createSimpleJsTask    = require("../quench/createSimpleJsTask.js");
+const createCssTask         = require("../quench/createCssTask.js");
 const createBrowserSyncTask = require("../quench/createBrowserSyncTask.js");
 
 module.exports = function buildTask(projectRoot) {
@@ -46,6 +47,14 @@ module.exports = function buildTask(projectRoot) {
       ]
     });
 
+    createSimpleJsTask("build-workers", {
+      dest: `${buildDir}/workers/`,
+      entry: `${clientDir}/workers/sandbox.js`,
+      watch: [
+        `${clientDir}/workers/**/*.js`
+      ]
+    });
+
     createCssTask("build-css", {
       src: [
         `${clientDir}/scss/**/*.scss`,
@@ -65,7 +74,7 @@ module.exports = function buildTask(projectRoot) {
     });
 
 
-    const buildTasks = ["build-js", "build-css", "build-copy"];
+    const buildTasks = ["build-js", "build-workers", "build-css", "build-copy"];
 
     if (quench.isWatching()){
       return runSequence(buildTasks, "build-browser-sync");
