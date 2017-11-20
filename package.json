@@ -55,6 +55,7 @@
     "classnames": "^2.2.5",
     "core-js": "^2.5.1",
     "express": "^4.16.2",
+    "lodash.debounce": "^4.0.8",
     "lodash.template": "^4.4.0",
     "pako": "^1.0.6",
     "promise-polyfill": "^6.0.2",

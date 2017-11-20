@@ -2,12 +2,12 @@ import path from "path";
 import fs from "fs";
 import R from "ramda";
 
-export default function getExamples(buildDir){
+export default function getExamples(dir){
 
-  const files = fs.readdirSync(`${buildDir}/examples`);
+  const files = fs.readdirSync(dir);
 
   const json = R.map(filename => {
-    const code = fs.readFileSync(`${buildDir}/examples/${filename}`, "utf8");
+    const code = fs.readFileSync(`${dir}/${filename}`, "utf8");
 
     // remove extension and replace : with /
     const displayName = R.compose(

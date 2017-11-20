@@ -8,15 +8,17 @@ import getExamples from "./getExamples.js";
 
 const app = express();
 
-const buildDir = path.resolve(__dirname, "../build");
+const projectRoot = path.resolve(__dirname, "..");
+const buildDir = `${projectRoot}/build`;
+const examplesDir = `${projectRoot}/client/examples`;
 
 
 app.get("/", function(req, res){
 
-  const examples = JSON.stringify(getExamples(buildDir));
+  const examples = JSON.stringify(getExamples(examplesDir));
 
   const appTemplate = R.compose(
-    template, 
+    template,
     file => fs.readFileSync(file, "utf-8"),
     dir => path.resolve(dir, "index.html")
   )(buildDir);

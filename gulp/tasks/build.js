@@ -14,6 +14,7 @@ module.exports = function buildTask(projectRoot) {
   const buildDir = `${projectRoot}/build`;
   const clientDir = `${projectRoot}/client`;
   const serverDir = `${projectRoot}/server`;
+  const examplesDir = `${clientDir}/examples`;
 
   return function(){
 
@@ -84,7 +85,7 @@ module.exports = function buildTask(projectRoot) {
 
     createNodemonTask("build-server", {
       script: path.resolve(serverDir, "server.jsx"),
-      watch: [ serverDir ]
+      watch: [ serverDir, examplesDir ]
     });
 
     const buildTasks = ["build-js", "build-workers", "build-css", "build-copy"];

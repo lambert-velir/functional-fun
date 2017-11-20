@@ -13,16 +13,18 @@ const Examples = (props) => {
   const { examples, onChange } = props;
 
   return (
-    // value is "" so the "Select..." option is always selected
-    <select onChange={e => onChange(e.target.value)} value="">
-      <option value="">Select...</option>
-      {examples.map(example => {
-        const { displayName, slug } = example;
-        return (
-          <option key={slug} value={slug}>{displayName}</option>
-        );
-      })}
-    </select>
+    <span>
+      {/* value is "" so the "Select..." option is always selected */}
+      <select onChange={e => onChange(e.target.value)} value="">
+        <option value="">Select...</option>
+        {examples.map(example => {
+          const { displayName, slug } = example;
+          return (
+            <option key={slug} value={slug}>{displayName}</option>
+          );
+        })}
+      </select>
+    </span>
   );
 };
 

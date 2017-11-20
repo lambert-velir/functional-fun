@@ -56,7 +56,7 @@ export default class CodeEditor extends React.Component {
         value={code}
         onChange={this.handleChange}
         name="code-editor"
-        editorProps={{ $blockScrolling: true }}
+        editorProps={{ $blockScrolling: Infinity }} // to silence console warning
       />
     );
   }
