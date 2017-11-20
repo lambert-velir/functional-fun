@@ -83,8 +83,7 @@ module.exports = function buildTask(projectRoot) {
 
 
     createNodemonTask("build-server", {
-      script: path.resolve(serverDir, "server.js"),
-      // args: ["--layout", layout],
+      script: path.resolve(serverDir, "server.jsx"),
       watch: [ serverDir ]
     });
 

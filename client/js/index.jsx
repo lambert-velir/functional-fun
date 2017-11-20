@@ -9,10 +9,13 @@ import initSandbox from "./initSandboxWorker.js";
 import configureStore from "./redux/configureStore.js";
 import rootReducer    from "./redux/rootReducer.js";
 import { updateCode } from "./redux/code/codeActions.js";
+import { setExamples } from "./redux/examples/examplesActions.js";
 
 
 
 const store = configureStore(rootReducer, []);
+
+store.dispatch(setExamples(window.__EXAMPLES__ || []));
 
 // attach listeners to the store to run the code in the
 // sandbox worker

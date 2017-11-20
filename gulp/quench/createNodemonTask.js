@@ -4,9 +4,12 @@ const R = require("ramda");
 
 module.exports = function(taskName, userConfig){
 
+  const babelNode = "babel-node --presets env,react --plugins transform-class-properties,transform-object-rest-spread";
+
   const nodemonConfig = R.merge({
     execMap: {
-      js: "babel-node --presets babel-preset-env"
+      js: babelNode,
+      jsx: babelNode
     }
     /**
      * nodemonConfig example:
@@ -34,8 +37,9 @@ module.exports = function(taskName, userConfig){
       .on("restart", function () {
         console.log(`${taskName} - restarted!`);
       })
-      .on("crash", function() {
+      .on("crash", function(e) {
         console.error(`${taskName} - server.js crashed!`);
+        console.error(e);
         // stream.emit("restart", 10)  // restart the server in 10 seconds
       });
   });
