@@ -1,7 +1,12 @@
 /* eslint-disable no-console */
 
+// make ramda (and anthing from libraries-generated) available
+// via const R = require("ramda");
+self.importScripts("../js/libraries-generated.js");
+
 import getConsoleOutput from "./getConsoleOutput.js";
 import * as babel from "babel-core";
+
 
 // hijack any console calls so we can display them on screen
 const hijack = (type) => function(){
