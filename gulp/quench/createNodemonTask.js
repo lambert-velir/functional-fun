@@ -1,16 +1,22 @@
-const gulp        = require("gulp");
-const nodemon     = require("nodemon");
+const gulp = require("gulp");
+const nodemon = require("nodemon");
+const R = require("ramda");
 
-module.exports = function(taskName, nodemonConfig){
+module.exports = function(taskName, userConfig){
 
-  /**
-   * nodemonConfig example:
-   * {
-   *   script: path.resolve(serverDir, "server.js"),
-   *   args: ["--layout", layout],
-   *   watch: [ serverDir ]
-   * }
-   */
+  const nodemonConfig = R.merge({
+    execMap: {
+      js: "babel-node --presets babel-preset-env"
+    }
+    /**
+     * nodemonConfig example:
+     * {
+     *   script: path.resolve(serverDir, "server.js"),
+     *   args: ["--layout", layout],
+     *   watch: [ serverDir ]
+     * }
+     */
+  }, userConfig);
 
   gulp.task(taskName, function (cb) {
 

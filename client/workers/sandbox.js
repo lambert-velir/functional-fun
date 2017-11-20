@@ -1,11 +1,12 @@
 /* eslint-disable no-console */
 
 // make ramda (and anthing from libraries-generated) available
-// via const R = require("ramda");
+// via import R from "ramda";
 self.importScripts("../js/libraries-generated.js");
 
 import getConsoleOutput from "./getConsoleOutput.js";
 import * as babel from "babel-core";
+import modulePlugin from "babel-plugin-transform-es2015-modules-commonjs";
 
 
 // hijack any console calls so we can display them on screen
@@ -29,7 +30,8 @@ self.addEventListener("message", e => {
   clearAllIntervals();
 
   try {
-    self.eval(babel.transform(newCode).code);
+    // include module plugin so we can use "import" in the UI
+    self.eval(babel.transform(newCode, { plugins: [ modulePlugin ] }).code);
   }
   catch(e){
     console.error(e.message);
