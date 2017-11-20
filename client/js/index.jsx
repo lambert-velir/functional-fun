@@ -31,9 +31,18 @@ ReactDom.render(
 
 
 // on load, check to see if there is something in the hash
-const hash = window.location.hash.replace(/^#/, "");
+loadFromHash();
 
-if (hash){
-  const code = pako.decryptCode(hash);
-  store.dispatch(updateCode(code));
+// update when the user navigates with back/forward buttons
+window.addEventListener("popstate", loadFromHash);
+
+
+function loadFromHash(){
+
+  const hash = window.location.hash.replace(/^#/, "");
+
+  if (hash){
+    const code = pako.decryptCode(hash);
+    store.dispatch(updateCode(code));
+  }
 }
