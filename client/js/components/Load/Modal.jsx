@@ -12,11 +12,30 @@ export default class Modal extends React.Component {
   };
 
   componentDidMount = () => {
-    this.componentDidUpdate({}, {});
+    this.toggleKeydownHandler(this.props.isOpen);
+  }
+
+  componentWillUnmount = () => {
+    window.removeEventListener("keydown", this.keydownHandler);
   }
 
   componentDidUpdate = (prevProps, prevState) => {
-    // TODO listen for esc
+    this.toggleKeydownHandler(this.props.isOpen);
+  }
+
+  toggleKeydownHandler = (isOpen) => {
+    if (isOpen){
+      window.addEventListener("keydown", this.keydownHandler);
+    }
+    else {
+      window.removeEventListener("keydown", this.keydownHandler);
+    }
+  }
+
+  keydownHandler = (e) => {
+    if(e.key === "Escape"){
+      this.props.onClose();
+    }
   }
 
   handleDimClick = (e) => {
