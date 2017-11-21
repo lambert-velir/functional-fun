@@ -1,0 +1,16 @@
+@import "../../../scss/_colors.scss";
+
+.example {
+  width: 200px;
+  max-width: 100%;
+  padding: 8px;
+  cursor: pointer;
+
+  & + .example {
+    border-top: 1px solid $grey-ddd;
+  }
+
+  &:hover {
+    background-color: $yellow-ffe;
+  }
+}

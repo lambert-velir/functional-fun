@@ -1,0 +1,15 @@
+@import "./_colors.scss";
+
+button {
+  padding: 6px 12px;
+
+  font-size: 16px;
+
+  background-color: white;
+  border: 1px solid $grey-ddd;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $yellow-ffe;
+  }
+}

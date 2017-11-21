@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { selectExample } from "../redux/examples/examplesActions.js";
 
-import Examples from "../components/Examples/Examples.jsx";
+import Load from "../components/Load/Load.jsx";
 
 function mapStateToProps(state){
   return {
@@ -16,4 +16,4 @@ function mapDispatchToProps(dispatch){
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Examples);
+export default connect(mapStateToProps, mapDispatchToProps)(Load);
