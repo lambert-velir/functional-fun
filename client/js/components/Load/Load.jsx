@@ -1,6 +1,7 @@
 import React from "react";
 import { arrayOf, func, shape, string } from "prop-types";
 import Modal from "./Modal.jsx";
+import AceEditor from "react-ace";
 
 export default class Load extends React.Component {
 
@@ -35,17 +36,36 @@ export default class Load extends React.Component {
         <button type="button" onClick={this.open}>Load</button>
 
         <Modal isOpen={isOpen} onClose={this.close}>
-          {examples.map(example => {
-            const { displayName, slug } = example;
-            return (
-              <div key={slug}
-                className="example"
-                onClick={this.handleExampleClick(slug)}
-              >
-                {displayName}
-              </div>
-            );
-          })}
+          <div className="examples">
+            {examples.map(example => {
+              const { displayName, slug, code } = example;
+              return (
+                <div key={slug} className="example__holder">
+                  <div className="example"
+                    onClick={this.handleExampleClick(slug)}
+                  >
+                    <div className="example__name">{displayName}</div>
+                    <div className="example__preview">
+                      <AceEditor
+                        ref={el => this.ace = el}
+                        width="200px"
+                        height="200px"
+                        mode="javascript"
+                        theme="tomorrow"
+                        fontSize={6}
+                        tabSize={2}
+                        value={code}
+                        name={`code-editor-${displayName}`}
+                        readOnly={true}
+                        showGutter={false}
+                        editorProps={{ $blockScrolling: Infinity }} // to silence console warning
+                      />
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </Modal>
       </div>
     );

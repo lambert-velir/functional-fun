@@ -1,4 +1,5 @@
 const gulp = require("gulp");
+const quench = require("./quench.js");
 const nodemon = require("nodemon");
 const R = require("ramda");
 
@@ -24,6 +25,8 @@ module.exports = function(taskName, userConfig){
   gulp.task(taskName, function (cb) {
 
     let started = false;
+
+    quench.logYellow("watching", "nodemod:", JSON.stringify(nodemonConfig.watch, null, 2));
 
     return nodemon(nodemonConfig)
       .on("start", function () {

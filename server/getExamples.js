@@ -1,10 +1,12 @@
 import path from "path";
 import fs from "fs";
 import R from "ramda";
-
 export default function getExamples(dir){
 
-  const files = fs.readdirSync(dir);
+  const files = R.compose(
+    R.filter(filename => path.extname(filename) === ".js"),
+    fs.readdirSync
+  )(dir);
 
   const json = R.map(filename => {
     const code = fs.readFileSync(`${dir}/${filename}`, "utf8");

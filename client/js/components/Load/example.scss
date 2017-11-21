@@ -1,16 +1,51 @@
 @import "../../../scss/_colors.scss";
 
-.example {
+
+.examples {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.example__holder {
   width: 200px;
   max-width: 100%;
   padding: 8px;
+}
+
+.example {
   cursor: pointer;
 
-  & + .example {
-    border-top: 1px solid $grey-ddd;
-  }
+  border: 1px solid $grey-ddd;
+  padding-bottom: 24px;
 
-  &:hover {
+
+  &:hover .example__name {
     background-color: $yellow-ffe;
+  }
+}
+
+.example__name {
+  text-align: center;
+  font-size: 18px;
+  line-height: 44px;
+}
+
+.example__preview {
+  position: relative;
+  padding: 2px;
+  height: 140px;
+  overflow: hidden;
+  user-select: none;
+
+  // overlay so the user can't touch the editor
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    content: " ";
+    cursor: pointer;
   }
 }

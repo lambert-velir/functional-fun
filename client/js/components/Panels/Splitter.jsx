@@ -53,7 +53,10 @@ export default class Splitter extends React.Component {
     document.removeEventListener("mouseup", this.detachMouseMove);
   }
 
-  handleMouseMove = e => {
+  handleMouseMove = mouseEvent => {
+
+    // prevent user selecting while dragging
+    mouseEvent.preventDefault();
 
     const { resizing } = this.state;
     const { onResize } = this.props;
@@ -62,7 +65,7 @@ export default class Splitter extends React.Component {
     const panelX = this.panel.offsetLeft;
 
     // center where the mouse is inside the resizer
-    const mouseX = e.pageX - this.resizers[resizing].clientWidth / 2;
+    const mouseX = mouseEvent.pageX - this.resizers[resizing].clientWidth / 2;
 
     const percent = (mouseX - panelX) / (panelWidth);
 
