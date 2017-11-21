@@ -5,9 +5,10 @@ import { sizeChange } from "../redux/split/splitActions.js";
 import { updateCode } from "../redux/code/codeActions.js";
 
 function mapStateToProps(state){
-  const { width, height } = state.split;
-  const code = state.code;
-  return { width, height, code };
+  return {
+    code: state.code,
+    containerSize: state.split // here to force a re-render
+  };
 }
 
 function mapDispatchToProps(dispatch){

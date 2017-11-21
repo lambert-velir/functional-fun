@@ -1,7 +1,7 @@
 import React from "react";
 import AceEditor from "react-ace";
 
-import { func, number, string } from "prop-types";
+import { func, string } from "prop-types";
 
 import "brace/mode/javascript";
 import "brace/theme/tomorrow";
@@ -10,31 +10,39 @@ import "brace/theme/tomorrow";
 export default class CodeEditor extends React.Component {
 
   static propTypes = {
-    width: number.isRequired,
-    height: number.isRequired,
     code: string.isRequired,
-    onCodeChange: func.isRequired,
-    onSizeChange: func.isRequired
+    onCodeChange: func.isRequired
+  }
+
+  state = {
+    width: 0,
+    height: 0
   }
 
   componentDidMount = () => {
-    this.measureContainer();
+    this.resizeSelf();
 
-    window.addEventListener("resize", this.measureContainer);
+    window.addEventListener("resize", this.resizeSelf);
   }
 
   componentWillUnmount = () => {
-    window.removeEventListener("resize", this.measureContainer);
+    window.removeEventListener("resize", this.resizeSelf);
   }
 
-  measureContainer = () => {
+  componentDidUpdate = () => {
+    this.resizeSelf();
+  }
+
+  resizeSelf = () => {
     const parent = this.ace.refEditor.parentNode;
+    const { width, height } = this.state;
 
-    this.props.onSizeChange({
-      width: parent.offsetWidth,
-      height: parent.offsetHeight
-    });
-
+    if (parent.offsetWidth !== width || parent.offsetHeight !== height){
+      this.setState({
+        width: parent.offsetWidth,
+        height: parent.offsetHeight
+      });
+    }
   }
 
   handleChange = (code) => {
@@ -42,7 +50,8 @@ export default class CodeEditor extends React.Component {
   }
 
   render = () => {
-    const { width, height, code } = this.props;
+    const { code } = this.props;
+    const { width, height } = this.state;
 
     return (
       <AceEditor
@@ -55,6 +64,7 @@ export default class CodeEditor extends React.Component {
         tabSize={2}
         value={code}
         onChange={this.handleChange}
+        wrapEnabled={true}
         name="code-editor"
         editorProps={{ $blockScrolling: Infinity }} // to silence console warning
       />

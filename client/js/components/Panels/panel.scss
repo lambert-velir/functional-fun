@@ -1,21 +1,26 @@
+@import "../../../scss/_colors.scss";
+
 .panel {
   display: flex;
 }
 
-.panel__left {
+.panel__resizer {
+  position: relative;
   flex: none;
-  width: 70%;
+  width: 11px;
+  cursor: ew-resize;
+  content: "";
+
+  &:hover {
+    background-color: $yellow-ffe;
+  }
 }
 
-.panel__right {
-  display: flex;
-  flex-direction: row;
-  align-items: stretch;
-
-  flex: none;
-  width: 30%;
-
-  > * {
-    flex: auto;
-  }
+.panel__resizer-inner {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: $grey-ddd;
 }

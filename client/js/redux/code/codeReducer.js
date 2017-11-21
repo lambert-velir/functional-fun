@@ -2,6 +2,7 @@ import R from "ramda";
 import { CODE_UPDATE } from "./codeActions.js";
 import { SELECT_EXAMPLE } from "../examples/examplesActions.js";
 
+import Maybe from "folktale/maybe";
 
 const initialState = "";
 
@@ -19,9 +20,9 @@ export default function codeReducer(state = initialState, action, examples) {
       const { slug } = action.payload;
 
       const code = R.compose(
-        R.defaultTo(state),
-        R.prop("code"),
-        R.defaultTo({}),
+        m => m.getOrElse(state),
+        R.map(R.prop("code")),
+        Maybe.of,
         R.find(R.propEq("slug", slug))
       )(examples);
 
