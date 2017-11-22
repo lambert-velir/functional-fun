@@ -5,7 +5,8 @@ import { arrayOf, func, node, number } from "prop-types";
 
 const childrenStyles = {
   flex: "auto",
-  overflow: "hidden"
+  overflow: "hidden",
+  position: "relative"
 };
 
 const NOT_RESIZING = -1;

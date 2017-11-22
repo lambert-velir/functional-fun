@@ -7,7 +7,7 @@ self.importScripts("../js/libraries-generated.js");
 import getConsoleOutput from "./getConsoleOutput.js";
 import * as babel from "babel-core";
 import modulePlugin from "babel-plugin-transform-es2015-modules-commonjs";
-
+import R from "ramda";
 
 // hijack any console calls so we can display them on screen
 const hijack = (type) => function(){
@@ -18,6 +18,30 @@ const hijack = (type) => function(){
 console.log = hijack("log");
 console.error = hijack("error");
 console.warn = hijack("warn");
+
+
+/**
+ * custom functions for this editor
+ */
+
+const assertEquals = (test, target) => {
+  if (R.equals(test, target)){
+    self.postMessage({
+      type: "pass",
+      message: JSON.stringify(target)
+    });
+  }
+  else {
+    self.postMessage({
+      type: "fail",
+      message: JSON.stringify(test)
+        + " !== "
+        + JSON.stringify(target)
+    });
+  }
+};
+
+
 
 
 // when we get new code, compile and run it
@@ -31,7 +55,20 @@ self.addEventListener("message", e => {
 
   try {
     // include module plugin so we can use "import" in the UI
-    self.eval(babel.transform(newCode, { plugins: [ modulePlugin ] }).code);
+    const transpiled = babel.transform(
+      newCode,
+      { plugins: [ modulePlugin ] }
+    ).code;
+
+    // setup some functions that can be called from within the
+    // code editor
+    const evalText = `
+      const assert = {};
+      assert.equals = ${assertEquals.toString()};
+      ${transpiled}
+    `;
+
+    eval(evalText);
   }
   catch(e){
     console.error(e.message);

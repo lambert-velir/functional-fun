@@ -2,11 +2,15 @@
 
 
 .console {
-  position: relative;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   flex: 1 1 auto;
   padding: 16px 0;
   background: white;
-  font-family: "Source Code Pro", monospace;
+  font-family: "Source Code Pro", Monaco, Menlo, "Ubuntu Mono", Consolas, source-code-pro, monospace;
   font-size: 16px;
   color: #666;
   overflow: auto;
@@ -41,6 +45,15 @@
 
   &.is-warn {
     background-color: #fffbe7;
+  }
+
+  &.is-fail {
+    color: #ff0000;
+    background-color: #fff0f0;
+  }
+
+  &.is-pass {
+    background-color: #c8e6c9;
   }
 
 
