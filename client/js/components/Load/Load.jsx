@@ -1,6 +1,6 @@
 import React from "react";
 import { arrayOf, func, shape, string } from "prop-types";
-import Modal from "./Modal.jsx";
+import Modal from "../Modal/Modal.jsx";
 import AceEditor from "react-ace";
 
 export default class Load extends React.Component {

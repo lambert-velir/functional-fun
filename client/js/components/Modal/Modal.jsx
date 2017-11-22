@@ -1,7 +1,7 @@
 import React from "react";
 import { bool, func, string, node } from "prop-types";
 import classNames from "classnames";
-
+import X from "../Svg/X.jsx";
 
 export default class Modal extends React.Component {
 
@@ -61,9 +61,7 @@ export default class Modal extends React.Component {
           <div className="modal__title">
             {title}
             <div className="modal__close" onClick={onClose}>
-              <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 96 96" enableBackground="new 0 0 96 96" xmlSpace="preserve">
-                <polygon points="96,14 82,0 48,34 14,0 0,14 34,48 0,82 14,96 48,62 82,96 96,82 62,48 "/>
-              </svg>
+              <X width="24" height="24" />
             </div>
           </div>
           <div className="modal__content">
