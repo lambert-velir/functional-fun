@@ -1,6 +1,7 @@
 import ReactDom from "react-dom";
 import React from "react";
 import { Provider } from "react-redux";
+import R from "ramda";
 
 import App from "./components/App.jsx";
 import pako from "./pako.js";
@@ -15,11 +16,20 @@ import { setExamples } from "./redux/examples/examplesActions.js";
 
 const store = configureStore(rootReducer, []);
 
+// grab the examples from the window and put them in redux
 store.dispatch(setExamples(window.__EXAMPLES__ || []));
+
 
 // attach listeners to the store to run the code in the
 // sandbox worker
 initSandbox(store);
+
+
+// on load, check to see if there is something in the hash
+loadFromHash();
+
+// update when the user navigates with back/forward buttons
+window.addEventListener("popstate", loadFromHash);
 
 
 ReactDom.render(
@@ -30,19 +40,29 @@ ReactDom.render(
 );
 
 
-// on load, check to see if there is something in the hash
-loadFromHash();
-
-// update when the user navigates with back/forward buttons
-window.addEventListener("popstate", loadFromHash);
-
 
 function loadFromHash(){
 
   const hash = window.location.hash.replace(/^#/, "");
 
-  if (hash){
-    const code = pako.decryptCode(hash);
-    store.dispatch(updateCode(code));
+  const file = window.__EXAMPLES__.find(R.compose(
+    R.equals(hash),
+    R.prop("slug")
+  ));
+
+  if (file){
+    store.dispatch(updateCode(file.code));
+  }
+  else if (hash){
+
+    pako.decryptCode(hash)
+      .matchWith({
+        Ok: ({ value }) => {
+          store.dispatch(updateCode(value));
+        },
+        Error: ({ value }) => {
+          history.pushState(null, null, "#");
+        }
+      });
   }
 }

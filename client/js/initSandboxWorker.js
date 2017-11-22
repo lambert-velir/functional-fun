@@ -13,6 +13,7 @@ export default function initSandbox(store){
 
   const sandbox = new Worker("workers/sandbox-generated.js");
 
+
   // forward messages to the console UI
   sandbox.addEventListener("message", e => {
 
@@ -23,17 +24,42 @@ export default function initSandbox(store){
     }
   });
 
-  // update the hash after the user has stopped typing
-  const updateHash = debounce((newCode) => {
-    window.location.hash = pako.encryptCode(newCode);
-  }, 1000);
 
-  // send the new code to the web worker
+  // send the new code to the sandbox web worker to compile
+  // when it changes
   observeStore(store, state => state.code, (newCode) => {
     updateHash(newCode);
     store.dispatch(clearConsole());
     sandbox.postMessage(newCode);
   });
 
-
+  return sandbox;
 }
+
+
+// update the hash after the user has stopped typing
+const updateHash = debounce((newCode) => {
+
+  const file = window.__EXAMPLES__.find(R.compose(
+    R.equals(newCode),
+    R.prop("code")
+  ));
+
+  // if this code is the contents of a file, update
+  // the hash to be the slug
+  if (file){
+    history.pushState(null, null, `#${file.slug}`);
+  }
+  else {
+    pako.encryptCode(newCode)
+      .matchWith({
+        Ok: ({ value }) => {
+          history.pushState(null, null, `#${value}`);
+        },
+        Error: ({ value }) => {
+          console.error(value);
+        }
+      });
+  }
+
+}, 1000);
