@@ -7,7 +7,7 @@ export default function getConsoleOutput(args) {
 
       if (arg === null)               { return "null"; }
       if (typeof arg === "undefined") { return "undefined"; }
-      if (typeof arg === "object")    { return JSON.stringify(arg, null, 1); }
+      if (typeof arg === "object")    { return JSON.stringify(arg, null, 2); }
 
       return arg.toString();
     }).join(" ");

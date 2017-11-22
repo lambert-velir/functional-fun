@@ -6,13 +6,19 @@ const dogs = [
   { name: "Laddy"     , age: 10 }
 ];
 
+
 // create a new array of dog names
 const dogNames = null;
 
-console.log(dogNames);
 
 
 // find the average age of the dogs
 const averageAge = null;
 
-console.log(averageAge);
+
+
+
+
+assert.equals(dogNames, ["Hamilton", "Sassafras", "Laddy"]);
+
+assert.equals(averageAge, 9);

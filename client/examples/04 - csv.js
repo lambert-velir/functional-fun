@@ -1,3 +1,5 @@
+import R from "ramda";
+
 let csv = `
 Hamilton, blue
 Hamilton, red
@@ -6,29 +8,31 @@ Laddy, blue
 Laddy, green
 `;
 
+const result = null;
 
 
-/* produce the following:
-[
-  {
-    "name": "Hamilton",
-    "colors": [
-      "blue",
-      "red"
-    ]
-  },
-  {
-    "name": "Sassafras",
-    "colors": [
-      "green"
-    ]
-  },
-  {
-    "name": "Laddy",
-    "colors": [
-      "blue",
-      "green"
-    ]
-  }
-]
-*/
+
+assert.equals(result,
+  [
+    {
+      "name": "Hamilton",
+      "colors": [
+        "blue",
+        "red"
+      ]
+    },
+    {
+      "name": "Sassafras",
+      "colors": [
+        "green"
+      ]
+    },
+    {
+      "name": "Laddy",
+      "colors": [
+        "blue",
+        "green"
+      ]
+    }
+  ]
+);

@@ -1,9 +1,18 @@
 // implement createGreeting
-var sayHello = createGreeting("hello");
-
-console.log( sayHello("daffy") ); // "hello, daffy"
-console.log( sayHello("bugs bunny") ); // "hello, bugs bunny"
+const sayHello = createGreeting("hello");
 
 function createGreeting(greeting) {
 
 }
+
+
+
+assert.equals(
+  sayHello("daffy"),
+  "hello, daffy"
+);
+
+assert.equals(
+  sayHello("bugs bunny"),
+  "hello, bugs bunny"
+);

@@ -1,13 +1,17 @@
-const runSequence = require("run-sequence");
-const path = require("path");
+import runSequence from "run-sequence";
+import gulp from "gulp";
+import path from "path";
 
-const quench                = require("../quench/quench.js");
-const createCopyTask        = require("../quench/createCopyTask.js");
-const createJsTask          = require("../quench/createJsTask.js");
-const createSimpleJsTask    = require("../quench/createSimpleJsTask.js");
-const createCssTask         = require("../quench/createCssTask.js");
-const createBrowserSyncTask = require("../quench/createBrowserSyncTask.js");
-const createNodemonTask     = require("../quench/createNodemonTask.js");
+import quench                from "../quench/quench.js";
+import createCopyTask        from "../quench/createCopyTask.js";
+import createJsTask          from "../quench/createJsTask.js";
+import createSimpleJsTask    from "../quench/createSimpleJsTask.js";
+import createCssTask         from "../quench/createCssTask.js";
+import createBrowserSyncTask from "../quench/createBrowserSyncTask.js";
+import createNodemonTask     from "../quench/createNodemonTask.js";
+
+import template from "gulp-template";
+import getExamples from "../../server/getExamples.js";
 
 module.exports = function buildTask(projectRoot) {
 
@@ -18,11 +22,20 @@ module.exports = function buildTask(projectRoot) {
 
   return function(){
 
+    gulp.task("build-html", function(){
+      // generate index.html with underscore templates
+      return gulp.src(`${clientDir}/index.html`)
+        .pipe(quench.drano())
+        .pipe(template({
+          examples: JSON.stringify(getExamples(examplesDir))
+        }))
+        .pipe(gulp.dest(buildDir));
+    });
+    quench.maybeWatch("build-html", [ examplesDir, `${clientDir}/index.html`]);
+
     createCopyTask("build-copy", {
       src: [
-        `${clientDir}/index.html`,
-        `${clientDir}/img/**`,
-        `${clientDir}/examples/**`
+        `${clientDir}/img/**`
       ],
       dest: buildDir,
       base: `${clientDir}`
@@ -75,8 +88,8 @@ module.exports = function buildTask(projectRoot) {
 
 
     createBrowserSyncTask("build-browser-sync", {
-      // server: buildDir,
-      proxy: "localhost:3030", // server.js creates this
+      server: buildDir,
+      // proxy: "localhost:3030", // server.js creates this
       files: [
         buildDir
       ]
@@ -88,10 +101,21 @@ module.exports = function buildTask(projectRoot) {
       watch: [ serverDir, examplesDir ]
     });
 
-    const buildTasks = ["build-js", "build-workers", "build-css", "build-copy"];
+
+    const buildTasks = [
+      "build-js",
+      "build-workers",
+      "build-css",
+      // "build-copy",
+      "build-html"
+    ];
 
     if (quench.isWatching()){
-      return runSequence(buildTasks, "build-server", "build-browser-sync");
+      return runSequence(
+        buildTasks,
+        // "build-server",
+        "build-browser-sync"
+      );
     }
     else {
       return runSequence(buildTasks);

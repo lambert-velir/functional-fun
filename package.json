@@ -4,6 +4,17 @@
   "version": "4.2.0",
   "description": "This project is based of Velir.Frontend.Starter v4.2.0",
   "private": true,
+  "babel": {
+    "presets": [
+      "react",
+      "env"
+    ],
+    "plugins": [
+      "transform-es2015-modules-commonjs",
+      "transform-class-properties",
+      "transform-object-rest-spread"
+    ]
+  },
   "devDependencies": {
     "babel-eslint": "^8.0.2",
     "babel-plugin-transform-class-properties": "^6.24.1",
@@ -36,6 +47,7 @@
     "gulp-sourcemaps": "^2.6.1",
     "gulp-svgmin": "^1.2.4",
     "gulp-svgstore": "^6.1.0",
+    "gulp-template": "^4.0.0",
     "gulp-uglify": "^3.0.0",
     "gulp-watch": "^4.3.11",
     "merge-stream": "^1.0.1",

@@ -25,15 +25,15 @@ self.addEventListener("message", e => {
     if (R.equals(test, target)){
       respond({
         type: "pass",
-        message: JSON.stringify(target)
+        message: JSON.stringify(target, null, 2)
       });
     }
     else {
       respond({
         type: "fail",
-        message: JSON.stringify(test)
+        message: JSON.stringify(test, null, 2)
           + "\n!==\n"
-          + JSON.stringify(target)
+          + JSON.stringify(target, null, 2)
       });
     }
   };

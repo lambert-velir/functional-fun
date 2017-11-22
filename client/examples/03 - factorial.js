@@ -4,4 +4,6 @@ function factorial(n){
 
 }
 
-console.log(factorial(4)); // 24
+
+
+assert.equals(factorial(4), 24);

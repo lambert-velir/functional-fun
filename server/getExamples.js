@@ -1,6 +1,8 @@
 import path from "path";
 import fs from "fs";
 import R from "ramda";
+
+
 export default function getExamples(dir){
 
   const files = R.compose(
