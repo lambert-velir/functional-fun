@@ -9,46 +9,46 @@ import * as babel from "babel-core";
 import modulePlugin from "babel-plugin-transform-es2015-modules-commonjs";
 import R from "ramda";
 
-// hijack any console calls so we can display them on screen
-const hijack = (type) => function(){
-  const message = getConsoleOutput([].slice.apply(arguments));
-  self.postMessage({ type, message });
-};
-
-console.log = hijack("log");
-console.error = hijack("error");
-console.warn = hijack("warn");
-
-
-/**
- * custom functions for this editor
- */
-
-const assertEquals = (test, target) => {
-  if (R.equals(test, target)){
-    self.postMessage({
-      type: "pass",
-      message: JSON.stringify(target)
-    });
-  }
-  else {
-    self.postMessage({
-      type: "fail",
-      message: JSON.stringify(test)
-        + " !== "
-        + JSON.stringify(target)
-    });
-  }
-};
-
-
 
 
 // when we get new code, compile and run it
 // the hijackConsole above will pick up any console.logs
 self.addEventListener("message", e => {
 
-  const newCode = e.data;
+  const code = e.data;
+
+  // a function to send a message back to the main thread, including the code
+  // the code can be used to determine if this message is stale or not
+  const respond = ({ type, message }) => self.postMessage({ type, message, code });
+
+  const assertEquals = (test, target) => {
+    if (R.equals(test, target)){
+      respond({
+        type: "pass",
+        message: JSON.stringify(target)
+      });
+    }
+    else {
+      respond({
+        type: "fail",
+        message: JSON.stringify(test)
+          + "\n!==\n"
+          + JSON.stringify(target)
+      });
+    }
+  };
+
+  // hijack any console calls so we can display them on screen
+  const hijack = (type) => function(){
+    const message = getConsoleOutput([].slice.apply(arguments));
+    respond({ type, message });
+  };
+
+
+  console.log = hijack("log");
+  console.error = hijack("error");
+  console.warn = hijack("warn");
+
 
   // make sure all the window setIntervals and setTimeouts are clear
   clearAllIntervals();
@@ -56,7 +56,7 @@ self.addEventListener("message", e => {
   try {
     // include module plugin so we can use "import" in the UI
     const transpiled = babel.transform(
-      newCode,
+      code,
       { plugins: [ modulePlugin ] }
     ).code;
 

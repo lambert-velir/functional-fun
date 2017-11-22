@@ -17,9 +17,17 @@ export default function initSandbox(store){
   // forward messages to the console UI
   sandbox.addEventListener("message", e => {
 
-    const { type, message } = e.data;
+    // the results of running agains _code_
+    // this code may or may not be what is currently in the editor
+    const { type, message, code } = e.data;
 
-    if (!R.isNil(type) && !R.isNil(message)){
+    // avoid race conditions by checking to see if the results of running the code
+    // are from the code in the editor
+    // it can be stale if maybe changes happen quickly, before the sandbox has a
+    // chance to respond
+    const isStale = code !== store.getState().code;
+
+    if (!R.isNil(type) && !R.isNil(message) && !isStale){
       store.dispatch(consoleMessage({ type, message }));
     }
   });
