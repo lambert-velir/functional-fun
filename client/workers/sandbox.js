@@ -25,22 +25,22 @@ self.addEventListener("message", e => {
     if (R.equals(test, target)){
       respond({
         type: "pass",
-        message: JSON.stringify(target, null, 2)
+        message: getConsoleOutput(target)
       });
     }
     else {
       respond({
         type: "fail",
-        message: JSON.stringify(test, null, 2)
+        message: getConsoleOutput(test)
           + "\n!==\n"
-          + JSON.stringify(target, null, 2)
+          + getConsoleOutput(target)
       });
     }
   };
 
   // hijack any console calls so we can display them on screen
   const hijack = (type) => function(){
-    const message = getConsoleOutput([].slice.apply(arguments));
+    const message = getConsoleOutput(...[].slice.apply(arguments));
     respond({ type, message });
   };
 

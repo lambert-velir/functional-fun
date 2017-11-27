@@ -1,5 +1,5 @@
 // format the arguments for console logging
-export default function getConsoleOutput(args) {
+export default function getConsoleOutput(...args) {
 
   try {
     // if an arg is an object, print out the JSON instead of [object Object]
@@ -13,6 +13,6 @@ export default function getConsoleOutput(args) {
     }).join(" ");
   }
   catch(e){
-    return args.toString();
+    return args.join(" ");
   }
 }
