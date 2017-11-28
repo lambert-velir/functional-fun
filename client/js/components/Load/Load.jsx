@@ -52,7 +52,7 @@ export default class Load extends React.Component {
                         height="200px"
                         mode="javascript"
                         theme="tomorrow"
-                        fontSize={6}
+                        fontSize={4}
                         tabSize={2}
                         value={code}
                         name={`code-editor-${displayName}`}

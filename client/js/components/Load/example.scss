@@ -14,11 +14,13 @@
 }
 
 .example {
-  cursor: pointer;
+  height: 180px;
+  padding-bottom: 24px;
+  overflow: hidden;
 
   border: 1px solid $grey-ddd;
   border-radius: 4px;
-  padding-bottom: 24px;
+  cursor: pointer;
 
 
   &:hover .example__name {
@@ -27,15 +29,16 @@
 }
 
 .example__name {
+  padding: 8px 0;
   text-align: center;
   font-size: 18px;
-  line-height: 44px;
+  line-height: 1.2;
 }
 
 .example__preview {
   position: relative;
   padding: 2px;
-  height: 140px;
+  // height: 140px;
   overflow: hidden;
   user-select: none;
 

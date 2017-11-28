@@ -1,10 +1,10 @@
 // implement createGreeting
-const sayHello = createGreeting("hello");
-
 function createGreeting(greeting) {
 
 }
 
+
+const sayHello = createGreeting("hello");
 
 
 assert.equals(

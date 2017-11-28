@@ -16,7 +16,7 @@ $edge-spacing: 36px;
   visibility: visible;
   justify-content: center;
   align-items: center;
-  padding: $edge-spacing;
+  padding: $edge-spacing $edge-spacing 10%; // push it up a little
 
   background-color: rgba(black, 0.7);
   transition: all 500ms;
@@ -39,6 +39,7 @@ $edge-spacing: 36px;
   flex-direction: column;
   position: relative;
   max-height: calc(100% - #{$edge-spacing*2});
+  max-width: 1200px;
 
   color: #333;
 
