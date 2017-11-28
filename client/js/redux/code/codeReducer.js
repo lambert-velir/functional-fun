@@ -22,7 +22,7 @@ export default function codeReducer(state = initialState, action, examples) {
       const code = R.compose(
         m => m.getOrElse(state),
         R.map(R.prop("code")),
-        Maybe.of,
+        Maybe.fromNullable,
         R.find(R.propEq("slug", slug))
       )(examples);
 

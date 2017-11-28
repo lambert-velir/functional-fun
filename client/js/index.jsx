@@ -12,6 +12,10 @@ import rootReducer    from "./redux/rootReducer.js";
 import { updateCode } from "./redux/code/codeActions.js";
 import { setExamples } from "./redux/examples/examplesActions.js";
 
+// so we can mess with these in the console
+import Maybe from "folktale/maybe";
+window.Maybe = Maybe;
+window.R = R;
 
 
 const store = configureStore(rootReducer, []);
