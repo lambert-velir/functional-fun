@@ -35,7 +35,8 @@ module.exports = function buildTask(projectRoot) {
 
     createCopyTask("build-copy", {
       src: [
-        `${clientDir}/img/**`
+        `${clientDir}/img/**`,
+        `${clientDir}/data/**`
       ],
       dest: buildDir,
       base: `${clientDir}`
@@ -106,7 +107,7 @@ module.exports = function buildTask(projectRoot) {
       "build-js",
       "build-workers",
       "build-css",
-      // "build-copy",
+      "build-copy",
       "build-html"
     ];
 

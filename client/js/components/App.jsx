@@ -8,7 +8,7 @@ export default function App(props){
   return (
     <div className="container">
       <div className="container__top">
-        Functional Workshop <LoadContainer />
+        <img src="img/lamda.png" alt="lambda" /> <LoadContainer />
       </div>
       <div className="container__bottom">
         <PanelsContainer />
