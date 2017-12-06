@@ -49,13 +49,38 @@ export default class CodeEditor extends React.Component {
     this.props.onCodeChange(code);
   }
 
+  setupAce = (el) => {
+    this.ace = el;
+
+    const commands = this.ace.editor.commands;
+
+    commands.bindKey(
+      { win: "Ctrl-D", mac: "Command-D" },
+      (editor) => editor.execCommand("selectMoreAfter")
+    );
+
+    commands.bindKey(
+      { win: "Ctrl-[", mac: "Command-[" },
+      (editor) => editor.execCommand("blockoutdent")
+    );
+
+    commands.bindKey(
+      { win: "Ctrl-]", mac: "Command-]" },
+      (editor) => editor.execCommand("blockindent")
+    );
+
+    // remove Cmd-L so the browser will select the address bar instead
+    commands.bindKey({ win: "Ctrl-L", mac: "Command-L" }, null);
+
+  }
+
   render = () => {
     const { code } = this.props;
     const { width, height } = this.state;
 
     return (
       <AceEditor
-        ref={el => this.ace = el}
+        ref={this.setupAce}
         width={`${width}px`}
         height={`${height}px`}
         mode="javascript"
