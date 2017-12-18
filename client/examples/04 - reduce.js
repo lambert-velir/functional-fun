@@ -3,8 +3,8 @@
  * .filter _filters_ the items in an array into a new smaller (or same sized) array
  * .find returns a _single_ item from an array (or undefined)
  *
- * .reduce if there is no other specialized function (like map, filter, find)
- *   you can use reduce. Reduce is the "multitool" of array transoformations
+ * Use .reduce if there is no other specialized function (like map, filter, find)
+ * Reduce is the "multitool" of array transformations
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
  */
 

@@ -72,6 +72,8 @@ export default class CodeEditor extends React.Component {
     // remove Cmd-L so the browser will select the address bar instead
     commands.bindKey({ win: "Ctrl-L", mac: "Command-L" }, null);
 
+    commands.bindKey({ win: "Ctrl-F", mac: "Command-F" }, null);
+
   }
 
   render = () => {
