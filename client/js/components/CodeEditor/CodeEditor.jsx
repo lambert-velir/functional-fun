@@ -69,6 +69,16 @@ export default class CodeEditor extends React.Component {
       (editor) => editor.execCommand("blockindent")
     );
 
+    commands.bindKey(
+      { win: "Ctrl-Down", mac: "Ctrl-Command-Down" },
+      (editor) => editor.execCommand("movelinesdown")
+    );
+
+    commands.bindKey(
+      { win: "Ctrl-Up", mac: "Ctrl-Command-Up" },
+      (editor) => editor.execCommand("movelinesup")
+    );
+
     // remove Cmd-L so the browser will select the address bar instead
     commands.bindKey({ win: "Ctrl-L", mac: "Command-L" }, null);
 
