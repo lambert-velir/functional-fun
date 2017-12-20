@@ -15,17 +15,17 @@ const animals = [
 
 
 // this is one (bad) way to find sassy
-let sassyUsingFor;
+let sassy1;
 for (var i = 0; i < animals.length; i++){
   if (animals[i].name === "Sassafras"){
-    sassyUsingFor = animals[i];
+    sassy1 = animals[i];
     break;
   }
 }
 
 // use .find instead!
-const sassy = null;
+const sassy2 = null;
 
 
 
-assert.equals(sassy, sassyUsingFor);
+assert.equals(sassy2, sassy1);

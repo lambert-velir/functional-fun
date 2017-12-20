@@ -15,14 +15,14 @@ const animals = [
 
 
 // this is one (bad) way to transform this array of animals into an array of names
-let namesUsingFor = [];
+let names1 = [];
 for (let i = 0; i < animals.length; i++){
-  namesUsingFor.push(animals[i].name);
+  names1.push(animals[i].name);
 }
 
 // use .map instead!
-const names = null;
+const names2 = null;
 
 
 
-assert.equals(names, namesUsingFor);
+assert.equals(names2, names1);

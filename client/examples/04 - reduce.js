@@ -16,15 +16,15 @@ const dogs = [
 
 
 // this is one (bad) way to compute the average age
-let avgAgeUsingFor = 0;
+let avgAge1 = 0;
 for(let i = 0; i < dogs.length; i ++){
   let dog = dogs[i];
-  avgAgeUsingFor += dog.age / dogs.length;
+  avgAge1 += dog.age / dogs.length;
 }
 
 // use .reduce instead!
-const avgAge = null;
+const avgAge2 = null;
 
 
 
-assert.equals(avgAge, avgAgeUsingFor);
+assert.equals(avgAge2, avgAge1);

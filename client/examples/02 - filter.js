@@ -15,16 +15,16 @@ const animals = [
 
 
 // this is one (bad) way to transform this array of animals into an array of dogs
-let dogsUsingFor = [];
+let dogs1 = [];
 for (var i = 0; i < animals.length; i++){
   if (animals[i].species === "dog"){
-    dogsUsingFor.push(animals[i]);
+    dogs1.push(animals[i]);
   }
 }
 
 // use .filter instead!
-const dogs = null;
+const dogs2 = null;
 
 
 
-assert.equals(dogs, dogsUsingFor);
+assert.equals(dogs2, dogs1);
