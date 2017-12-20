@@ -4,7 +4,7 @@ import R from "ramda";
 export default function getConsoleOutput(...args) {
 
   try {
-
+    // Any -> Boolean
     const typeIs = type => R.compose(R.equals(type), R.type);
 
     return R.compose(

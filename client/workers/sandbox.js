@@ -5,10 +5,12 @@
 self.importScripts("../js/libraries-generated.js");
 
 import getConsoleOutput from "./getConsoleOutput.js";
-import * as babel from "babel-core";
-import modulePlugin from "babel-plugin-transform-es2015-modules-commonjs";
 import R from "ramda";
 
+import * as babel from "babel-core";
+import modulePlugin from "babel-plugin-transform-es2015-modules-commonjs";
+import classPropertiesPlugin from "babel-plugin-transform-class-properties";
+import objectRestSpreadPlugin from "babel-plugin-transform-object-rest-spread"
 
 
 // when we get new code, compile and run it
@@ -57,7 +59,9 @@ self.addEventListener("message", e => {
     // include module plugin so we can use "import" in the UI
     const transpiled = babel.transform(
       code,
-      { plugins: [ modulePlugin ] }
+      {
+        plugins: [ modulePlugin, classPropertiesPlugin, objectRestSpreadPlugin ]
+      }
     ).code;
 
     // setup some functions that can be called from within the
