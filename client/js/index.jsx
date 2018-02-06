@@ -12,9 +12,15 @@ import rootReducer    from "./redux/rootReducer.js";
 import { updateCode } from "./redux/code/codeActions.js";
 import { setExamples } from "./redux/examples/examplesActions.js";
 
-// so we can mess with these in the console
+// expose these so we can mess with them in the console
+// and import them in the editor
 import Maybe from "folktale/maybe";
+import Result from "folktale/result";
+import Task from "folktale/concurrency/task";
+
 window.Maybe = Maybe;
+window.Result = Result;
+window.Task = Task;
 window.R = R;
 
 

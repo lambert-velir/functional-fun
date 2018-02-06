@@ -3,14 +3,13 @@
 **/
 
 // Include gulp and plugins
-const gulp   = require("gulp");
-const quench = require("./quench/quench.js");
-const path   = require("path");
+import gulp from "gulp";
+import quench from "./quench/quench.js";
+import path from "path";
+import buildTask from "./tasks/build.js";
 
 
 const projectRoot = path.resolve(__dirname, "..");
-
-const buildTask = require("./tasks/build.js")(projectRoot);
 
 /**
  * gulp build
@@ -18,7 +17,7 @@ const buildTask = require("./tasks/build.js")(projectRoot);
  * to build for prduction/jenkins:
  *    gulp build --no-watch --env production
  */
-gulp.task("build", buildTask);
+gulp.task("build", buildTask(projectRoot));
 
 
 
