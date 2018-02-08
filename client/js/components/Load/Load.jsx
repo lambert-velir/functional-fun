@@ -35,7 +35,7 @@ export default class Load extends React.Component {
       <div className="load">
         <button type="button" onClick={this.open}>Load</button>
 
-        <Modal isOpen={isOpen} onClose={this.close}>
+        <Modal isOpen={isOpen} onClose={this.close} className="modal--examples">
           <div className="examples">
             {examples.map(example => {
               const { displayName, slug, code } = example;

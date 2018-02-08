@@ -1,8 +1,6 @@
 @import "../../../scss/_z-index.scss";
 @import "../../../scss/_colors.scss";
 
-$edge-spacing: 36px;
-
 
 .modal {
   position: fixed;
@@ -10,36 +8,45 @@ $edge-spacing: 36px;
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: $z-modal;
 
   display: flex;
-  visibility: visible;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  padding: $edge-spacing $edge-spacing 10%; // push it up a little
 
-  background-color: rgba(black, 0.7);
+  padding: 35px;
+
+  overflow: auto;
   transition: all 500ms;
+  visibility: visible;
+  z-index: $z-modal;
 
   // when it's hidden
   &:not(.is-open) {
+    opacity: 0;
     visibility: hidden;
-    background-color: rgba(black, 0);
 
     .modal__box {
       transform: translateY(18px);
-      opacity: 0;
     }
   }
 
 }
 
+.modal__overlay {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(black, 0.7);
+}
+
 .modal__box {
-  display: flex;
-  flex-direction: column;
   position: relative;
-  max-height: calc(100% - #{$edge-spacing*2});
-  max-width: 1200px;
+
+  // vertically center the box
+  margin-top: auto;
+  margin-bottom: auto;
 
   color: #333;
 
@@ -47,15 +54,12 @@ $edge-spacing: 36px;
   border: 1px solid $grey-ddd;
   border-radius: 6px;
 
-  opacity: 1;
-  transition: all 250ms;
   transform: translateY(0);
 
 }
 
 .modal__title {
   position: relative;
-  flex: none;
   height: 40px;
 
   font-size: 18px;
@@ -64,8 +68,6 @@ $edge-spacing: 36px;
 }
 
 .modal__content {
-  flex: auto;
-  overflow: auto;
   padding: 0 20px 20px;
 }
 

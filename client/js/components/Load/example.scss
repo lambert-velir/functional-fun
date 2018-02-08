@@ -1,5 +1,7 @@
 @import "../../../scss/_colors.scss";
 
+$width: 200px;
+$padding: 8px;
 
 .examples {
   display: flex;
@@ -7,10 +9,15 @@
   justify-content: center;
 }
 
+// make the modal 4 wide
+.modal--examples .modal__content {
+  max-width: ($width + ($padding*2)) * 4;
+}
+
 .example__holder {
-  width: 200px;
+  width: $width;
   max-width: 100%;
-  padding: 8px;
+  padding: $padding;
 }
 
 .example {

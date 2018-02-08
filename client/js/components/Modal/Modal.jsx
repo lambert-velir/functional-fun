@@ -9,6 +9,7 @@ export default class Modal extends React.Component {
     title: string,
     isOpen: bool.isRequired,
     onClose: func.isRequired,
+    className: string,
     children: node.isRequired
   };
 
@@ -39,24 +40,16 @@ export default class Modal extends React.Component {
     }
   }
 
-  handleDimClick = (e) => {
-    if (e.target === this.dim){
-      this.props.onClose();
-    }
-  }
-
   render = () => {
-    const { isOpen, onClose, title } = this.props;
+    const { isOpen, onClose, title, children, className, ...rest } = this.props;
 
-    const classes = classNames("modal", {
+    const classes = classNames("modal", className, {
       "is-open": isOpen
     });
 
     return (
-      <div className={classes}
-        onClick={this.handleDimClick}
-        ref={el => this.dim = el}
-      >
+      <div className={classes} {...rest}>
+        <div className="modal__overlay" onClick={onClose} />
         <div className="modal__box">
           <div className="modal__title">
             {title}
@@ -65,7 +58,7 @@ export default class Modal extends React.Component {
             </div>
           </div>
           <div className="modal__content">
-            {this.props.children}
+            {children}
           </div>
         </div>
       </div>
