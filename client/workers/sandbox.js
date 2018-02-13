@@ -38,7 +38,7 @@ const createArrayBuffer = (func, wait) => {
 // when we get new code, compile and run it
 self.addEventListener("message", e => {
 
-  const code = e.data;
+  const { code, confirmationId } = e.data;
 
   // a function to eventually send messages back to the main thread, including the code
   // the code can be used to determine if this message is stale or not
@@ -95,10 +95,16 @@ self.addEventListener("message", e => {
       ${transpiled}
     `;
 
+    // run the user code
     eval(evalText);
+
   }
   catch(e){
     console.error(e.message);
+  }
+  finally {
+    // if the code successfully ran, or an error was caught, send back the confirmationId
+    self.postMessage({ confirmationId });
   }
 
 });
