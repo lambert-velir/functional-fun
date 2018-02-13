@@ -17,7 +17,7 @@ import objectRestSpreadPlugin from "babel-plugin-transform-object-rest-spread"
 // the hijackConsole above will pick up any console.logs
 self.addEventListener("message", e => {
 
-  const code = e.data;
+  const { code, confirmationId } = e.data;
 
   // a function to send a message back to the main thread, including the code
   // the code can be used to determine if this message is stale or not
@@ -72,10 +72,16 @@ self.addEventListener("message", e => {
       ${transpiled}
     `;
 
+    // run the user code
     eval(evalText);
+
   }
   catch(e){
     console.error(e.message);
+  }
+  finally {
+    // if the code successfully ran, or an error was caught, send back the confirmationId
+    self.postMessage({ confirmationId });
   }
 
 });
