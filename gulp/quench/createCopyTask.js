@@ -1,7 +1,8 @@
-const gulp   = require("gulp");
-const quench = require("./quench.js");
-const debug  = require("gulp-debug");
-const R      = require("ramda");
+const gulp    = require("gulp");
+const quench  = require("./quench.js");
+const debug   = require("gulp-debug");
+const changed = require("gulp-changed")
+const R       = require("ramda");
 
 module.exports = function copyTask(taskName, userConfig) {
 
@@ -28,6 +29,7 @@ module.exports = function copyTask(taskName, userConfig) {
   gulp.task(taskName, function(next) {
     return gulp.src(src, { base: base })
       .pipe(quench.drano())
+      .pipe(changed(dest))
       .pipe(gulp.dest(dest))
       .pipe(debug({ title: `${taskName}:` }));
   });

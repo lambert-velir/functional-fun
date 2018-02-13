@@ -1,48 +1,37 @@
-const gulp = require("gulp");
-const quench = require("./quench.js");
-const nodemon = require("nodemon");
 const R = require("ramda");
+const gulp = require("gulp");
+const nodemon = require("nodemon");
+const quench = require("./quench.js");
 
 module.exports = function(taskName, userConfig){
 
-  const babelNode = "babel-node --presets env,react --plugins transform-class-properties,transform-object-rest-spread";
-
   const nodemonConfig = R.merge({
+
+    // use babel to start the server files
+    // https://www.youtube.com/watch?v=Xb_0awoShR8 --inspect for node debugging
     execMap: {
-      js: babelNode,
-      jsx: babelNode
+      js: "babel-node --inspect",
+      jsx: "babel-node --inspect"
     }
     /**
-     * nodemonConfig example:
-     * {
-     *   script: path.resolve(serverDir, "server.js"),
-     *   args: ["--layout", layout],
-     *   watch: [ serverDir ]
-     * }
+     * script: path.resolve(serverDir, "server.js"),
+     * ignore: [],
+     * watch: [],  // https://github.com/remy/nodemon/issues/965
+     * args: ["--flag", value],
+     * verbose: true
      */
   }, userConfig);
 
+
   gulp.task(taskName, function (cb) {
 
-    let started = false;
-
-    quench.logYellow("watching", "nodemod:", JSON.stringify(nodemonConfig.watch, null, 2));
-
     return nodemon(nodemonConfig)
-      .on("start", function () {
-        // to avoid nodemon being started multiple times
-        // thanks @matthisk
-        if (!started) {
-          cb();
-          started = true;
-        }
-      })
+      .once("start", cb)
       .on("restart", function () {
-        console.log(`${taskName} - restarted!`);
+        quench.logYellow(taskName, "restarted!");
       })
-      .on("crash", function(e) {
-        console.error(`${taskName} - server.js crashed!`);
-        console.error(e);
+      .on("crash", function() {
+        quench.logYellow(taskName, "server.js crashed!");
         // stream.emit("restart", 10)  // restart the server in 10 seconds
       });
   });

@@ -6,7 +6,7 @@
 import gulp from "gulp";
 import quench from "./quench/quench.js";
 import path from "path";
-import buildTask from "./tasks/build.js";
+import createBuildTask from "./tasks/build.js";
 
 
 const projectRoot = path.resolve(__dirname, "..");
@@ -17,7 +17,7 @@ const projectRoot = path.resolve(__dirname, "..");
  * to build for prduction/jenkins:
  *    gulp build --no-watch --env production
  */
-gulp.task("build", buildTask(projectRoot));
+gulp.task("build", createBuildTask(projectRoot));
 
 
 

@@ -15,14 +15,15 @@ module.exports = function cssTask(taskName, userConfig) {
   const env = quench.getEnv();
 
   // css settings
-  const cssConfig = R.merge({
+  const cssConfig = R.mergeDeepRight({
 
     sass: {
       outputStyle: env.production() ? "compressed" : "expanded"
     },
 
     autoprefixer: {
-      browsers: ["> 1%", "last 2 versions", "Firefox ESR", "Opera 12.1", "ie >= 9"]
+      browsers: ["> 1%", "last 2 versions", "Firefox ESR", "Opera 12.1", "ie >= 9"],
+      grid: true
     }
 
     /**
