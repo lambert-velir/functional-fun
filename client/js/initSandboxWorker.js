@@ -34,34 +34,42 @@ export default function initSandbox(store){
 
   function runCode(code){
 
-console.log("Running code");
+    console.log("Running code");
+
     if (processing){
-      console.log("SKIP!");
+        console.log("SKIP!");
       queue = code;
       return;
     }
 
     processing = true;
-
     // start at timer, if it doesn't get cleared, it will terminate and re-spawn
     // the sandbox
     const confirmationId = setTimeout(() => {
+
+      console.log("timout expired:", confirmationId);
+
       sandbox.terminate();
-      sandbox = spawnSandbox(store); // respawn
       store.dispatch(clearConsole());
       store.dispatch(consoleMessage({
         type: "warn",
         message: "Your code is taking a long time.\n"
-        + "Do you have an infinite loop??"
+               + "Do you have an infinite loop??"
       }));
-      if (queue){
-        console.log("runnig  queue", queue);
-        processing = false;
-        const next = queue;
-        queue = null;
-        runCode(next);
-      }
+
+      sandbox = spawnSandbox(store); // respawn
+      processing = false;
+
+
+      // if (queue){
+      //   console.log("running  queue", queue);
+      //   const next = queue;
+      //   queue = null;
+      //   runCode(next);
+      // }
     }, 2000);
+
+    console.log("timeout created:", confirmationId);
 
     sandbox.postMessage({ code, confirmationId });
   }
@@ -88,6 +96,7 @@ function spawnSandbox(store){
     // after the code has run, the sandbox should send back a confirmationId
     // use this ID to clear the timeout that was started in "runCode"
     if (typeof(confirmationId) !== "undefined"){
+      console.log("code done", confirmationId);
       processing = false;
       clearTimeout(confirmationId);
     }
@@ -101,6 +110,7 @@ function spawnSandbox(store){
     if (!R.isNil(messages) && !isStale){
       store.dispatch(consoleMessages(messages));
     }
+
   });
 
 
