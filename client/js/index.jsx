@@ -17,11 +17,13 @@ import { setExamples } from "./redux/examples/examplesActions.js";
 import Maybe from "folktale/maybe";
 import Result from "folktale/result";
 import Task from "folktale/concurrency/task";
+import heroes from "heroes";
 
 window.Maybe = Maybe;
 window.Result = Result;
 window.Task = Task;
 window.R = R;
+window.heroes = heroes;
 
 
 const store = configureStore(rootReducer, []);
