@@ -2,9 +2,6 @@ module.exports = [
   {
     "name": "Superman",
     "nickName": "Clark Kent (Kal-El)",
-    "url": "http://www.superherodb.com/superman/10-791/",
-    "profileImg": "http://www.superherodb.com/pictures/portraits/superman.jpg",
-    "bannerImg": "http://www.superherodb.com/pictures/topimage/superman.jpg",
     "publisher": "dc comics",
     "alignment": "good",
     "stats": {
@@ -27,9 +24,6 @@ module.exports = [
   {
     "name": "Batman",
     "nickName": "Bruce Wayne",
-    "url": "http://www.superherodb.com/batman/10-639/",
-    "profileImg": "http://www.superherodb.com/pictures/portraits/batman.jpg",
-    "bannerImg": "http://www.superherodb.com/pictures/topimage/batman.jpg",
     "publisher": "dc comics",
     "alignment": "good",
     "stats": {
@@ -52,9 +46,6 @@ module.exports = [
   {
     "name": "Joker",
     "nickName": "Jack Napier",
-    "url": "http://www.superherodb.com/joker/10-719/",
-    "profileImg": "http://www.superherodb.com/pictures/portraits/joker.jpg",
-    "bannerImg": "http://www.superherodb.com/img/homeheader.jpg",
     "publisher": "dc comics",
     "alignment": "bad",
     "stats": {
@@ -77,9 +68,6 @@ module.exports = [
   {
     "name": "Two-Face",
     "nickName": "Harvey Dent",
-    "url": "http://www.superherodb.com/two-face/10-802/",
-    "profileImg": "http://www.superherodb.com/pictures/portraits/two-face.jpg",
-    "bannerImg": "http://www.superherodb.com/img/homeheader.jpg",
     "publisher": "dc comics",
     "alignment": "bad",
     "stats": {
@@ -102,9 +90,6 @@ module.exports = [
   {
     "name": "Penguin",
     "nickName": "Oswald Chesterfield Cobblepot",
-    "url": "http://www.superherodb.com/penguin/10-753/",
-    "profileImg": "http://www.superherodb.com/pictures/portraits/penguin.jpg",
-    "bannerImg": "http://www.superherodb.com/img/homeheader.jpg",
     "publisher": "dc comics",
     "alignment": "bad",
     "stats": {
@@ -127,9 +112,6 @@ module.exports = [
   {
     "name": "Nightwing",
     "nickName": "Richard John Grayson",
-    "url": "http://www.superherodb.com/nightwing/10-851/",
-    "profileImg": "http://www.superherodb.com/pictures/portraits/nightwing.jpg",
-    "bannerImg": "http://www.superherodb.com/pictures/topimage/nightwing.jpg",
     "publisher": "dc comics",
     "alignment": "good",
     "stats": {
@@ -152,9 +134,6 @@ module.exports = [
   {
     "name": "Red Robin",
     "nickName": "Timothy Jackson Drake",
-    "url": "http://www.superherodb.com/red-robin/10-10009/",
-    "profileImg": "http://www.superherodb.com/pictures/portraits/red-robin.jpg",
-    "bannerImg": "http://www.superherodb.com/img/homeheader.jpg",
     "publisher": "dc comics",
     "alignment": "good",
     "stats": {
@@ -177,9 +156,6 @@ module.exports = [
   {
     "name": "Robin I",
     "nickName": "Richard John Grayson",
-    "url": "http://www.superherodb.com/robin-i/10-850/",
-    "profileImg": "http://www.superherodb.com/pictures/portraits/robin-i.jpg",
-    "bannerImg": "http://www.superherodb.com/img/homeheader.jpg",
     "publisher": "dc comics",
     "alignment": "good",
     "stats": {
@@ -202,9 +178,6 @@ module.exports = [
   {
     "name": "Catwoman",
     "nickName": "Selina Kyle",
-    "url": "http://www.superherodb.com/catwoman/10-659/",
-    "profileImg": "http://www.superherodb.com/pictures/portraits/catwoman.jpg",
-    "bannerImg": "http://www.superherodb.com/pictures/topimage/catwoman.jpg",
     "publisher": "dc comics",
     "alignment": "good",
     "stats": {
@@ -227,9 +200,6 @@ module.exports = [
   {
     "name": "Batgirl VI",
     "nickName": "Stephanie Brown",
-    "url": "http://www.superherodb.com/batgirl-vi/10-1398/",
-    "profileImg": "http://www.superherodb.com/pictures/portraits/batgirl-6.jpg",
-    "bannerImg": "http://www.superherodb.com/pictures/topimage/batgirl-6.jpg",
     "publisher": "dc comics",
     "alignment": "good",
     "stats": {
@@ -252,9 +222,6 @@ module.exports = [
   {
     "name": "Harley Quinn",
     "nickName": "Harleen Francis Quinzel",
-    "url": "http://www.superherodb.com/harley-quinn/10-701/",
-    "profileImg": "http://www.superherodb.com/pictures/portraits/harley-quinn.jpg",
-    "bannerImg": "http://www.superherodb.com/img/homeheader.jpg",
     "publisher": "dc comics",
     "alignment": "bad",
     "stats": {
@@ -277,9 +244,6 @@ module.exports = [
   {
     "name": "Oracle (DC)",
     "nickName": "Barbara Gordon",
-    "url": "http://www.superherodb.com/oracle-dc/10-749/",
-    "profileImg": "http://www.superherodb.com/pictures/portraits/oracle_dc.jpg",
-    "bannerImg": "http://www.superherodb.com/img/homeheader.jpg",
     "publisher": "dc comics",
     "alignment": "good",
     "stats": {
@@ -302,9 +266,6 @@ module.exports = [
   {
     "name": "Red Hood",
     "nickName": "Jason Peter Todd",
-    "url": "http://www.superherodb.com/red-hood/10-932/",
-    "profileImg": "http://www.superherodb.com/pictures/portraits/red-hood.jpg",
-    "bannerImg": "http://www.superherodb.com/img/homeheader.jpg",
     "publisher": "dc comics",
     "alignment": "neutral",
     "stats": {
@@ -327,9 +288,6 @@ module.exports = [
   {
     "name": "Deathstroke",
     "nickName": "Slade Joseph Wilson",
-    "url": "http://www.superherodb.com/deathstroke/10-672/",
-    "profileImg": "http://www.superherodb.com/pictures/portraits/deathstroke.jpg",
-    "bannerImg": "http://www.superherodb.com/img/homeheader.jpg",
     "publisher": "dc comics",
     "alignment": "neutral",
     "stats": {
@@ -352,9 +310,6 @@ module.exports = [
   {
     "name": "Anti-Monitor",
     "nickName": "-",
-    "url": "http://www.superherodb.com/anti-monitor/10-1292/",
-    "profileImg": "http://www.superherodb.com/pictures/portraits/anti-monitor.jpg",
-    "bannerImg": "http://www.superherodb.com/img/homeheader.jpg",
     "publisher": "dc comics",
     "alignment": "bad",
     "stats": {
@@ -377,9 +332,6 @@ module.exports = [
   {
     "name": "Darkseid",
     "nickName": "Uxas",
-    "url": "http://www.superherodb.com/darkseid/10-668/",
-    "profileImg": "http://www.superherodb.com/pictures/portraits/darkseid.jpg",
-    "bannerImg": "http://www.superherodb.com/img/homeheader.jpg",
     "publisher": "dc comics",
     "alignment": "bad",
     "stats": {
@@ -403,9 +355,6 @@ module.exports = [
   {
     "name": "Riddler",
     "nickName": "Edward Nigma",
-    "url": "http://www.superherodb.com/riddler/10-768/",
-    "profileImg": "http://www.superherodb.com/pictures/portraits/riddler.jpg",
-    "bannerImg": "http://www.superherodb.com/img/homeheader.jpg",
     "publisher": "dc comics",
     "alignment": "bad",
     "stats": {
@@ -428,9 +377,6 @@ module.exports = [
   {
     "name": "Huntress",
     "nickName": "Helena Rosa Bertinelli",
-    "url": "http://www.superherodb.com/huntress/10-707/",
-    "profileImg": "http://www.superherodb.com/pictures/portraits/huntress.jpg",
-    "bannerImg": "http://www.superherodb.com/img/homeheader.jpg",
     "publisher": "dc comics",
     "alignment": "good",
     "stats": {
@@ -453,9 +399,6 @@ module.exports = [
   {
     "name": "Ra's Al Ghul",
     "nickName": "Ra's Al Ghul",
-    "url": "http://www.superherodb.com/ras-al-ghul/10-761/",
-    "profileImg": "http://www.superherodb.com/pictures/portraits/ras-al-ghul.jpg",
-    "bannerImg": "http://www.superherodb.com/img/homeheader.jpg",
     "publisher": "dc comics",
     "alignment": "bad",
     "stats": {
@@ -478,9 +421,6 @@ module.exports = [
   {
     "name": "Killer Croc",
     "nickName": "Waylon Jones",
-    "url": "http://www.superherodb.com/killer-croc/10-723/",
-    "profileImg": "http://www.superherodb.com/pictures/portraits/killer-croc.jpg",
-    "bannerImg": "http://www.superherodb.com/img/homeheader.jpg",
     "publisher": "dc comics",
     "alignment": "bad",
     "stats": {
