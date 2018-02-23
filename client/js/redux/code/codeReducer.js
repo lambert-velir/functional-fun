@@ -1,5 +1,5 @@
 import R from "ramda";
-import { CODE_UPDATE } from "./codeActions.js";
+import { CODE_UPDATE, CODE_PREPEND } from "./codeActions.js";
 import { SELECT_EXAMPLE } from "../examples/examplesActions.js";
 
 import Maybe from "folktale/maybe";
@@ -14,6 +14,11 @@ export default function codeReducer(state = initialState, action, examples) {
     case CODE_UPDATE: {
       const { code } = action.payload;
       return code;
+    }
+
+    case CODE_PREPEND: {
+      const { code } = action.payload;
+      return code + state;
     }
 
     case SELECT_EXAMPLE: {

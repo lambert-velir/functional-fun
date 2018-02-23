@@ -34,7 +34,7 @@ export default class CodeEditor extends React.Component {
   }
 
   resizeSelf = () => {
-    const parent = this.ace.refEditor.parentNode;
+    const parent = this.ace.refEditor.offsetParent;
     const { width, height } = this.state;
 
     if (parent.offsetWidth !== width || parent.offsetHeight !== height){
@@ -53,6 +53,8 @@ export default class CodeEditor extends React.Component {
     this.ace = el;
 
     const commands = this.ace.editor.commands;
+
+    // console.log(commands);
 
     commands.bindKey(
       { win: "Ctrl-D", mac: "Command-D" },
@@ -87,7 +89,7 @@ export default class CodeEditor extends React.Component {
   }
 
   render = () => {
-    const { code } = this.props;
+    const { code, ...rest } = this.props;
     const { width, height } = this.state;
 
     return (
@@ -104,6 +106,7 @@ export default class CodeEditor extends React.Component {
         wrapEnabled={true}
         name="code-editor"
         editorProps={{ $blockScrolling: Infinity }} // to silence console warning
+        {...rest}
       />
     );
   }

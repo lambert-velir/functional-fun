@@ -5,7 +5,7 @@ import { arrayOf, func, node, number } from "prop-types";
 
 const childrenStyles = {
   flex: "auto",
-  overflow: "hidden",
+  // overflow: "hidden", is this needed? I need it to _not_ be hidden so the import link can break out
   position: "relative"
 };
 

@@ -4,6 +4,7 @@ import Splitter from "./Splitter.jsx";
 
 import CodeContainer from "../../containers/CodeContainer.js";
 import ConsoleContainer from "../../containers/ConsoleContainer.js";
+import ImportContainer from "../../containers/ImportContainer.js";
 
 const propTypes = {
   sizes: arrayOf(number).isRequired,
@@ -20,7 +21,10 @@ const Panels = (props) => {
 
   return (
     <Splitter sizes={sizes} onResize={handleResize} >
-      <CodeContainer />
+      <div>
+        <ImportContainer />
+        <CodeContainer />
+      </div>
       <ConsoleContainer />
     </Splitter>
   );

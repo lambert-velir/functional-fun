@@ -1,0 +1,42 @@
+.import {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateY(calc(-100% - 1px)); // 1px for border
+}
+
+.import__label {
+  display: inline-block;
+  padding: 4px 8px; // larger hit area
+  
+  color: #ddd;
+  line-height: 21px;
+
+  cursor: pointer;
+  transition: all 250ms;
+
+  &:hover {
+    color: #333;
+  }
+
+  .is-open & {
+    display: none;
+  }
+
+}
+
+.import__button {
+  margin-left: 3px;
+  margin-right: 3px;
+  padding: 4px 6px; // 4px matches .import__label
+
+  line-height: 19px;
+  border: 0;
+  text-decoration: underline;
+
+  display: none;
+
+  .is-open & {
+    display: inline-block;
+  }
+}
