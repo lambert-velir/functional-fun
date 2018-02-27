@@ -1,11 +1,11 @@
 $dark: #24292e;
 $grey: #6a737d;
-$light-blue: #b2d7fe;
+$blue-b2d7fe: #b2d7fe;
 $blue-005cc5: #005cc5;
+$blue-032f62: #032f62;
 $red-d73a49: #d73a49;
 $orange: #e36209;
 $purple-6f42c1: #6f42c1;
-$blue-032f62: #032f62;
 
 
 .cm-s-github {
@@ -19,7 +19,6 @@ $blue-032f62: #032f62;
     background: #fff;
     border-right-width: 0;
   }
-
 
   .CodeMirror-guttermarker {
     color: white;
@@ -42,7 +41,7 @@ $blue-032f62: #032f62;
   .CodeMirror-line::selection,
   .CodeMirror-line > span::selection,
   .CodeMirror-line > span > span::selection, {
-    background-color: $light-blue;
+    background-color: $blue-b2d7fe;
   }
 
   .CodeMirror-activeline-background {
@@ -52,7 +51,7 @@ $blue-032f62: #032f62;
   .CodeMirror-matchingbracket {
     // text-decoration: underline;
     color: $dark !important;
-    background-color: $light-blue;
+    background-color: $blue-b2d7fe;
     border-radius: 3px;
   }
 
@@ -123,21 +122,56 @@ $blue-032f62: #032f62;
     color: $dark;
   }
 
-  // TODO make cooler arrow
-  // .CodeMirror-foldgutter-open:after {
-  //   position: absolute;
-  //   border-left: 1px solid red;
-  //   border-bottom: 1px solid red;
-  //   width: 6px;
-  //   height: 6px;
-  //   content: "";
-  // }
-  //
-  // .CodeMirror-foldgutter-folded:after {
-  //   border-left: 1px solid red;
-  //   border-bottom: 1px solid red;
-  //   width: 6px;
-  //   height: 6px;
-  //   content: "";
-  // }
+  .CodeMirror-foldmarker {
+    padding: 0px 6px 1px;
+    margin: 0 4px;
+
+    color: black;
+    text-shadow: none;
+
+    background-color: $blue-b2d7fe;
+    border-radius: 4px;
+  }
+
+  .CodeMirror-foldgutter-open:after,
+  .CodeMirror-foldgutter-folded:after {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-position: center center;
+    background-size: 80%;
+    background-repeat: no-repeat;
+    width: 10px;
+    height: 24px;
+    content: "";
+  }
+
+  @mixin chevron-down($color) {
+    background-image: url("data:image/svg+xml;utf8,<svg class='octicon octicon-chevron-down' viewBox='0 0 10 16' version='1.1' width='10' height='16' aria-hidden='true' xmlns='http://www.w3.org/2000/svg'><path fill='#{$color}' d='M5 11L0 6l1.5-1.5L5 8.25 8.5 4.5 10 6z'></path></svg>");
+  }
+
+  @mixin chevron-right($color) {
+    background-image: url("data:image/svg+xml;utf8,<svg class='octicon octicon-chevron-right' viewBox='0 0 8 16' version='1.1' width='10' height='16' aria-hidden='true' xmlns='http://www.w3.org/2000/svg'><path fill='#{$color}' d='M7.5 8l-5 5L1 11.5 4.75 8 1 4.5 2.5 3z'></path></svg>");
+  }
+
+  .CodeMirror-foldgutter-open {
+    &:after {
+      @include chevron-down(#ddd);
+    }
+
+    &:hover:after {
+      @include chevron-down($blue-032f62);
+    }
+  }
+
+  .CodeMirror-foldgutter-folded {
+    &:after {
+      @include chevron-right(#ddd);
+    }
+
+    &:hover:after {
+      @include chevron-right($blue-032f62);
+    }
+  }
 }
