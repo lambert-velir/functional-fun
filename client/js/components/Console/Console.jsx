@@ -1,16 +1,18 @@
 import React from "react";
-import { arrayOf, shape, string } from "prop-types";
+import { arrayOf, oneOf, shape, string } from "prop-types";
 import classNames from "classnames";
+import ConsoleCode from "./ConsoleCode.jsx";
 
 import X from "../Svg/X.jsx";
 import Check from "../Svg/Check.jsx";
 
 const propTypes = {
   entries: arrayOf(shape({
-    type: string,
+    type: oneOf(["pass", "fail", "error", "warn", "log"]),
     message: string
   }))
 };
+
 
 const Console = (props) => {
 
@@ -31,10 +33,16 @@ const Console = (props) => {
               : (type === "fail") ? <X title={"fail!"}/>
                 : null;
 
+
           return (
             <div key={i} className={classes}>
               {icon && <div className="console__icon">{icon}</div>}
-              <div className="console__text">{message}</div>
+              <div className="console__text">
+                {type === "log"
+                  ? <ConsoleCode message={message} />
+                  : message
+                }
+              </div>
             </div>
           );
         })

@@ -1,0 +1,143 @@
+$dark: #24292e;
+$grey: #6a737d;
+$light-blue: #b2d7fe;
+$blue-005cc5: #005cc5;
+$red-d73a49: #d73a49;
+$orange: #e36209;
+$purple-6f42c1: #6f42c1;
+$blue-032f62: #032f62;
+
+
+.cm-s-github {
+
+  .CodeMirror {
+    background: #fff;
+    color: $dark;
+  }
+
+  .CodeMirror-gutters {
+    background: #fff;
+    border-right-width: 0;
+  }
+
+
+  .CodeMirror-guttermarker {
+    color: white;
+  }
+
+  .CodeMirror-guttermarker-subtle {
+    color: #d0d0d0;
+  }
+
+  .CodeMirror-linenumber {
+    color: #959da5;
+    padding: 0 16px 0 16px;
+  }
+
+  .CodeMirror-cursor {
+    border-left: 1px solid $dark;
+  }
+
+  div.CodeMirror-selected,
+  .CodeMirror-line::selection,
+  .CodeMirror-line > span::selection,
+  .CodeMirror-line > span > span::selection, {
+    background-color: $light-blue;
+  }
+
+  .CodeMirror-activeline-background {
+    background: #fafbfc;
+  }
+
+  .CodeMirror-matchingbracket {
+    // text-decoration: underline;
+    color: $dark !important;
+    background-color: $light-blue;
+    border-radius: 3px;
+  }
+
+  .CodeMirror-lines {
+    font-family: inherit;
+    font-size: inherit;
+    background: #fff;
+    line-height: 1.5;
+  }
+
+  .cm-comment {
+    color: $grey;
+  }
+
+  .cm-constant {
+    color: $blue-005cc5;
+  }
+
+  .cm-number {
+    color: $blue-005cc5;
+  }
+
+  .cm-def,
+  .cm-entity {
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: none;
+    color: $purple-6f42c1;
+  }
+
+  .cm-keyword {
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: none;
+    color: $red-d73a49;
+  }
+
+  .cm-storage {
+    color: $red-d73a49;
+  }
+
+  .cm-operator {
+    color: $red-d73a49;
+  }
+
+  .cm-string {
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: none;
+    color: $blue-032f62;
+  }
+
+  .cm-support {
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: none;
+    color: $blue-005cc5;
+  }
+
+  .cm-property {
+    color: $blue-005cc5;
+  }
+
+  .cm-variable {
+    font-weight: normal;
+    font-style: normal;
+    text-decoration: none;
+    color: $dark;
+  }
+
+  // TODO make cooler arrow
+  // .CodeMirror-foldgutter-open:after {
+  //   position: absolute;
+  //   border-left: 1px solid red;
+  //   border-bottom: 1px solid red;
+  //   width: 6px;
+  //   height: 6px;
+  //   content: "";
+  // }
+  //
+  // .CodeMirror-foldgutter-folded:after {
+  //   border-left: 1px solid red;
+  //   border-bottom: 1px solid red;
+  //   width: 6px;
+  //   height: 6px;
+  //   content: "";
+  // }
+}

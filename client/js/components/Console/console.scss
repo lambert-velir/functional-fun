@@ -1,4 +1,4 @@
-@import "../../../scss/_colors.scss";
+@import "../../../scss/_variables.scss";
 
 
 .console {
@@ -10,7 +10,7 @@
   flex: 1 1 auto;
   padding: 5px 5px 5px 0; // the left is taken care of by the resizer
   background: white;
-  font-family: "Source Code Pro", Monaco, Menlo, "Ubuntu Mono", Consolas, source-code-pro, monospace;
+  font-family: $monospace;
   font-size: 16px;
   color: #666;
   overflow: auto;
@@ -29,6 +29,7 @@ $text-padding: 8px;
     flex: auto;
     border-bottom: 1px solid #eee;
     padding: $text-padding 0; // padding here so the line can be below
+    max-width: 100%; // make sure the code editor isn't too wide
   }
 
 
@@ -53,6 +54,10 @@ $text-padding: 8px;
     .console__text {
       border: 0;
     }
+  }
+
+  &.is-log {
+    padding: 0;
   }
 
   &.is-error {

@@ -4,10 +4,11 @@ import CodeEditor from "../components/CodeEditor/CodeEditor.jsx";
 import { sizeChange } from "../redux/split/splitActions.js";
 import { updateCode } from "../redux/code/codeActions.js";
 
-function mapStateToProps(state){
+function mapStateToProps(state, ownProps){
   return {
     code: state.code,
-    containerSize: state.split // here to force a re-render
+    containerSize: state.split, // here to force a re-render
+    ...ownProps
   };
 }
 

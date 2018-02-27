@@ -2,9 +2,8 @@ import React from "react";
 import { arrayOf, func, number } from "prop-types";
 import Splitter from "./Splitter.jsx";
 
-import CodeContainer from "../../containers/CodeContainer.js";
+import Left from "./Left.jsx";
 import ConsoleContainer from "../../containers/ConsoleContainer.js";
-import ImportContainer from "../../containers/ImportContainer.js";
 
 const propTypes = {
   sizes: arrayOf(number).isRequired,
@@ -21,10 +20,7 @@ const Panels = (props) => {
 
   return (
     <Splitter sizes={sizes} onResize={handleResize} >
-      <div>
-        <ImportContainer />
-        <CodeContainer />
-      </div>
+      <Left />
       <ConsoleContainer />
     </Splitter>
   );

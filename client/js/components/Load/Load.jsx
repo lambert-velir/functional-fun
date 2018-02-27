@@ -1,7 +1,7 @@
 import React from "react";
 import { arrayOf, func, shape, string } from "prop-types";
 import Modal from "../Modal/Modal.jsx";
-import AceEditor from "react-ace";
+import { Controlled as CodeMirror } from "react-codemirror2";
 
 export default class Load extends React.Component {
 
@@ -46,19 +46,15 @@ export default class Load extends React.Component {
                   >
                     <div className="example__name">{displayName}</div>
                     <div className="example__preview">
-                      <AceEditor
-                        ref={el => this.ace = el}
-                        width="200px"
-                        height="200px"
+                      <CodeMirror
                         mode="javascript"
-                        theme="tomorrow"
-                        fontSize={4}
-                        tabSize={2}
                         value={code}
-                        name={`code-editor-${displayName}`}
-                        readOnly={true}
-                        showGutter={false}
-                        editorProps={{ $blockScrolling: Infinity }} // to silence console warning
+                        options={{
+                          mode: "javascript",
+                          readOnly: true,
+                          theme: "github",
+                          lineWrapping: false
+                        }}
                       />
                     </div>
                   </div>

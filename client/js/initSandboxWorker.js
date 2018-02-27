@@ -35,11 +35,11 @@ export default function initSandbox(store){
 
   // send the new code to the sandbox web worker to compile
   // when it changes
-  observeStore(store, state => state.code, (newCode) => {
+  observeStore(store, state => state.code, debounce((newCode) => {
     updateHash(newCode);
     store.dispatch(clearConsole());
     sandbox.postMessage(newCode);
-  });
+  }, 250));
 
   return sandbox;
 }

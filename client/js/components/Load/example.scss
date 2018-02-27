@@ -1,4 +1,4 @@
-@import "../../../scss/_colors.scss";
+@import "../../../scss/_variables.scss";
 
 $width: 200px;
 $padding: 8px;
@@ -45,8 +45,14 @@ $padding: 8px;
 .example__preview {
   position: relative;
   padding: 2px;
+
   overflow: hidden;
   user-select: none;
+  z-index: 1;
+
+  .CodeMirror {
+    font-size: 4px;
+  }
 
   // overlay so the user can't touch the editor
   &::after {
@@ -57,5 +63,6 @@ $padding: 8px;
     left: 0;
     content: " ";
     cursor: pointer;
+    z-index: 2;
   }
 }
