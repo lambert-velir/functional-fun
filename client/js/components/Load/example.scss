@@ -20,7 +20,8 @@ $padding: 8px;
   padding: $padding;
 }
 
-.example {
+a.example {
+  display: block;
   height: 180px;
   padding-bottom: 24px;
   overflow: hidden;
@@ -28,6 +29,9 @@ $padding: 8px;
   border: 1px solid $grey-ddd;
   border-radius: 4px;
   cursor: pointer;
+
+  color: inherit;
+  text-decoration: inherit;
 
 
   &:hover .example__name {

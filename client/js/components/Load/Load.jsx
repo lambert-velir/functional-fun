@@ -3,6 +3,9 @@ import { arrayOf, func, shape, string } from "prop-types";
 import Modal from "../Modal/Modal.jsx";
 import { Controlled as CodeMirror } from "react-codemirror2";
 
+const isModifiedEvent = event =>
+  !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
+
 export default class Load extends React.Component {
 
   static propTypes = {
@@ -22,9 +25,18 @@ export default class Load extends React.Component {
 
   close = (e) => this.setState({ isOpen: false })
 
-  handleExampleClick = (slug) => (e) => {
-    this.props.onChange(slug);
-    this.close();
+  handleExampleClick = (slug) => (event) => {
+
+    // don't do anythning if the user is holding down cmd/ctrl (to open in a new tab)
+    // https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/modules/Link.js#L35-L55
+    if (
+      !event.defaultPrevented && // onClick prevented default
+      event.button === 0 && // ignore everything but left clicks
+      !isModifiedEvent(event) // ignore clicks with modifier keys
+    ) {
+      this.props.onChange(slug);
+      this.close();
+    }
   }
 
   render = () => {
@@ -41,7 +53,7 @@ export default class Load extends React.Component {
               const { displayName, slug, code } = example;
               return (
                 <div key={slug} className="example__holder">
-                  <div className="example"
+                  <a href={`#${slug}`} className="example"
                     onClick={this.handleExampleClick(slug)}
                   >
                     <div className="example__name">{displayName}</div>
@@ -57,7 +69,7 @@ export default class Load extends React.Component {
                         }}
                       />
                     </div>
-                  </div>
+                  </a>
                 </div>
               );
             })}
