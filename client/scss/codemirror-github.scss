@@ -4,7 +4,7 @@ $blue-b2d7fe: #b2d7fe;
 $blue-005cc5: #005cc5;
 $blue-032f62: #032f62;
 $red-d73a49: #d73a49;
-$orange: #e36209;
+$orange-e36209: #e36209;
 $purple-6f42c1: #6f42c1;
 
 
@@ -67,6 +67,10 @@ $purple-6f42c1: #6f42c1;
   }
 
   .cm-constant {
+    color: $blue-005cc5;
+  }
+
+  .cm-atom {
     color: $blue-005cc5;
   }
 

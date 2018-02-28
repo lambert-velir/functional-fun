@@ -10,7 +10,7 @@ import R from "ramda";
 import * as babel from "babel-core";
 import modulePlugin from "babel-plugin-transform-es2015-modules-commonjs";
 import classPropertiesPlugin from "babel-plugin-transform-class-properties";
-import objectRestSpreadPlugin from "babel-plugin-transform-object-rest-spread"
+import objectRestSpreadPlugin from "babel-plugin-transform-object-rest-spread";
 
 
 // when we get new code, compile and run it

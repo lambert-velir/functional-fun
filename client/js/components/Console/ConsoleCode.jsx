@@ -23,7 +23,10 @@ export default class ConsoleCode extends React.Component {
       <CodeMirror
         value={message}
         options={{
-          mode: "javascript",
+          mode: {
+            name: "javascript",
+            json: true
+          },
           readOnly: true,
           foldGutter: true,
           gutters: ["CodeMirror-foldgutter"],
