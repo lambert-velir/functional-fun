@@ -38,7 +38,7 @@ const Console = (props) => {
             <div key={i} className={classes}>
               {icon && <div className="console__icon">{icon}</div>}
               <div className="console__text">
-                {type === "log"
+                {type === "log" || type === "fail" || type === "pass"
                   ? <ConsoleCode message={message} />
                   : message
                 }

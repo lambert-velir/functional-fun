@@ -1,6 +1,6 @@
 import { SIZE_CHANGE } from "./splitActions.js";
 
-const initialState = 0.7;
+const initialState = 0.6;
 
 export default function splitReducer(state = initialState, action){
 

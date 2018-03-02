@@ -11,12 +11,11 @@ $purple-6f42c1: #6f42c1;
 .cm-s-github {
 
   .CodeMirror {
-    background: #fff;
     color: $dark;
   }
 
   .CodeMirror-gutters {
-    background: #fff;
+    background-color: inherit;
     border-right-width: 0;
   }
 
@@ -58,7 +57,7 @@ $purple-6f42c1: #6f42c1;
   .CodeMirror-lines {
     font-family: inherit;
     font-size: inherit;
-    background: #fff;
+    background-color: inherit;
     line-height: 1.5;
   }
 
