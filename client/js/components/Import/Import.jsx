@@ -5,11 +5,6 @@ import { func, string } from "prop-types";
 
 const imports = [
   {
-    "name": "Ramda",
-    "variable": "R",
-    "npm": "ramda"
-  },
-  {
     name: "Maybe",
     "variable": "Maybe, { Just, Nothing }",
     "npm": "folktale/maybe"
@@ -28,6 +23,11 @@ const imports = [
     name: "heros.json",
     "variable": "heroes",
     "npm": "heroes"
+  },
+  {
+    "name": "Ramda",
+    "variable": "R",
+    "npm": "ramda"
   }
 ];
 
@@ -83,7 +83,7 @@ export default class Import extends React.Component {
     const isInCode = (importItem) => R.test(RegExp(importString(importItem)), code);
 
     const importString = (importItem) => `import ${importItem.variable} from "${importItem.npm}";`;
-    
+
     const addImport = (importItem) => (e) => {
       this.close();
       onImport(`${importString(importItem)}\n`);
