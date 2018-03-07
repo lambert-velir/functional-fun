@@ -7,8 +7,6 @@ attachKeyMap(CodeMirror);
 
 function attachKeyMap(CodeMirror){
 
-  // TODO Cmd-Backspace should delete up a line
-
   attachCommands(CodeMirror);
 
   const actionMap = {
@@ -34,6 +32,9 @@ function attachKeyMap(CodeMirror){
     },
     "duplicateLinesUp": {
       mac: "Shift-Alt-Up"
+    },
+    "deleteLineLeftAndUp": {
+      mac: "Cmd-Backspace"
     },
     "tabKey" : "Tab"
   };
@@ -69,7 +70,7 @@ function attachKeyMap(CodeMirror){
 }
 
 
-// most of these are from the sublime keyMap
+// most of these are based on functions from the sublime keyMap
 function attachCommands(CodeMirror){
 
   const cmds = CodeMirror.commands;
@@ -77,6 +78,22 @@ function attachCommands(CodeMirror){
 
   cmds.toggleComment = function(cm) {
     cm.toggleComment({ indent: true, padding: " " });
+  };
+
+  // delWrappedLineLeft is the macDefault for Backspace, but itdoesn't do anything
+  // if the curser is at the very front of the line
+  // deleteLineLeftAndUp will delete up to the next line if the cursor is at 0
+  cmds.deleteLineLeftAndUp = function(cm) {
+    cm.operation(function() {
+      cm.listSelections().forEach(range => {
+        if (range.anchor.ch === 0 && range.head.ch === 0){
+          cm.execCommand("delCharBefore"); // reguar backspace
+        }
+        else {
+          cm.execCommand("delWrappedLineLeft"); // delete to beginning of line
+        }
+      });
+    });
   };
 
   // https://www.snip2code.com/Snippet/148371/CodeMirror--indent-with-tab-or-spaces
@@ -96,21 +113,18 @@ function attachCommands(CodeMirror){
   };
 
   // selectedLines : Object -> Array
-  // Code Mirror Range -> Array of line numbers
+  // selectedLines : Code Mirror Range -> Array of line numbers
   const selectedLineNumbers = R.compose(
     R.apply(R.range),
-    R.adjust(R.inc, 1),
-    R.sortBy(R.identity),
+    R.adjust(R.inc, 1), // increment the last, because range is exclusive
+    R.sortBy(R.identity), // could be [11, 10] if the ancher is after the head
     R.map(R.prop("line")),
     R.values
   );
 
   cmds.duplicateLinesDown = function(cm) {
     cm.operation(function() {
-      var rangeCount = cm.listSelections().length;
-      for (var i = 0; i < rangeCount; i++) {
-        var range = cm.listSelections()[i];
-
+      cm.listSelections().forEach(range => {
         const selectedLines = R.compose(
           R.join("\n"),
           R.map(n => cm.getLine(n)), // not sure why point free doesn't work
@@ -121,17 +135,14 @@ function attachCommands(CodeMirror){
           selectedLines + "\n",
           Pos(Math.min(range.head.line, range.anchor.line), 0)
         );
-      }
+      });
       cm.scrollIntoView();
     });
   };
 
   cmds.duplicateLinesUp = function(cm) {
     cm.operation(function() {
-      var rangeCount = cm.listSelections().length;
-      for (var i = 0; i < rangeCount; i++) {
-        var range = cm.listSelections()[i];
-
+      cm.listSelections().forEach(range => {
         const selectedLines = R.compose(
           R.join("\n"),
           R.map(n => cm.getLine(n)), // not sure why point free doesn't work
@@ -142,11 +153,12 @@ function attachCommands(CodeMirror){
           selectedLines + "\n",
           Pos(Math.max(range.head.line, range.anchor.line) + 1, 0)
         );
-      }
+      });
       cm.scrollIntoView();
     });
   };
 
+  // from sublime.js
   cmds.swapLineUp = function(cm) {
     if (cm.isReadOnly()) return CodeMirror.Pass;
     var ranges = cm.listSelections(), linesToMove = [], at = cm.firstLine() - 1, newSels = [];
@@ -176,6 +188,7 @@ function attachCommands(CodeMirror){
     });
   };
 
+  // from sublime.js
   cmds.swapLineDown = function(cm) {
     if (cm.isReadOnly()) return CodeMirror.Pass;
     var ranges = cm.listSelections(), linesToMove = [], at = cm.lastLine() + 1;
@@ -204,6 +217,7 @@ function attachCommands(CodeMirror){
 
   // cmds.insertLineBefore = function(cm) { return insertLine(cm, true); };
 
+  // from sublime.js
   function wordAt(cm, pos) {
     var start = pos.ch, end = start, line = cm.getLine(pos.line);
     while (start && CodeMirror.isWordChar(line.charAt(start - 1))) --start;
@@ -211,12 +225,14 @@ function attachCommands(CodeMirror){
     return {from: Pos(pos.line, start), to: Pos(pos.line, end), word: line.slice(start, end)};
   }
 
+  // from sublime.js
   function isSelectedRange(ranges, from, to) {
     for (var i = 0; i < ranges.length; i++)
       if (ranges[i].from() == from && ranges[i].to() == to) return true;
     return false;
   }
 
+  // from sublime.js
   cmds.selectNextOccurrence = function(cm) {
     var from = cm.getCursor("from"), to = cm.getCursor("to");
     var fullWord = cm.state.sublimeFindFullWord == cm.doc.sel;
