@@ -36,7 +36,8 @@ function attachKeyMap(CodeMirror){
     "deleteLineLeftAndUp": {
       mac: "Cmd-Backspace"
     },
-    "tabKey" : "Tab"
+    "tabKey" : "Tab",
+    "goToBracket": "Ctrl-M"
   };
 
 
@@ -256,5 +257,15 @@ function attachCommands(CodeMirror){
     }
     if (fullWord)
       cm.state.sublimeFindFullWord = cm.doc.sel;
+  };
+
+  // from sublime.js
+  cmds.goToBracket = function(cm) {
+    cm.extendSelectionsBy(function(range) {
+      var next = cm.scanForBracket(range.head, 1);
+      if (next && CodeMirror.cmpPos(next.pos, range.head) != 0) return next.pos;
+      var prev = cm.scanForBracket(range.head, -1);
+      return prev && Pos(prev.pos.line, prev.pos.ch + 1) || range.head;
+    });
   };
 }
