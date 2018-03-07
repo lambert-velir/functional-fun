@@ -1,3 +1,5 @@
+/* this is loosely based on the sytax highlighting on github */
+
 $dark: #24292e;
 $grey: #6a737d;
 $blue-b2d7fe: #b2d7fe;
@@ -40,7 +42,7 @@ $purple-6f42c1: #6f42c1;
   .CodeMirror-line::selection,
   .CodeMirror-line > span::selection,
   .CodeMirror-line > span > span::selection, {
-    background-color: $blue-b2d7fe;
+    background-color: rgba($blue-b2d7fe, 0.5);
   }
 
   .CodeMirror-activeline-background {
@@ -50,7 +52,7 @@ $purple-6f42c1: #6f42c1;
   .CodeMirror-matchingbracket {
     // text-decoration: underline;
     color: $dark !important;
-    background-color: $blue-b2d7fe;
+    background-color: rgba($blue-b2d7fe, 0.5);
     border-radius: 3px;
   }
 

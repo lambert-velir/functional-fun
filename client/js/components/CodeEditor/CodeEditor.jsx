@@ -8,11 +8,12 @@ import "codemirror/addon/fold/foldgutter.js";
 import "codemirror/addon/fold/brace-fold.js";
 import "codemirror/addon/edit/matchbrackets.js";
 import "codemirror/addon/edit/closebrackets.js";
-import "codemirror/keymap/sublime.js";
+import "codemirror/addon/comment/comment.js";
 
+import "codemirror/keymap/sublime.js";
+import "./attachKeyMap.js";
 
 import { func, string } from "prop-types";
-
 
 
 export default class CodeEditor extends React.Component {
@@ -26,16 +27,9 @@ export default class CodeEditor extends React.Component {
     this.props.onCodeChange(code);
   }
 
-  // TODO apply these shortcuts to codemirror
-  setupAce = (el) => {
-
-    // remove Cmd-L so the browser will select the address bar instead
-    commands.bindKey({ win: "Ctrl-L", mac: "Command-L" }, null);
-
-  }
-
   render = () => {
     const { code, onCodeChange, ...rest } = this.props; // eslint-disable-line no-unused-vars
+
 
     return (
       <CodeMirror
@@ -52,8 +46,10 @@ export default class CodeEditor extends React.Component {
           theme: "github",
           height: "auto",
           width: "auto",
+          insertSoftTab: true,
+          tabSize: 2,
           lineWrapping: true,
-          keyMap: "sublime"
+          keyMap: "mike"
         }}
         {...rest}
       />
