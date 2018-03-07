@@ -28,12 +28,11 @@ function attachKeyMap(CodeMirror){
       mac: "Cmd-D",
       pc: "Ctrl-D"
     },
-    // TODO duplicate selection that spans multiple lines!
-    "duplicateLineDown": {
+    "duplicateLinesDown": {
       mac: ["Shift-Cmd-D", "Shift-Alt-Down"],
       pc: "Shift-Ctrl-D"
     },
-    "duplicateLineUp": {
+    "duplicateLinesUp": {
       mac: "Shift-Alt-Up"
     },
     "tabKey" : "Tab"
@@ -96,23 +95,53 @@ function attachCommands(CodeMirror){
       cm.execCommand("insertSoftTab");
   };
 
-  cmds.duplicateLineDown = function(cm) {
+  // selectedLines : Object -> Array
+  // Code Mirror Range -> Array of line numbers
+  const selectedLineNumbers = R.compose(
+    R.apply(R.range),
+    R.adjust(R.inc, 1),
+    R.sortBy(R.identity),
+    R.map(R.prop("line")),
+    R.values
+  );
+
+  cmds.duplicateLinesDown = function(cm) {
     cm.operation(function() {
       var rangeCount = cm.listSelections().length;
       for (var i = 0; i < rangeCount; i++) {
         var range = cm.listSelections()[i];
-        cm.replaceRange(cm.getLine(range.head.line) + "\n", Pos(range.head.line, 0));
+
+        const selectedLines = R.compose(
+          R.join("\n"),
+          R.map(n => cm.getLine(n)), // not sure why point free doesn't work
+          selectedLineNumbers
+        )(range);
+
+        cm.replaceRange(
+          selectedLines + "\n",
+          Pos(Math.min(range.head.line, range.anchor.line), 0)
+        );
       }
       cm.scrollIntoView();
     });
   };
 
-  cmds.duplicateLineUp = function(cm) {
+  cmds.duplicateLinesUp = function(cm) {
     cm.operation(function() {
       var rangeCount = cm.listSelections().length;
       for (var i = 0; i < rangeCount; i++) {
         var range = cm.listSelections()[i];
-        cm.replaceRange(cm.getLine(range.head.line) + "\n", Pos(range.head.line+1, 0));
+
+        const selectedLines = R.compose(
+          R.join("\n"),
+          R.map(n => cm.getLine(n)), // not sure why point free doesn't work
+          selectedLineNumbers
+        )(range);
+
+        cm.replaceRange(
+          selectedLines + "\n",
+          Pos(Math.max(range.head.line, range.anchor.line) + 1, 0)
+        );
       }
       cm.scrollIntoView();
     });
