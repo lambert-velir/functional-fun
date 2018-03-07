@@ -10,7 +10,7 @@ import "codemirror/addon/edit/matchbrackets.js";
 import "codemirror/addon/edit/closebrackets.js";
 import "codemirror/addon/comment/comment.js";
 
-import "codemirror/keymap/sublime.js";
+// import "codemirror/keymap/sublime.js";
 import "./attachKeyMap.js";
 
 import { func, string } from "prop-types";

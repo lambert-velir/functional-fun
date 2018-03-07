@@ -3,6 +3,7 @@ import R from "ramda";
 import CodeMirror from "codemirror";
 attachKeyMap(CodeMirror);
 
+// console.log(CodeMirror.commands);
 // console.log(CodeMirror.keyMap);
 
 function attachKeyMap(CodeMirror){
@@ -37,13 +38,19 @@ function attachKeyMap(CodeMirror){
       mac: "Cmd-Backspace"
     },
     "tabKey" : "Tab",
-    "goToBracket": "Ctrl-M"
+    "goToBracket": "Ctrl-M",
+    "selectBetweenBrackets": "Shift-Ctrl-M",
+    "splitSelectionByLine": {
+      mac: "Shift-Cmd-L",
+      pc: "Shift-Ctrl-L"
+    }
   };
 
 
 
   const macOrPc = CodeMirror.keyMap.default == CodeMirror.keyMap.macDefault ? "mac" : "pc";
 
+  // convert my better format to the format that CodeMirror uses
   CodeMirror.keyMap.mike = R.compose(
     R.merge({ "fallthrough": "macDefault" }),
     R.reduce((keyMap, item) => {
@@ -268,4 +275,53 @@ function attachCommands(CodeMirror){
       return prev && Pos(prev.pos.line, prev.pos.ch + 1) || range.head;
     });
   };
+
+  // from sublime.js
+  function selectBetweenBrackets(cm) {
+    var mirror = "(){}[]";
+    var ranges = cm.listSelections(), newRanges = [];
+    for (var i = 0; i < ranges.length; i++) {
+      var range = ranges[i], pos = range.head, opening = cm.scanForBracket(pos, -1);
+      if (!opening) return false;
+      for (;;) {
+        var closing = cm.scanForBracket(pos, 1);
+        if (!closing) return false;
+        if (closing.ch == mirror.charAt(mirror.indexOf(opening.ch) + 1)) {
+          var startPos = Pos(opening.pos.line, opening.pos.ch + 1);
+          if (CodeMirror.cmpPos(startPos, range.from()) == 0 &&
+              CodeMirror.cmpPos(closing.pos, range.to()) == 0) {
+            opening = cm.scanForBracket(opening.pos, -1);
+            if (!opening) return false;
+          } else {
+            newRanges.push({anchor: startPos, head: closing.pos});
+            break;
+          }
+        }
+        pos = Pos(closing.pos.line, closing.pos.ch + 1);
+      }
+    }
+    cm.setSelections(newRanges);
+    return true;
+  }
+
+  cmds.selectBetweenBrackets = function(cm) {
+    if (!selectBetweenBrackets(cm)) return CodeMirror.Pass;
+  };
+
+  // from sublime.js
+  cmds.splitSelectionByLine = function(cm) {
+    var ranges = cm.listSelections(), lineRanges = [];
+    for (var i = 0; i < ranges.length; i++) {
+      var from = ranges[i].from(), to = ranges[i].to();
+      for (var line = from.line; line <= to.line; ++line)
+        if (!(to.line > from.line && line == to.line && to.ch == 0))
+          lineRanges.push({
+            anchor: line == from.line ? from : Pos(line, 0),
+            head: line == to.line ? to : Pos(line)
+          });
+    }
+    cm.setSelections(lineRanges, 0);
+  };
+
+
 }
