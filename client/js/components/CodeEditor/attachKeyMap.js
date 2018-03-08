@@ -1,6 +1,11 @@
 import R from "ramda";
 
 import CodeMirror from "codemirror";
+
+import "codemirror/addon/search/searchcursor.js"; // cm.getSearchCursor, etc
+import "codemirror/addon/edit/matchbrackets.js";
+
+
 attachKeyMap(CodeMirror);
 
 // console.log(CodeMirror.commands);
