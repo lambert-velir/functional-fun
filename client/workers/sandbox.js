@@ -13,15 +13,39 @@ import classPropertiesPlugin from "babel-plugin-transform-class-properties";
 import objectRestSpreadPlugin from "babel-plugin-transform-object-rest-spread";
 
 
+// buffer the response messages and send them all together
+// after some wait time
+const createArrayBuffer = (func, wait) => {
+  let timeout;
+  let items = [];
+
+  return (item) => {
+    items.push(item);
+
+    const later = () => {
+      timeout = null;
+      func(items);
+      items = [];
+    };
+
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+};
+
+
+
 // when we get new code, compile and run it
 // the hijackConsole above will pick up any console.logs
 self.addEventListener("message", e => {
 
   const code = e.data;
 
-  // a function to send a message back to the main thread, including the code
+  // a function to eventually send messages back to the main thread, including the code
   // the code can be used to determine if this message is stale or not
-  const respond = ({ type, message }) => self.postMessage({ type, message, code });
+  const respond = createArrayBuffer((messages) => {
+    self.postMessage({ messages, code });
+  }, 50);
 
   const assertEquals = (test, target) => {
     if (R.equals(test, target)){

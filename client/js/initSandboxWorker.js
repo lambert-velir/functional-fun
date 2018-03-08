@@ -1,5 +1,5 @@
 import observeStore from "./redux/observeStore.js";
-import { consoleMessage, clearConsole } from "./redux/console/consoleActions.js";
+import { consoleMessages, clearConsole } from "./redux/console/consoleActions.js";
 import pako from "./pako.js";
 import R from "ramda";
 import debounce from "lodash.debounce";
@@ -14,12 +14,13 @@ export default function initSandbox(store){
   const sandbox = new Worker("workers/sandbox-generated.js");
 
 
+
   // forward messages to the console UI
   sandbox.addEventListener("message", e => {
 
     // the results of running agains _code_
     // this code may or may not be what is currently in the editor
-    const { type, message, code } = e.data;
+    const { messages, code } = e.data;
 
     // avoid race conditions by checking to see if the results of running the code
     // are from the code in the editor
@@ -27,8 +28,8 @@ export default function initSandbox(store){
     // chance to respond
     const isStale = code !== store.getState().code;
 
-    if (!R.isNil(type) && !R.isNil(message) && !isStale){
-      store.dispatch(consoleMessage({ type, message }));
+    if (!R.isNil(messages) && !isStale){
+      store.dispatch(consoleMessages(messages));
     }
   });
 
