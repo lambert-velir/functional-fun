@@ -1,56 +1,82 @@
 import React from "react";
 import { arrayOf, oneOf, shape, string } from "prop-types";
 import classNames from "classnames";
-import ConsoleCode from "./ConsoleCode.jsx";
 
 import X from "../Svg/X.jsx";
 import Check from "../Svg/Check.jsx";
+import CodeMirror from "codemirror";
 
-const propTypes = {
-  entries: arrayOf(shape({
-    type: oneOf(["pass", "fail", "error", "warn", "log"]),
-    message: string
-  }))
-};
+export default class Console extends React.Component {
 
 
-const Console = (props) => {
+  static propTypes = {
+    entries: arrayOf(shape({
+      type: oneOf(["pass", "fail", "error", "warn", "log"]),
+      message: string
+    }))
+  };
 
-  return (
-    <div className="console">
-      {
-        props.entries.map((entry, i) => {
+  componentDidUpdate = () => {
 
-          const { type, message } = entry;
+    // handling the CodeMirror manually (instead of react-codemirror2)
+    // beacuse it's about twice as fast to initialize
 
-          const classes = classNames(
-            "console__message",
-            `is-${entry.type}`
-          );
+    const types = ["log", "fail", "pass"];
+    const selector = types.map(t => `.is-${t} .console__text`).join(", ");
+    const els = this.console.querySelectorAll(selector);
 
-          const icon =
-            (type === "pass") ? <Check title={"pass!"} />
-              : (type === "fail") ? <X title={"fail!"}/>
-                : null;
+    els.forEach(el => {
+
+      const options = {
+        value: el.innerText,
+        mode: {
+          name: "javascript",
+          json: true
+        },
+        readOnly: true,
+        foldGutter: true,
+        gutters: ["CodeMirror-foldgutter"],
+        theme: "github",
+        height: "auto",
+        width: "auto",
+        lineWrapping: true
+      };
+
+      CodeMirror((cm) => el.replaceChild(cm, el.firstChild), options);
+    });
+  }
 
 
-          return (
-            <div key={i} className={classes}>
-              {icon && <div className="console__icon">{icon}</div>}
-              <div className="console__text">
-                {type === "log" || type === "fail" || type === "pass"
-                  ? <ConsoleCode message={message} />
-                  : message
-                }
+  render = () => {
+
+    const { entries } = this.props;
+
+    return (
+      <div className="console" ref={el => this.console = el}>
+        {
+          entries.map((entry, i) => {
+
+            const { type, message } = entry;
+
+            const classes = classNames(
+              "console__message",
+              `is-${entry.type}`
+            );
+
+            const icon =
+                (type === "pass") ? <Check title={"pass!"} />
+              : (type === "fail") ? <X title={"fail!"} />
+              : null;
+
+            return (
+              <div key={i} className={classes}>
+                {icon && <div className="console__icon">{icon}</div>}
+                <div className="console__text">{message}</div>
               </div>
-            </div>
-          );
-        })
-      }
-    </div>
-  );
-};
-
-Console.propTypes = propTypes;
-
-export default Console;
+            );
+          })
+        }
+      </div>
+    );
+  };
+}
