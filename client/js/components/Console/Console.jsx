@@ -42,7 +42,11 @@ export default class Console extends React.Component {
         lineWrapping: true
       };
 
-      CodeMirror((cm) => el.replaceChild(cm, el.firstChild), options);
+      // console.log(); will have no message so el will be empty
+      if (el.firstChild){
+        CodeMirror((cm) => el.replaceChild(cm, el.firstChild), options);
+      }
+
     });
   }
 

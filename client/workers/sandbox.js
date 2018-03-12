@@ -36,7 +36,6 @@ const createArrayBuffer = (func, wait) => {
 
 
 // when we get new code, compile and run it
-// the hijackConsole above will pick up any console.logs
 self.addEventListener("message", e => {
 
   const code = e.data;
