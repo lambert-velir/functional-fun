@@ -1,5 +1,5 @@
 import observeStore from "./redux/observeStore.js";
-import { consoleMessages, clearConsole } from "./redux/console/consoleActions.js";
+import { consoleMessages, consoleMessage, clearConsole } from "./redux/console/consoleActions.js";
 import pako from "./pako.js";
 import R from "ramda";
 import debounce from "lodash.debounce";
@@ -14,6 +14,11 @@ let processing = false;
 let queue = null;
 
 
+// TODO watchdog is a work in progress, but it looks like it's working...
+function logIt(...args){
+  // console.log(...args);
+}
+
 export default function initSandbox(store){
 
   if (!window.Worker){
@@ -25,56 +30,61 @@ export default function initSandbox(store){
 
   // send the new code to the sandbox web worker to compile
   // when it changes
-  observeStore(store, state => state.code, (newCode) => {
+  observeStore(store, state => state.code, debounce((newCode) => {
     updateHash(newCode);
     store.dispatch(clearConsole());
+    logIt("code has changed!");
     runCode(newCode);
-  });
+  }, 250));
+
 
 
   function runCode(code){
 
-    console.log("Running code");
+    logIt("Running code");
 
     if (processing){
-        console.log("SKIP!");
+      logIt("SKIP!");
       queue = code;
       return;
     }
 
     processing = true;
-    // start at timer, if it doesn't get cleared, it will terminate and re-spawn
+
+    // start a timer, if it doesn't get cleared, it will terminate and re-spawn
     // the sandbox
     const confirmationId = setTimeout(() => {
 
-      console.log("timout expired:", confirmationId);
+      logIt("timout expired:", confirmationId);
 
-      sandbox.terminate();
       store.dispatch(clearConsole());
       store.dispatch(consoleMessage({
         type: "warn",
         message: "Your code is taking a long time.\n"
-               + "Do you have an infinite loop??"
+        + "Do you have an infinite loop??"
       }));
 
+      sandbox.terminate();
       sandbox = spawnSandbox(store); // respawn
       processing = false;
 
+      // if there were changes while the inifite loop was running, run that code
+      // after it's done
+      if (queue){
+        logIt("running  queue", queue);
+        const next = queue;
+        queue = null;
+        store.dispatch(clearConsole());
+        runCode(next);
+      }
 
-      // if (queue){
-      //   console.log("running  queue", queue);
-      //   const next = queue;
-      //   queue = null;
-      //   runCode(next);
-      // }
     }, 2000);
 
-    console.log("timeout created:", confirmationId);
+    logIt("timeout created:", confirmationId);
 
     sandbox.postMessage({ code, confirmationId });
   }
 }
-
 
 
 // make a web worker
@@ -83,21 +93,20 @@ function spawnSandbox(store){
   const sandbox = new Worker("workers/sandbox-generated.js");
 
 
-
   // forward messages to the console UI
   sandbox.addEventListener("message", e => {
 
-    // the results of running agains _code_
+    // the results of running against _code_
     // this code may or may not be what is currently in the editor
-    const { messages, code } = e.data;
+    const { messages, code, confirmationId } = e.data;
 
 
     // Infinate loop detection:
     // after the code has run, the sandbox should send back a confirmationId
     // use this ID to clear the timeout that was started in "runCode"
     if (typeof(confirmationId) !== "undefined"){
-      console.log("code done", confirmationId);
       processing = false;
+      logIt("code done", confirmationId, processing);
       clearTimeout(confirmationId);
     }
 
@@ -112,15 +121,6 @@ function spawnSandbox(store){
     }
 
   });
-
-
-  // send the new code to the sandbox web worker to compile
-  // when it changes
-  observeStore(store, state => state.code, debounce((newCode) => {
-    updateHash(newCode);
-    store.dispatch(clearConsole());
-    sandbox.postMessage(newCode);
-  }, 250));
 
   return sandbox;
 }
