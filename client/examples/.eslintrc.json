@@ -1,5 +1,8 @@
 {
   "globals": {
     "assert": true
+  },
+  "rules": {
+    "no-unused-vars": [0, {"vars": "all", "args": "none"}]
   }
 }

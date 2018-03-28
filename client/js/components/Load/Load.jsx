@@ -1,4 +1,5 @@
 import React from "react";
+import R from "ramda";
 import { arrayOf, func, shape, string } from "prop-types";
 import Modal from "../Modal/Modal.jsx";
 import { Controlled as CodeMirror } from "react-codemirror2";
@@ -39,9 +40,53 @@ export default class Load extends React.Component {
     }
   }
 
+  renderExample = example => {
+
+    const { displayName, slug, code } = example;
+
+    return (
+      <div key={slug} className="example__holder">
+        <a href={`#${slug}`} className="example"
+          onClick={this.handleExampleClick(slug)}
+        >
+          <div className="example__name">{displayName}</div>
+          <div className="example__preview">
+            <CodeMirror
+              mode="javascript"
+              value={code}
+              options={{
+                mode: "javascript",
+                readOnly: true,
+                theme: "github",
+                lineWrapping: false
+              }}
+            />
+          </div>
+        </a>
+      </div>
+    );
+  }
+
   render = () => {
     const { examples } = this.props;
     const { isOpen } = this.state;
+
+    const exampleMap = R.indexBy(R.prop("slug"), examples);
+
+    const exampleSections = [
+      {
+        title: "Core functional tools",
+        examples: ["map", "filter", "find", "reduce"]
+      },
+      {
+        title: "Currying / Partial application",
+        examples: [ "max", "numbers"]
+      },
+      {
+        title: "Composition",
+        examples: ["sentences"]
+      }
+    ];
 
     return (
       <div className="load">
@@ -49,30 +94,16 @@ export default class Load extends React.Component {
 
         <Modal isOpen={isOpen} onClose={this.close} className="modal--examples">
           <div className="examples">
-            {examples.map(example => {
-              const { displayName, slug, code } = example;
-              return (
-                <div key={slug} className="example__holder">
-                  <a href={`#${slug}`} className="example"
-                    onClick={this.handleExampleClick(slug)}
-                  >
-                    <div className="example__name">{displayName}</div>
-                    <div className="example__preview">
-                      <CodeMirror
-                        mode="javascript"
-                        value={code}
-                        options={{
-                          mode: "javascript",
-                          readOnly: true,
-                          theme: "github",
-                          lineWrapping: false
-                        }}
-                      />
-                    </div>
-                  </a>
+            {
+              exampleSections.map(({ title, examples }) => (
+                <div key={title} className="examples__section">
+                  <div className="examples__section-title">{title}</div>
+                  <div className="examples__buttons">
+                    {examples.map(slug => this.renderExample(exampleMap[slug]))}
+                  </div>
                 </div>
-              );
-            })}
+              ))
+            }
           </div>
         </Modal>
       </div>
