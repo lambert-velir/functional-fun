@@ -18,11 +18,11 @@ function attachKeyMap(CodeMirror){
   const actionMap = {
     "swapLineUp": {
       mac: ["Cmd-Ctrl-Up", "Alt-Up"],
-      pc: "Shift-Ctrl-Up"
+      pc: "Ctrl-Up"
     },
     "swapLineDown": {
       mac: ["Cmd-Ctrl-Down", "Alt-Down"],
-      pc: "Shift-Ctrl-Down"
+      pc: "Ctrl-Down"
     },
     "toggleComment": {
       mac: "Cmd-/",
@@ -57,7 +57,7 @@ function attachKeyMap(CodeMirror){
 
   // convert my better format to the format that CodeMirror uses
   CodeMirror.keyMap.mike = R.compose(
-    R.merge({ "fallthrough": "macDefault" }),
+    R.merge({ "fallthrough": `${macOrPc}Default` }),
     R.reduce((keyMap, item) => {
       const [ cmd, keys ] = item;
 
