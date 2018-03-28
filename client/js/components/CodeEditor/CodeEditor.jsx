@@ -9,6 +9,7 @@ import "codemirror/addon/fold/brace-fold.js";
 import "codemirror/addon/edit/matchbrackets.js";
 import "codemirror/addon/edit/closebrackets.js";
 import "codemirror/addon/comment/comment.js";
+import "codemirror/keymap/vim.js";
 
 // import "codemirror/keymap/sublime.js";
 import "./attachKeyMap.js";
@@ -49,7 +50,7 @@ export default class CodeEditor extends React.Component {
           insertSoftTab: true,
           tabSize: 2,
           lineWrapping: true,
-          keyMap: "mike"
+          keyMap: window.location.search.match(/vim/) ? "vim" : "mike"
         }}
         {...rest}
       />
