@@ -50,7 +50,7 @@ self.addEventListener("message", e => {
     if (R.equals(test, target)){
       respond({
         type: "pass",
-        message: getConsoleOutput(target)
+        message:  getConsoleOutput(target)
       });
     }
     else {
@@ -99,7 +99,7 @@ self.addEventListener("message", e => {
     const result = eval(evalText);
 
     // if running all the code produces a result, log it
-    if (result && result !== "use strict"){
+    if (!R.isNil(result) && result !== "use strict"){
       console.log(); // add an extra space
       console.log(result);
     }
