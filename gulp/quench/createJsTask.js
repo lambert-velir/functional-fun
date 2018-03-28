@@ -115,7 +115,7 @@ module.exports = function jsTask(taskName, userConfig){
       require: npmPackages
     }));
 
-    quench.logYellow("npm packages", npmPackages);
+    quench.logYellow("npm packages", JSON.stringify(npmPackages, null, 2));
 
     return b.bundle()
       .on("error", function(e){
