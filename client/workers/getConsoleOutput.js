@@ -28,8 +28,21 @@ export default function getConsoleOutput(...args) {
           arg => arg.toString()
         ],
         [ // if an arg is an object, print out the JSON instead of [object Object]
-          R.anyPass([typeIs("Object"), typeIs("Array")]),
+          typeIs("Object"),
           arg => JSON.stringify(arg, null, 2)
+        ],
+        [
+          typeIs("Array"),
+          R.cond([
+            [
+              arg => JSON.stringify(arg).length > 40,
+              arg => JSON.stringify(arg, null, 2)
+            ],
+            [
+              R.T,
+              arg => JSON.stringify(arg, null, 2)
+            ]
+          ])
         ],
         [
           R.T,
