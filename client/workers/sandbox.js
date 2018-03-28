@@ -96,7 +96,13 @@ self.addEventListener("message", e => {
     `;
 
     // run the user code
-    eval(evalText);
+    const result = eval(evalText);
+
+    // if running all the code produces a result, log it
+    if (result && result !== "use strict"){
+      console.log(); // add an extra space
+      console.log(result);
+    }
 
   }
   catch(e){
