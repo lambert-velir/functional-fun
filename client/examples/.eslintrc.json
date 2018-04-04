@@ -3,6 +3,7 @@
     "assert": true
   },
   "rules": {
-    "no-unused-vars": [0, {"vars": "all", "args": "none"}]
+    "no-unused-vars": [0, {"vars": "all", "args": "none"}],
+    "no-console": 0
   }
 }

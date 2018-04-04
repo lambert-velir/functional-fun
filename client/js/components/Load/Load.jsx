@@ -84,13 +84,13 @@ export default class Load extends React.Component {
       },
       {
         title: "Composition",
-        examples: ["sentences"]
+        examples: ["debugging", "sentences", "average-strength", "sum-of-stats", "slow-heroes", "hero-names-by-gender"]
       }
     ];
 
     return (
       <div className="load">
-        <button type="button" onClick={this.open}>Load</button>
+        <button type="button" onClick={this.open}>Load challenge</button>
 
         <Modal isOpen={isOpen} onClose={this.close} className="modal--examples">
           <div className="examples">

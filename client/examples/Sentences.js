@@ -15,6 +15,7 @@ assert.equals(
 
 
 // R.split :: (String | RegExp) → String → [String]
+// returns an array of all the words in a sentence
 // words :: String → [String]
 const words = R.identity;
 
@@ -25,9 +26,11 @@ assert.equals(
 
 
 
-// R.compose
+// use R.compose to capitalize all the words in a sentence
 // capitalizeSentence :: String → String
-const capitalizeSentence = R.identity;
+const capitalizeSentence = R.compose(
+  R.identity
+);
 
 assert.equals(
   capitalizeSentence("the quick brown fox jumped over the lazy dog"),

@@ -158,14 +158,6 @@ module.exports = [
     "nickName": "Richard John Grayson",
     "publisher": "dc comics",
     "alignment": "good",
-    "stats": {
-      "intelligence": 88,
-      "strength": 11,
-      "speed": 27,
-      "durability": 28,
-      "power": 32,
-      "combat": 85
-    },
     "appearance": {
       "gender": "male",
       "race": "human",

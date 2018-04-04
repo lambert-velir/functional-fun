@@ -1,3 +1,5 @@
+import R from "ramda";
+
 let csv = `
 Hamilton, blue
 Hamilton, red
@@ -7,28 +9,14 @@ Laddy, green
 `;
 
 
+const parseCsv = R.compose(
+  R.identity
+);
 
-/* produce the following:
-[
-  {
-    "name": "Hamilton",
-    "colors": [
-      "blue",
-      "red"
-    ]
-  },
-  {
-    "name": "Sassafras",
-    "colors": [
-      "green"
-    ]
-  },
-  {
-    "name": "Laddy",
-    "colors": [
-      "blue",
-      "green"
-    ]
-  }
-]
-*/
+
+
+assert.equals(parseCsv(csv), {
+  "Hamilton": [ "blue", "red" ],
+  "Sassafras": [ "green" ],
+  "Laddy": [ "blue", "green" ]
+});
