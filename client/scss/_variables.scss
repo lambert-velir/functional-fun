@@ -19,4 +19,7 @@ $monospace: "Source Code Pro", Monaco, Menlo, "Ubuntu Mono", Consolas, source-co
 
 /* Z-index */
 
-$z-modal: 10;
+// NOTE codemirror has some z-index's up to 10.
+
+$z-dropdown: 15;
+$z-modal: 20;

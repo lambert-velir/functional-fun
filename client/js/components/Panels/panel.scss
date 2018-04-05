@@ -4,9 +4,7 @@
   display: flex;
 }
 
-// make this panel no bigger than 100% and do the overflow here,
-// so the imports doesn't get hidden (like if we applied overflow to the parent)
-.panel__code-and-import {
+.panel__code {
   max-height: 100%;
   min-height: 100%;
   overflow: auto;

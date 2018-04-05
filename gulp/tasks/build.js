@@ -10,6 +10,8 @@ import createCssTask         from "../quench/createCssTask.js";
 import createBrowserSyncTask from "../quench/createBrowserSyncTask.js";
 import createNodemonTask     from "../quench/createNodemonTask.js";
 
+import heroes from "../../client/heroes/index.js";
+
 import template from "gulp-template";
 import getExamples from "../../server/getExamples.js";
 
@@ -22,7 +24,7 @@ module.exports = function buildTask(projectRoot) {
 
   return function(){
 
-    gulp.task("build-html", function(){
+    gulp.task("build-html", () => {
       // generate index.html with underscore templates
       return gulp.src(`${clientDir}/index.html`)
         .pipe(quench.drano())
@@ -32,6 +34,18 @@ module.exports = function buildTask(projectRoot) {
         .pipe(gulp.dest(buildDir));
     });
     quench.maybeWatch("build-html", [ examplesDir, `${clientDir}/index.html`]);
+
+
+    gulp.task("build-heroes-json", () => {
+      return gulp.src(`${clientDir}/heroes.json`)
+        .pipe(quench.drano())
+        .pipe(template({
+          heroes: JSON.stringify(heroes, null, 2)
+        }))
+        .pipe(gulp.dest(buildDir));
+    });
+    quench.maybeWatch("build-heroes-json", [`${clientDir}/heroes/**/*`]);
+
 
     createCopyTask("build-copy", {
       src: [
@@ -108,7 +122,8 @@ module.exports = function buildTask(projectRoot) {
       "build-workers",
       "build-css",
       "build-copy",
-      "build-html"
+      "build-html",
+      "build-heroes-json"
     ];
 
     if (quench.isWatching()){

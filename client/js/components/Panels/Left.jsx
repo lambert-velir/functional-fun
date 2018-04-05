@@ -1,6 +1,5 @@
 import React from "react";
 import CodeContainer from "../../containers/CodeContainer.js";
-import ImportContainer from "../../containers/ImportContainer.js";
 
 export default class Left extends React.Component {
 
@@ -16,8 +15,7 @@ export default class Left extends React.Component {
     };
 
     return (
-      <div className="panel__code-and-import" onClick={focusCodeEditor} >
-        <ImportContainer />
+      <div className="panel__code" onClick={focusCodeEditor} >
         <CodeContainer editorDidMount={editor => this.codemirror = editor} />
       </div>
     );
