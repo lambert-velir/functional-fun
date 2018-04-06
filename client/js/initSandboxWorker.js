@@ -129,7 +129,10 @@ function spawnSandbox(store){
 // update the hash after the user has stopped typing
 const updateHash = debounce((newCode) => {
 
-  const file = window.__EXAMPLES__.find(R.propEq("code", newCode));
+  const file = R.compose(
+    R.find(R.propEq("code", newCode)),
+    R.chain(R.prop("examples")) // flat list of examples
+  )(window.__EXAMPLES__);
 
   // if this code is the contents of a file, update
   // the hash to be the slug

@@ -57,10 +57,11 @@ function loadFromHash(){
 
   const hash = window.location.hash.replace(/^#/, "");
 
-  const file = window.__EXAMPLES__.find(R.compose(
-    R.equals(hash),
-    R.prop("slug")
-  ));
+  const file = R.compose(
+    R.find(R.propEq("slug", hash)),
+    R.chain(R.prop("examples")), // flat list of examples
+  )(window.__EXAMPLES__);
+
 
   if (file){
     store.dispatch(updateCode(file.code));

@@ -11,9 +11,12 @@ export default class Load extends React.Component {
 
   static propTypes = {
     examples: arrayOf(shape({
-      displayName: string.isRequired,
-      slug: string.isRequired,
-      code: string.isRequired
+      title: string.isRequired,
+      examples: arrayOf(shape({
+        displayName: string.isRequired,
+        slug: string.isRequired,
+        code: string.isRequired
+      })).isRequired
     })).isRequired,
     onChange: func.isRequired
   };
@@ -71,23 +74,6 @@ export default class Load extends React.Component {
     const { examples } = this.props;
     const { isOpen } = this.state;
 
-    const exampleMap = R.indexBy(R.prop("slug"), examples);
-
-    const exampleSections = [
-      {
-        title: "Core functional tools",
-        examples: ["map", "filter", "find", "reduce"]
-      },
-      {
-        title: "Currying / Partial application",
-        examples: [ "max", "numbers"]
-      },
-      {
-        title: "Composition",
-        examples: ["debugging", "sentences", "average-strength", "sum-of-stats", "slow-heroes", "hero-names-by-gender"]
-      }
-    ];
-
     return (
       <div className="load">
         <button type="button" onClick={this.open}>Load challenge</button>
@@ -95,11 +81,11 @@ export default class Load extends React.Component {
         <Modal isOpen={isOpen} onClose={this.close} className="modal--examples">
           <div className="examples">
             {
-              exampleSections.map(({ title, examples }) => (
+              examples.map(({ title, examples }) => (
                 <div key={title} className="examples__section">
                   <div className="examples__section-title">{title}</div>
                   <div className="examples__buttons">
-                    {examples.map(slug => this.renderExample(exampleMap[slug]))}
+                    {examples.map(this.renderExample)}
                   </div>
                 </div>
               ))
