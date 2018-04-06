@@ -28,13 +28,17 @@ export default function App(props){
   return (
     <div className="container">
       <div className="container__top menu">
-        <img src="img/lamda.png" alt="lambda" />
-        <div className="menu__item"><LoadContainer /> </div>
-        <div className="menu__item">
-          <Dropdown items={docsItems}>Docs</Dropdown>
+        <div className="menu__img">
+          <img src="img/lamda.png" alt="lambda" width={32} height={32} />
         </div>
-        <div className="menu__item">
-          <ImportContainer />
+        <div className="menu__items">
+          <div className="menu__item"><LoadContainer /> </div>
+          <div className="menu__item">
+            <Dropdown items={docsItems}>Docs</Dropdown>
+          </div>
+          <div className="menu__item">
+            <ImportContainer />
+          </div>
         </div>
       </div>
       <div className="container__bottom">

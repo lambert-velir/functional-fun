@@ -36,6 +36,10 @@ $padding: 8px;
   width: $width;
   max-width: 100%;
   padding: $padding;
+
+  @media (max-width: $bp-vertical) {
+    width: $width*3/4;
+  }
 }
 
 a.example {
@@ -54,6 +58,11 @@ a.example {
 
   &:hover .example__name {
     background-color: $yellow-highlight;
+  }
+
+  @media (max-width: $bp-vertical) {
+    height: auto;
+    padding-bottom: 0;
   }
 }
 
@@ -86,5 +95,9 @@ a.example {
     content: " ";
     cursor: pointer;
     z-index: 2;
+  }
+
+  @media (max-width: $bp-vertical) {
+    display: none;
   }
 }

@@ -2,6 +2,14 @@
 
 .panel {
   display: flex;
+
+  @media(max-width: $bp-vertical) {
+    display: block;
+
+    & > * {
+      width: auto !important; // override the react width
+    }
+  }
 }
 
 .panel__code {
@@ -20,6 +28,10 @@
 
   &:hover {
     background-color: $yellow-highlight;
+  }
+
+  @media(max-width: $bp-vertical) {
+    display: none;
   }
 }
 

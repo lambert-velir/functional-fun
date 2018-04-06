@@ -15,6 +15,19 @@
   color: #666;
   overflow: auto;
   // border-left: 1px solid $grey-ddd;
+
+  @media(max-width: $bp-vertical) {
+    position: relative;
+    border-top: 2px solid $grey-ddd;
+
+    &:before {
+      content: "Output";
+      display: block;
+      padding: 8px;
+      font-size: 18px;
+      border-bottom: 1px solid $grey-ddd;
+    }
+  }
 }
 
 $text-padding: 8px;

@@ -1,7 +1,29 @@
-.menu {
+@import "./_variables.scss";
 
+$padding: 8px;
+
+.menu {
+  display: flex;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.menu__img {
+  padding-top: $padding;
+  padding-bottom: $padding;
+}
+
+.menu__items {
+  display: flex;
+  padding-left: 8px;
+  padding-top: $padding/2;
+  padding-bottom: $padding/2;
+
+  @media (max-width: $bp-vertical) {
+    flex-wrap: wrap;
+  }
 }
 
 .menu__item {
-  margin: 0 6px;
+  margin: $padding/2;
 }
