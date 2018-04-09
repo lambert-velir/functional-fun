@@ -22,9 +22,42 @@ for(let i = 0; i < dogs.length; i ++){
   avgAge1 += dog.age / dogs.length;
 }
 
+
 // use .reduce instead!
 const avgAge2 = null;
 
 
-
 assert.equals(avgAge2, avgAge1);
+
+
+
+/**
+ * Bonus challenges!
+ * Reduce is the most low-level array function.  All other higher-level
+ * functions (map, filter, etc) can be implemented in terms of reduce.
+ */
+
+
+// Use reduce to implement map
+const map = (fn, arr) => null;
+
+
+const getName = dog => dog.name;
+
+assert.equals(
+  map(getName, dogs),
+  dogs.map(getName)
+);
+
+
+
+// Use reduce to implement filter
+const filter = (pred, arr) => null;
+
+
+const isOld = dog => dog.age > 10;
+
+assert.equals(
+  filter(isOld, dogs),
+  dogs.filter(isOld)
+);
