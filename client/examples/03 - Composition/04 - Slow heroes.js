@@ -2,6 +2,7 @@ import R from "ramda";
 import heroes from "heroes";
 
 
+// slowestSpeed :: [Hero] → Number
 // given a list of heroes, return the slowest speed
 // Hint: R.reduce, R.min
 const slowestSpeed = R.compose(
@@ -11,7 +12,7 @@ const slowestSpeed = R.compose(
 assert.equals(slowestSpeed(heroes), 12);
 
 
-
+// slowestHeroes :: [Hero] → [String]
 // return a list of all the names of the heroes who are the slowest
 // Hing: R.pathEq
 const slowestHeroes = heroes => R.compose(

@@ -2,6 +2,7 @@ import R from "ramda";
 
 
 // sum :: [Number] → Number
+// sum all the numbers in the given array
 // Hint: R.reduce, R.add
 const sum = R.identity;
 

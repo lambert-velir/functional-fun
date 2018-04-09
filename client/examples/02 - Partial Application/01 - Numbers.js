@@ -1,13 +1,14 @@
 import R from "ramda";
 
-// R.multiply :: Number → Number → Number
 // double :: Number → Number
+// Hint: R.multiply :: Number → Number → Number
 const double = R.identity;
 
 assert.equals(double(21), 42);
 
 
-// doubleAll :: Array Number → Array Number
+// doubleAll :: [Number] → [Number]
+// Hint: R.map
 const doubleAll = R.identity;
 
 assert.equals(
@@ -16,7 +17,7 @@ assert.equals(
 );
 
 
-// tripleAll :: Array Number → Array Number
+// tripleAll :: [Number] → [Number]
 const tripleAll = R.identity;
 
 assert.equals(

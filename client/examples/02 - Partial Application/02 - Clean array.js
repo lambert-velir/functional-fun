@@ -1,6 +1,7 @@
 import R from "ramda";
 
 
+// cleanArray :: [Number] → [Number]
 // remove all the null/undefined values from an array
 // Hint: R.reject, R.isNil
 const cleanArray = R.identity;

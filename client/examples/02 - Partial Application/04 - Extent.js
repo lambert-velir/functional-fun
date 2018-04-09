@@ -11,7 +11,7 @@ assert.equals(max([ -21, -3483, -2, -1 ]), -1);
 
 
 // min :: [Number] → Number
-// return the largest number of the given array
+// return the smallest number of the given array
 const min = R.identity;
 
 assert.equals(min([ 1, -3483, 9, 7, 2 ]), -3483);

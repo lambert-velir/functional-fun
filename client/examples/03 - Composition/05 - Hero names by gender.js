@@ -2,6 +2,7 @@ import R from "ramda";
 import heroes from "heroes";
 
 
+// getHeroNamesByGender :: String → [Hero] → [String]
 // given a list of heroes and a gender, return the names of all the heroes of that gender
 // Hint: R.pathEq, R.pluck
 const getHeroNamesByGender = R.curry((gender, heroes) => R.compose(
@@ -17,6 +18,7 @@ assert.equals(
 
 
 
+// getGenderMap :: [Hero] → Object
 // Given a list of heroes, return a map of the names of the heroes by gender
 // (see assert.equals below)
 // Hint: R.applySpec
