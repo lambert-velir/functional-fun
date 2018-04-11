@@ -1,14 +1,27 @@
 @import "./_variables.scss";
 
+.button,
 button {
   padding: 6px 12px;
 
   font-size: 16px;
+  line-height: 20px;
 
   background-color: white;
   border: 1px solid $grey-ddd;
   border-radius: 4px;
   cursor: pointer;
+
+
+  &.button--icon {
+    padding: 4px 12px;
+
+    svg {
+      display: block; // remove whitespace below the icon
+      width: 24px;
+      height: 24px;
+    }
+  }
 
   &:hover {
     background-color: $yellow-highlight;

@@ -1,6 +1,7 @@
 import ReactDom from "react-dom";
 import React from "react";
 import { Provider } from "react-redux";
+import thunkMiddleware from "redux-thunk";
 import R from "ramda";
 
 import App from "./components/App.jsx";
@@ -26,7 +27,7 @@ window.R = R;
 window.heroes = heroes;
 
 
-const store = configureStore(rootReducer, []);
+const store = configureStore(rootReducer, {}, [ thunkMiddleware ]);
 
 // grab the examples from the window and put them in redux
 store.dispatch(setExamples(window.__EXAMPLES__ || []));

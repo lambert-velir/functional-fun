@@ -20,7 +20,7 @@ export default function consoleReducer(state = initialState, action) {
 
     case CONSOLE_MESSAGES: {
       const { messages } = action.payload;
-      return R.concat(messages, state);
+      return R.concat(state, messages);
     }
 
     case CLEAR_CONSOLE: {

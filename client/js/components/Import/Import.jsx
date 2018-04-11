@@ -23,12 +23,12 @@ const imports = [
     name: "Result",
     variable: "Result, { Ok, Error }",
     npm: "folktale/result"
+  },
+  {
+    name: "Task",
+    variable: "Task",
+    npm: "folktale/concurrency/task"
   }
-  // {
-  //   name: "Task",
-  //   variable: "Task",
-  //   npm: "folktale/concurrency/task"
-  // },
 ];
 
 export default class Import extends React.Component {

@@ -27,6 +27,12 @@ export default class Console extends React.Component {
 
     els.forEach(el => {
 
+      // don't run code mirror on this element if it's already been run
+      const mirrors = el.getElementsByClassName("CodeMirror");
+      if (mirrors.length > 0){
+        return;
+      }
+
       const options = {
         value: el.innerText,
         mode: {
@@ -73,7 +79,7 @@ export default class Console extends React.Component {
               : null;
 
             return (
-              <div key={i} className={classes}>
+              <div key={message} className={classes}>
                 {icon && <div className="console__icon">{icon}</div>}
                 <div className="console__text">{message}</div>
               </div>
