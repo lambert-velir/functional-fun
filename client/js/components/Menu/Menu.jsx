@@ -21,7 +21,11 @@ const docsItems = [
   {
     name: "Result",
     href: "http://folktale.origamitower.com/api/v2.0.0/en/folktale.result.html"
-  }
+  },
+  {
+    name: "Task",
+    href: "http://folktale.origamitower.com/api/v2.0.0/en/folktale.concurrency.task.html"
+  }  
 ];
 
 import { array, func, string } from "prop-types";
