@@ -62,6 +62,7 @@
   },
   "dependencies": {
     "babel-core": "^6.26.0",
+    "box": "file:client/box",
     "brace": "^0.10.0",
     "classnames": "^2.2.5",
     "codemirror": "^5.35.0",

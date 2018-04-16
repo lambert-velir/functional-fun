@@ -15,6 +15,11 @@ const imports = [
     npm: "heroes"
   },
   {
+    name: "Box",
+    variable: "Box",
+    npm: "box"
+  },
+  {
     name: "Maybe",
     variable: "Maybe, { Just, Nothing }",
     npm: "folktale/maybe"
