@@ -8,6 +8,9 @@ import App from "./components/App.jsx";
 import pako from "./pako.js";
 import initSandbox from "./initSandboxWorker.js";
 
+import CodeMirror from "codemirror";
+import attachKeyMap from "./components/CodeEditor/attachKeyMap.js";
+
 import configureStore from "./redux/configureStore.js";
 import rootReducer    from "./redux/rootReducer.js";
 import { updateCode } from "./redux/code/codeActions.js";
@@ -32,6 +35,8 @@ const store = configureStore(rootReducer, {}, [ thunkMiddleware ]);
 // grab the examples from the window and put them in redux
 store.dispatch(setExamples(window.__EXAMPLES__ || []));
 
+
+attachKeyMap(CodeMirror, store);
 
 // attach listeners to the store to run the code in the
 // sandbox worker

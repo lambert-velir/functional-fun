@@ -13,8 +13,7 @@ let sandbox = null;
 let processing = false;
 let queue = null;
 
-
-// TODO watchdog is a work in progress, but it looks like it's working...
+// for debugging
 function logIt(...args){
   // console.log(...args);
 }

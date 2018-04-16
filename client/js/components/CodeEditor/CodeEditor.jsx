@@ -12,7 +12,7 @@ import "codemirror/addon/comment/comment.js";
 import "codemirror/keymap/vim.js";
 
 // import "codemirror/keymap/sublime.js";
-import "./attachKeyMap.js";
+// import "./attachKeyMap.js"; // this now happens in index.jsx so we have access to the store
 
 import { func, string } from "prop-types";
 

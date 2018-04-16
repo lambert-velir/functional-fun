@@ -1,19 +1,18 @@
 import R from "ramda";
 
-import CodeMirror from "codemirror";
-
 import "codemirror/addon/search/searchcursor.js"; // cm.getSearchCursor, etc
 import "codemirror/addon/edit/matchbrackets.js";
 
+import { rerunCode } from "../../redux/code/codeActions.js";
 
-attachKeyMap(CodeMirror);
 
-// console.log(CodeMirror.commands);
-// console.log(CodeMirror.keyMap);
 
-function attachKeyMap(CodeMirror){
+export default function attachKeyMap(CodeMirror, store){
 
-  attachCommands(CodeMirror);
+  // console.log(CodeMirror.commands);
+  // console.log(CodeMirror.keyMap);
+
+  attachCommands(CodeMirror, store);
 
   const actionMap = {
     "swapLineUp": {
@@ -48,6 +47,10 @@ function attachKeyMap(CodeMirror){
     "splitSelectionByLine": {
       mac: "Shift-Cmd-L",
       pc: "Shift-Ctrl-L"
+    },
+    "rerunCode": {
+      mac: "Cmd-Enter",
+      pc: "Ctrl-Enter"
     }
   };
 
@@ -84,10 +87,15 @@ function attachKeyMap(CodeMirror){
 
 
 // most of these are based on functions from the sublime keyMap
-function attachCommands(CodeMirror){
+function attachCommands(CodeMirror, store){
 
   const cmds = CodeMirror.commands;
   const Pos = CodeMirror.Pos;
+
+
+  cmds.rerunCode = function(cm) {
+    store.dispatch(rerunCode());
+  };
 
   cmds.toggleComment = function(cm) {
     cm.toggleComment({ indent: true, padding: " " });
