@@ -79,7 +79,7 @@ export default class Console extends React.Component {
               : null;
 
             return (
-              <div key={message} className={classes}>
+              <div key={message + i} className={classes}>
                 {icon && <div className="console__icon">{icon}</div>}
                 <div className="console__text">{message}</div>
               </div>
