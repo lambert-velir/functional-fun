@@ -98,13 +98,9 @@ self.addEventListener("message", e => {
     // run the user code
     const result = eval(evalText);
 
-    // isTask :: Object -> Boolean
-    // if this object is a folktale task
-    const isTask = R.compose(R.equals([ "_task", "_deferred" ]), R.keys);
-
     // if running all the code produces a result, log it
     // ignore if the user's last expression is running a folktale task
-    if (!R.isNil(result) && result !== "use strict" && !isTask(result)){
+    if (!R.isNil(result) && result !== "use strict"){
       console.log(); // add an extra space
       console.log(result);
     }
