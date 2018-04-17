@@ -47,10 +47,14 @@ self.addEventListener("message", e => {
   }, 50);
 
   const assertEquals = (test, target) => {
-    if (R.equals(test, target)){
+
+    const closeEnough = R.is(Number, test) && R.is(Number, target)
+      && (Math.abs(test - target) < 0.01);
+
+    if (R.equals(test, target) || closeEnough){
       respond({
         type: "pass",
-        message:  getConsoleOutput(target)
+        message:  getConsoleOutput(test)
       });
     }
     else {
