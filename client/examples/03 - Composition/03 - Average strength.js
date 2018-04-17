@@ -1,6 +1,7 @@
 import R from "ramda";
 import heroes from "heroes";
 
+
 // average :: [Number] → Number
 const average = R.converge(R.divide, [R.sum, R.length]);
 

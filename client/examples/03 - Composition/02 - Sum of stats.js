@@ -1,6 +1,7 @@
 import R from "ramda";
 import heroes from "heroes";
 
+
 // sumHeroStats :: Hero → Number
 // given a hero, return the sum of their stats
 // Hint: R.prop, R.values, R.sum
