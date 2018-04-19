@@ -1,5 +1,4 @@
 import React from "react";
-import R from "ramda";
 import { arrayOf, func, shape, string } from "prop-types";
 import Modal from "../Modal/Modal.jsx";
 import { Controlled as CodeMirror } from "react-codemirror2";
@@ -31,7 +30,7 @@ export default class Load extends React.Component {
 
   handleExampleClick = (slug) => (event) => {
 
-    // don't do anythning if the user is holding down cmd/ctrl (to open in a new tab)
+    // don't do anything if the user is holding down cmd/ctrl (to open in a new tab)
     // https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/modules/Link.js#L35-L55
     if (
       !event.defaultPrevented && // onClick prevented default

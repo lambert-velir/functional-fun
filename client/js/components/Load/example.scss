@@ -4,7 +4,7 @@ $width: 200px;
 $padding: 8px;
 
 .examples {
-
+  padding-bottom: 48px;
 }
 
 .examples__section + .examples__section {
@@ -56,8 +56,15 @@ a.example {
   text-decoration: inherit;
 
 
-  &:hover .example__name {
-    background-color: $yellow-highlight;
+  &:hover {
+
+    .example__name {
+      background-color: $yellow-highlight;
+    }
+
+    .CodeMirror {
+      opacity: 1;
+    }
   }
 
   @media (max-width: $bp-vertical) {
@@ -82,7 +89,9 @@ a.example {
   z-index: 1;
 
   .CodeMirror {
-    font-size: 4px;
+    font-size: 7px;
+    opacity: 0.5;
+    transition: all 250ms;
   }
 
   // overlay so the user can't touch the editor
