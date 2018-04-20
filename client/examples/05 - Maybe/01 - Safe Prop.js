@@ -9,5 +9,10 @@ const safeProp = R.Identity;
 
 const superman = heroes[0];
 
-assert.equals(safeProp("vehicle", superman), Nothing);
-assert.equals(safeProp("alignment", superman), Just("good"));
+assert.equals(
+  safeProp("vehicle", superman).getOrElse("N/A"),
+  "N/A");
+
+assert.equals(
+  safeProp("alignment", superman).getOrElse("N/A"),
+  "good");
