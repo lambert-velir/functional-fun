@@ -22,6 +22,6 @@ const safeFindByName = R.curry((name, list) =>
 // getAlignment :: String -> [a] -> Maybe String
 const getAlignment = R.identity;
 
-assert.equals(getAlignment("Superman", heroes), Just(Just("good")));
-assert.equals(getAlignment("Joker", heroes), Just(Just("bad")));
+assert.equals(getAlignment("Superman", heroes), Just("good"));
+assert.equals(getAlignment("Joker", heroes), Just("bad"));
 assert.equals(getAlignment("Bane", heroes), Nothing());
