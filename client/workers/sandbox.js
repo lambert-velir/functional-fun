@@ -67,6 +67,13 @@ self.addEventListener("message", e => {
     }
   };
 
+  const assertFail = message => {
+    respond({
+      type: "fail",
+      message: message
+    });
+  };
+
   // hijack any console calls so we can display them on screen
   const hijack = (type) => function(){
     const message = getConsoleOutput(...[].slice.apply(arguments));
@@ -96,6 +103,7 @@ self.addEventListener("message", e => {
     const evalText = `
       const assert = {};
       assert.equals = ${assertEquals.toString()};
+      assert.fail = ${assertFail.toString()};
       ${transpiled}
     `;
 

@@ -33,6 +33,11 @@ const imports = [
     name: "Task",
     variable: "Task",
     npm: "folktale/concurrency/task"
+  },
+  {
+    name: "DB",
+    variable: "DB",
+    npm: "db"
   }
 ];
 

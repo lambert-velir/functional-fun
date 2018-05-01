@@ -67,6 +67,7 @@
     "classnames": "^2.2.5",
     "codemirror": "^5.35.0",
     "core-js": "^2.5.1",
+    "db": "file:client/db",
     "downshift": "^1.31.3",
     "express": "^4.16.2",
     "folktale": "^2.0.1",
