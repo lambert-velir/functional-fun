@@ -1,16 +1,10 @@
 import R from "ramda";
 import heroes from "heroes";
-import {findByName} from "db";
+import { findByName } from "heroes-db";
 
-// Imagine "heroes" is a database object. You will pass this database object
-// into each database read function (findByName, query)
-
-// findByName :: String -> Database -> Task a
-// Takes a "name" and the "database". Returns a Task(Hero)
-// The task will be rejected if the hero cannot be found
-
-// Write a function to find the alignment of a hero using "findByName"
-// heroAlignment :: String -> [a] -> Task String
+// Write a function to find the alignment of a hero
+// using "findByName" (see "docs" dropdown for details)
+// heroAlignment :: String → [a] → Task String
 const heroAlignment = R.identity;
 
 heroAlignment("Superman", heroes)

@@ -1,5 +1,5 @@
 import R from "ramda";
-import heroes from "heroes";
+import { heroes } from "heroes-db";
 
 
 // getWeightInKg :: Hero → Number

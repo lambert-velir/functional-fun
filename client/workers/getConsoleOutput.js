@@ -9,6 +9,12 @@ export default function getConsoleOutput(...args) {
     // Any -> Boolean
     const typeIs = type => R.compose(R.equals(type), R.type);
 
+
+    const jsonReplacer = (key, value) => R.when(
+      typeIs("Function"),
+      getConsoleOutput
+    )(value);
+
     return R.compose(
       R.join(" "),
       R.map(R.cond([
@@ -23,6 +29,10 @@ export default function getConsoleOutput(...args) {
         [
           typeIs("String"),
           string => `"${string.toString()}"`
+        ],
+        [
+          typeIs("Function"),
+          () => "Function"
         ],
         [ // if an object has it's own toString, use that
           // instead of JSON.stringify
@@ -56,7 +66,11 @@ export default function getConsoleOutput(...args) {
           taskExecution => "TaskExecution()"
         ],
         [ // if an arg is an object, print out the JSON instead of [object Object]
-          R.anyPass([typeIs("Object"), typeIs("Array")]),
+          typeIs("Object"),
+          arg => JSON.stringify(arg, jsonReplacer, 2)
+        ],
+        [ // if an arg is an array, print out the JSON instead of [object Object]
+          typeIs("Array"),
           arg => JSON.stringify(arg, null, 2)
         ],
         [

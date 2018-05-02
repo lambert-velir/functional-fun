@@ -12,7 +12,11 @@ const docsItems = [
   },
   {
     name: "heroes.json",
-    href: "./heroes.json"
+    href: "./docs/heroes.json"
+  },
+  {
+    name: "heroes-db",
+    href: "./docs/heroes-db.html"
   },
   {
     name: "Maybe",
@@ -25,7 +29,7 @@ const docsItems = [
   {
     name: "Task",
     href: "http://folktale.origamitower.com/api/v2.0.0/en/folktale.concurrency.task.html"
-  }  
+  }
 ];
 
 import { array, func, string } from "prop-types";

@@ -10,7 +10,7 @@ import createCssTask         from "../quench/createCssTask.js";
 import createBrowserSyncTask from "../quench/createBrowserSyncTask.js";
 import createNodemonTask     from "../quench/createNodemonTask.js";
 
-import heroes from "../../client/heroes/index.js";
+import heroes from "../../client/heroes-db/heroes.js";
 
 import template from "gulp-template";
 import getExamples from "../../server/getExamples.js";
@@ -37,12 +37,12 @@ module.exports = function buildTask(projectRoot) {
 
 
     gulp.task("build-heroes-json", () => {
-      return gulp.src(`${clientDir}/heroes.json`)
+      return gulp.src(`${clientDir}/heroes-db/heroes.json`)
         .pipe(quench.drano())
         .pipe(template({
           heroes: JSON.stringify(heroes, null, 2)
         }))
-        .pipe(gulp.dest(buildDir));
+        .pipe(gulp.dest(`${buildDir}/docs/`));
     });
     quench.maybeWatch("build-heroes-json", [`${clientDir}/heroes/**/*`]);
 
@@ -50,7 +50,8 @@ module.exports = function buildTask(projectRoot) {
     createCopyTask("build-copy", {
       src: [
         `${clientDir}/img/**`,
-        `${clientDir}/data/**`
+        `${clientDir}/data/**`,
+        `${clientDir}/docs/**`
       ],
       dest: buildDir,
       base: `${clientDir}`
@@ -59,7 +60,7 @@ module.exports = function buildTask(projectRoot) {
 
     createJsTask("build-js", {
       dest: `${buildDir}/js/`,
-      watch: `${clientDir}/db/**`,
+      watch: `${clientDir}/heroes-db/**`,
       files: [
         {
           gulpTaskId: "build-js-index",

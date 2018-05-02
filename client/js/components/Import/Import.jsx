@@ -10,9 +10,9 @@ const imports = [
     npm: "ramda"
   },
   {
-    name: "heros.json",
-    variable: "heroes",
-    npm: "heroes"
+    name: "Heroes DB",
+    variable: "DB",
+    npm: "heroes-db"
   },
   {
     name: "Box",
@@ -33,11 +33,6 @@ const imports = [
     name: "Task",
     variable: "Task",
     npm: "folktale/concurrency/task"
-  },
-  {
-    name: "DB",
-    variable: "DB",
-    npm: "db"
   }
 ];
 
