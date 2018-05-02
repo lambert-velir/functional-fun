@@ -30,6 +30,9 @@ module.exports = function jsTask(taskName, userConfig){
       debug: !env.production() // enable sourcemaps for development/local
     },
 
+    // array or string of globs of files to watch to rerun the entire task
+    watch: [],
+
     /**
      * Add new entry javascript files to the files array
      * keys:
@@ -140,7 +143,10 @@ module.exports = function jsTask(taskName, userConfig){
   /* 3. Create entry "js" function to run them all */
 
   // if package.json changes, re-run all js tasks
-  quench.maybeWatch(taskName, [ findup.sync("package.json") ]);
+  quench.maybeWatch(taskName, R.unnest([
+    jsConfig.watch,
+    findup.sync("package.json")
+  ]));
 
   // a list of all the dynamic tasks we made above + js-libraries
   const allTasks = R.compose(

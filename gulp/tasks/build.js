@@ -59,6 +59,7 @@ module.exports = function buildTask(projectRoot) {
 
     createJsTask("build-js", {
       dest: `${buildDir}/js/`,
+      watch: `${clientDir}/db/**`,
       files: [
         {
           gulpTaskId: "build-js-index",
