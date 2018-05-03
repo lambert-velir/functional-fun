@@ -1,7 +1,5 @@
 import R from "ramda";
-import heroes from "heroes";
-import { findByName, query } from "db";
-
+import { findByName, query, heroes } from "heroes-db";
 
 // Write a function to find the hero's team.
 // i.e. all other heroes that have the same alignment

@@ -9,16 +9,32 @@
   <h1>Heroes DB docs</h1>
 
 
-  // findByName :: String → Database → Task a
-  // Takes a "name" and the "database". Returns a Task(Hero)
-  // The task will be rejected if the hero cannot be found
-
-  // query :: (a → bool) → Database → Task [a]
-  // Takes a predicate function and the "database". Returns a Task([Hero])
-  // All heroes that match the predicate will be returned
-  // If no heroes match, expect an empty list
-
-
+  <ul>
+    <li>
+      <strong>findAll</strong>
+      <pre>findAll :: Database → Task [a]</pre>
+      <p>
+        Takes a "database" and returns all heroes as a Task([Hero]).
+      </p>
+    </li>
+    <li>
+      <strong>findByName</strong>
+      <pre>findByName :: String → Database → Task a</pre>
+      <p>
+        Takes a "name" and the "database" and returns a Task(Hero). 
+        The task will be rejected if the hero cannot be found
+      </p>
+    </li>
+    <li>
+      <strong>query</strong>
+      <pre>query :: (a → bool) → Database → Task [a]</pre>
+      <p>
+        Takes a predicate function and the "database" and returns a Task([Hero]). 
+        All heroes that match the predicate will be returned
+        If no heroes match, expect an empty list
+      </p>
+    </li>
+  </ul>
 
 </body>
 </html>

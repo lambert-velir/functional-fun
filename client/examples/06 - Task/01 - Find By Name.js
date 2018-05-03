@@ -1,6 +1,5 @@
 import R from "ramda";
-import heroes from "heroes";
-import { findByName } from "heroes-db";
+import { findByName, heroes } from "heroes-db";
 
 // Write a function to find the alignment of a hero
 // using "findByName" (see "docs" dropdown for details)
