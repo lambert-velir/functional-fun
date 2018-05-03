@@ -1,6 +1,6 @@
 const gulp        = require("gulp");
 const quench      = require("./quench.js");
-const uglify      = require("gulp-uglify");
+const uglify      = require("gulp-uglify-es").default;
 const rename      = require("gulp-rename");
 const debug       = require("gulp-debug");
 const sourcemaps  = require("gulp-sourcemaps");
