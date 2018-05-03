@@ -71,6 +71,7 @@
     "express": "^4.16.2",
     "folktale": "^2.0.1",
     "heroes-db": "file:client/heroes-db",
+    "files": "file:client/files",
     "lodash.debounce": "^4.0.8",
     "lodash.template": "^4.4.0",
     "pako": "^1.0.6",

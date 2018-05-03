@@ -19,6 +19,10 @@ const docsItems = [
     href: "./docs/heroes-db.html"
   },
   {
+    name: "files",
+    href: "./docs/files.html"
+  },
+  {
     name: "Maybe",
     href: "http://folktale.origamitower.com/api/v2.0.0/en/folktale.maybe.html"
   },

@@ -15,6 +15,11 @@ const imports = [
     npm: "heroes-db"
   },
   {
+    name: "Files",
+    variable: "{ readFile }",
+    npm: "files"
+  },
+  {
     name: "Box",
     variable: "Box",
     npm: "box"

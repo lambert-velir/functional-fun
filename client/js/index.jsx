@@ -23,6 +23,7 @@ import Result from "folktale/result";
 import Task from "folktale/concurrency/task";
 import Box from "box";
 import heroes from "heroes-db";
+import files from "files";
 
 window.Maybe = Maybe;
 window.Result = Result;
