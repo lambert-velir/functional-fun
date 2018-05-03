@@ -3,37 +3,52 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="icon" type="image/png" href="../img/favicon.png">
   <title>Heroes DB docs</title>
+  <link rel="stylesheet" href="docs-generated.css">
 </head>
 <body>
-  <h1>Heroes DB docs</h1>
-
-
-  <ul>
-    <li>
-      <strong>findAll</strong>
-      <pre>findAll :: Database → Task [a]</pre>
+  <h1>Heroes DB API</h1>
+  <div class="functions">
+    <div class="function">
+      <pre><strong>findAll</strong> :: () → Task [a]</pre>
       <p>
-        Takes a "database" and returns all heroes as a Task([Hero]).
+        Returns all heroes as a Task([Hero]).
       </p>
-    </li>
-    <li>
-      <strong>findByName</strong>
-      <pre>findByName :: String → Database → Task a</pre>
+      <code>import DB from "heroes-db";
+
+const allHeroesTask = DB.findAll(); // Task([Hero])
+
+allHeroesTask.run().listen({
+  onResolved: heroes => console.log(heroes),
+  onRejected: error => console.log(error)
+});</code>
+    </div>
+
+    <div class="function">
+      <pre><strong>findByName</strong> :: String → Task a</pre>
       <p>
-        Takes a "name" and the "database" and returns a Task(Hero). 
-        The task will be rejected if the hero cannot be found
+        Takes a <em>name</em> and returns a Task(Hero).
+        The task will be rejected if the hero cannot be found.
       </p>
-    </li>
-    <li>
-      <strong>query</strong>
-      <pre>query :: (a → bool) → Database → Task [a]</pre>
+      <code>import DB from "heroes-db";
+
+const superman = DB.findByName("Superman"); // Task.Resolved(Hero)
+
+const rejected = DB.findByName("Poopman"); // Task.Rejected</code>
+    </div>
+
+    <div class="function">
+      <pre><strong>query</strong> :: (a → bool) → Task [a]</pre>
       <p>
-        Takes a predicate function and the "database" and returns a Task([Hero]). 
+        Takes a <em>predicate function</em> and returns a Task([Hero]).
         All heroes that match the predicate will be returned
-        If no heroes match, expect an empty list
+        If no heroes match, expect an empty list.
       </p>
-    </li>
+      <code>import DB from "heroes-db";
+
+const superman = DB.query(R.propEq("name", "Superman")); // Task.Resolved(Hero)</code
+    </div>
   </ul>
 
 </body>

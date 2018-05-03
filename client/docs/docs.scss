@@ -1,0 +1,50 @@
+@import "../scss/_variables.scss";
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 12px 12px 84px;
+
+  font-family: $monospace;
+}
+
+h2 {
+  margin: 14px 0;
+}
+
+pre,
+code {
+  font-family: inherit;
+}
+
+code {
+  display: block;
+  padding: 16px;
+  background-color: #fdf6e4;
+  border-radius: 6px;
+  border: 0;
+  white-space: pre-wrap;
+}
+
+.functions {
+  margin: 0;
+  padding: 0;
+
+  .function + .function {
+    margin-top: 48px;
+  }
+}
+
+
+.files-list {
+  padding-left: 24px;
+
+  li {
+    list-style: circle;
+    font-style: italic;
+  }
+
+  li + li {
+    margin-top: 6px;
+  }
+}

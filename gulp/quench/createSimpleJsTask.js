@@ -23,32 +23,30 @@ module.exports = function jsTask(taskName, userConfig){
     }
 
     /**
-     * entry    : path to this file
+     * src    : path to this file
      * dest     : directory to write the file
      * watch    : rerun this files's task when these files change (can be an array of globs)
      **/
 
   }, userConfig);
 
-  const { entry, dest, watch } = jsConfig;
+  const { src, dest, watch } = jsConfig;
 
-  if (!entry || !dest ){
+  if (!src || !dest ){
     quench.throwError(
-      "Simple Js task requires an entry and a dest!\n",
+      "Simple Js task requires an src and a dest!\n",
       `Given jsConfig: ${JSON.stringify(jsConfig, null, 2)}`
     );
   }
 
 
   // register the watcher for this task
-  if (watch){
-    quench.maybeWatch(taskName, watch);
-  }
+  quench.maybeWatch(taskName, watch || src);
 
   // create a gulp task to compile this file
   gulp.task(taskName, function(){
 
-    return gulp.src(entry)
+    return gulp.src(src)
       .pipe(quench.drano())
       .pipe(bundleJs(jsConfig.browserify))
       .pipe(sourcemaps.init({ loadMaps: true })) // loads map from browserify file

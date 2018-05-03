@@ -51,7 +51,7 @@ module.exports = function buildTask(projectRoot) {
       src: [
         `${clientDir}/img/**`,
         `${clientDir}/data/**`,
-        `${clientDir}/docs/**`
+        `${clientDir}/docs/**/*.html`
       ],
       dest: buildDir,
       base: `${clientDir}`
@@ -84,7 +84,7 @@ module.exports = function buildTask(projectRoot) {
 
     createSimpleJsTask("build-workers", {
       dest: `${buildDir}/workers/`,
-      entry: `${clientDir}/workers/sandbox.js`,
+      src: `${clientDir}/workers/sandbox.js`,
       watch: [
         `${clientDir}/workers/**/*.js`
       ]
@@ -103,6 +103,11 @@ module.exports = function buildTask(projectRoot) {
       filename: "index.css"
     });
 
+    createCssTask("docs-css", {
+      src: `${clientDir}/docs/**/*.scss`,
+      dest: `${buildDir}/docs/`,
+      filename: "docs.css"
+    });
 
     createBrowserSyncTask("build-browser-sync", {
       server: buildDir,
@@ -125,7 +130,8 @@ module.exports = function buildTask(projectRoot) {
       "build-css",
       "build-copy",
       "build-html",
-      "build-heroes-json"
+      "build-heroes-json",
+      "docs-css"
     ];
 
     if (quench.isWatching()){
