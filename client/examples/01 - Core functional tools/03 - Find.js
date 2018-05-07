@@ -24,7 +24,7 @@ for (var i = 0; i < animals.length; i++){
 }
 
 // use .find instead!
-const sassy2 = null;
+const sassy2 = null;  // <---- **** EDIT HERE ****
 
 
 

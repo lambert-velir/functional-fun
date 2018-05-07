@@ -21,7 +21,7 @@ for (let i = 0; i < animals.length; i++){
 }
 
 // use .map instead!
-const names2 = null;
+const names2 = null;  // <---- **** EDIT HERE ****
 
 
 

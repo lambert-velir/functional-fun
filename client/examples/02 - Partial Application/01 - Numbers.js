@@ -10,7 +10,7 @@ assert.equals(double(21), 42);
 
 // doubleAll :: [Number] → [Number]
 // Hint: R.map
-const doubleAll = R.identity;
+const doubleAll = R.identity;  // <---- **** EDIT HERE ****
 
 assert.equals(
   doubleAll([ 1, 2, 3 ]),
@@ -19,7 +19,7 @@ assert.equals(
 
 
 // tripleAll :: [Number] → [Number]
-const tripleAll = R.identity;
+const tripleAll = R.identity;  // <---- **** EDIT HERE ****
 
 assert.equals(
   tripleAll([ 1, 2, 3 ]),

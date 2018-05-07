@@ -24,7 +24,7 @@ for(let i = 0; i < dogs.length; i ++){
 
 
 // use .reduce instead!
-const avgAge2 = null;
+const avgAge2 = null;  // <---- **** EDIT HERE ****
 
 
 assert.equals(avgAge2, avgAge1);
@@ -39,7 +39,7 @@ assert.equals(avgAge2, avgAge1);
 
 
 // Use reduce to implement map
-const map = (fn, arr) => null;
+const map = (fn, arr) => null;  // <---- **** EDIT HERE ****
 
 
 const getName = dog => dog.name;
@@ -52,7 +52,7 @@ assert.equals(
 
 
 // Use reduce to implement filter
-const filter = (pred, arr) => null;
+const filter = (pred, arr) => null;  // <---- **** EDIT HERE ****
 
 
 const isOld = dog => dog.age > 10;

@@ -23,7 +23,7 @@ for (var i = 0; i < animals.length; i++){
 }
 
 // use .filter instead!
-const dogs2 = null;
+const dogs2 = null;  // <---- **** EDIT HERE ****
 
 
 
