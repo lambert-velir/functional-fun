@@ -6,7 +6,7 @@ import { heroes } from "heroes-db";
 // given a list of heroes, return the slowest speed
 // Hint: R.reduce, R.min
 const slowestSpeed = R.compose(
-  R.identity
+  R.identity  // <---- **** EDIT HERE ****
 );
 
 assert.equals(slowestSpeed(heroes), 12);
@@ -16,7 +16,7 @@ assert.equals(slowestSpeed(heroes), 12);
 // return a list of all the names of the heroes who are the slowest
 // Hing: R.pathEq
 const slowestHeroes = heroes => R.compose(
-  R.identity
+  R.identity  // <---- **** EDIT HERE ****
 )(heroes);
 
 assert.equals(

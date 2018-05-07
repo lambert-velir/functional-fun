@@ -4,7 +4,7 @@ import { heroes } from "heroes-db";
 
 // getWeightInKg :: Hero → Number
 const getWeightInKg = R.compose(
-  R.identity
+  R.identity  // <---- **** EDIT HERE ****
 );
 
 assert.equals(getWeightInKg(heroes[0]), 101);
@@ -14,7 +14,7 @@ assert.equals(getWeightInKg(heroes[0]), 101);
 // getHeightInM :: Hero → Number
 // meters = inches * 0.0254
 const getHeightInM = R.compose(
-  R.identity
+  R.identity  // <---- **** EDIT HERE ****
 );
 
 assert.equals(getHeightInM(heroes[0]), 1.905);

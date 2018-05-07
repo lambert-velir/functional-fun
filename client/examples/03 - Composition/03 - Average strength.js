@@ -12,7 +12,7 @@ const average = R.converge(R.divide, [R.sum, R.length]);
 // exclude heroes that don't have stats.
 // Hint: R.path, R.reject, R.isNil, Math.round
 const averageStrength = R.compose(
-  R.identity
+  R.identity  // <---- **** EDIT HERE ****
 );
 
 assert.equals(averageStrength(heroes), 29);

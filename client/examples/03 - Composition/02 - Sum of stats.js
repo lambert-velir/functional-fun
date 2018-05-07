@@ -6,7 +6,7 @@ import { heroes } from "heroes-db";
 // given a hero, return the sum of their stats
 // Hint: R.prop, R.values, R.sum
 const sumHeroStats = R.compose(
-  R.identity
+  R.identity  // <---- **** EDIT HERE ****
 );
 
 assert.equals(sumHeroStats(heroes[0]), 585);

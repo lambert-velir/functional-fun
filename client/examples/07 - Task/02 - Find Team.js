@@ -5,7 +5,7 @@ import { findByName, query } from "heroes-db";
 // i.e. all other heroes that have the same alignment
 // Returns a comma separated list of names
 // heroTeam :: String → Task String
-const heroTeam = R.identity;
+const heroTeam = R.identity;  // <---- **** EDIT HERE ****
 
 heroTeam("Superman")
   .run()

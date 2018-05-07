@@ -14,8 +14,7 @@ const tryParse = s => {
 // heroes.json contains JSON of the heroes list.
 // Your function should be error safe
 // getFirstHeroFromFile :: String → String
-const getFirstHeroFromFile = R.identity;
-
+const getFirstHeroFromFile = R.identity;  // <---- **** EDIT HERE ****
 
 assert.equals(
   getFirstHeroFromFile("heroes.json"),

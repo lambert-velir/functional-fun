@@ -6,7 +6,7 @@ import { heroes } from "heroes-db";
 // given a list of heroes and a gender, return the names of all the heroes of that gender
 // Hint: R.pathEq, R.pluck
 const getHeroNamesByGender = R.curry((gender, heroes) => R.compose(
-  R.identity
+  R.identity  // <---- **** EDIT HERE ****
 )(heroes));
 
 const getFemaleHeroes = getHeroNamesByGender("female");
@@ -22,7 +22,7 @@ assert.equals(
 // Given a list of heroes, return a map of the names of the heroes by gender
 // (see assert.equals below)
 // Hint: R.applySpec
-const getGenderMap = R.identity;
+const getGenderMap = R.identity;  // <---- **** EDIT HERE ****
 
 assert.equals(
   getGenderMap(heroes),

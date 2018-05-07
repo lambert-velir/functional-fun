@@ -4,7 +4,7 @@ import { findByName } from "heroes-db";
 // Write a function to find the alignment of a hero
 // using "findByName" (see "docs" dropdown for details)
 // heroAlignment :: String → Task String
-const heroAlignment = R.identity;
+const heroAlignment = R.identity;  // <---- **** EDIT HERE ****
 
 
 heroAlignment("Superman")
