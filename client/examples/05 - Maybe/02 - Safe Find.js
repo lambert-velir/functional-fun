@@ -1,6 +1,6 @@
 import R from "ramda";
 import { heroes } from "heroes-db";
-import Maybe, { Just, Nothing} from "folktale/maybe";
+import Maybe, { Just, Nothing } from "folktale/maybe";
 
 // safe :: (* → a) → (* → Maybe a)
 const safe = fn => R.curryN(

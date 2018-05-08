@@ -3,7 +3,7 @@ import R from "ramda";
 
 // double :: Number → Number
 // Hint: R.multiply :: Number → Number → Number
-const double = R.identity;
+const double = R.identity; // <---- **** EDIT HERE ****
 
 assert.equals(double(21), 42);
 
