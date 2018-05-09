@@ -3,7 +3,7 @@ import { heroes } from "heroes-db";
 
 
 // average :: [Number] → Number
-const average = R.converge(R.divide, [R.sum, R.length]);
+const average = arr => R.sum(arr) / R.length(arr);
 
 
 // averageStrength :: [Hero] → Number
