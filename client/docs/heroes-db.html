@@ -47,7 +47,16 @@ const rejected = DB.findByName("Poopman"); // Task.Rejected</code>
       </p>
       <code>import DB from "heroes-db";
 
-const superman = DB.query(R.propEq("name", "Superman")); // Task.Resolved(Hero)</code
+const superman = DB.query(R.propEq("name", "Superman")); // Task.Resolved(Hero)</code>
+    </div>
+    <div class="function">
+      <pre><strong>heroes</strong> :: [Hero]</pre>
+      <p>
+        An array of Heroes.
+      </p>
+      <code>import { heroes } from "heroes-db";
+
+const superman = heroes[0];</code>
     </div>
   </ul>
 
