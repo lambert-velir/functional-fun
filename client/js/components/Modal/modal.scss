@@ -23,6 +23,7 @@
   &:not(.is-open) {
     opacity: 0;
     visibility: hidden;
+    pointer-events: none; // so the user can't click it as it's fading away
 
     .modal__box {
       transform: translateY(18px);
