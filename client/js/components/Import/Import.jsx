@@ -52,12 +52,10 @@ export default class Import extends React.Component {
 
     const { onImport, code } = this.props;
 
-    const isInCode = (importItem) => R.test(RegExp(importString(importItem)), code);
-
-    const importString = (importItem) => `import ${importItem.variable} from "${importItem.npm}";`;
+    const isInCode = (importItem) => R.test(RegExp(`import.*?from\\s*?"${importItem.npm}"`), code);
 
     const addImport = (importItem) => {
-      onImport(`${importString(importItem)}\n`);
+      onImport(`import ${importItem.variable} from "${importItem.npm}";\n`);
     };
 
     const filteredImports = R.reject(isInCode, imports);
