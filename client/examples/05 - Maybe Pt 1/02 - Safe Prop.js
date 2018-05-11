@@ -11,15 +11,8 @@ const safeProp = R.identity;  // <---- **** EDIT HERE ****
 
 const superman = heroes[0];
 
-assert.equals(
-  safeProp("vehicle", superman).getOrElse("N/A"),
-  "N/A"
-);
-
-assert.equals(
-  safeProp("alignment", superman).getOrElse("N/A"),
-  "good"
-);
+assert.equals(safeProp("vehicle", superman), Nothing());
+assert.equals(safeProp("alignment", superman), Just("good"));
 
 // Use safeProp to
 // 1) get a property from an object
@@ -28,12 +21,5 @@ assert.equals(
 // safeYellProp :: String -> Object -> Maybe String
 const safeYellProp = R.identity;  // <---- **** EDIT HERE ****
 
-assert.equals(
-  safeYellProp("vehicle", superman).getOrElse("N/A"),
-  "N/A"
-);
-
-assert.equals(
-  safeYellProp("alignment", superman).getOrElse("N/A"),
-  "GOOD!"
-);
+assert.equals(safeYellProp("vehicle", superman), Nothing());
+assert.equals(safeYellProp("alignment", superman), Just("GOOD!"));

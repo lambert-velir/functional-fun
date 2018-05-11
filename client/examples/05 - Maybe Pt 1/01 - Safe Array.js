@@ -6,15 +6,8 @@ import Maybe, { Just, Nothing } from "folktale/maybe";
 // safeHead :: [a] → Maybe a
 const safeHead = R.identity;  // <---- **** EDIT HERE ****
 
-assert.equals(
-  safeHead(["a", "b", "c"]).getOrElse("N/A"),
-  "a"
-);
-
-assert.equals(
-  safeHead([]).getOrElse("N/A"),
-  "N/A"
-);
+assert.equals(safeHead(["a", "b", "c"]), Just("a"));
+assert.equals(safeHead([]), Nothing());
 
 // Write a function that takes 2 arguments, a number and an array of numbers.
 // The function gets the first value in the array and adds the number.
@@ -25,12 +18,5 @@ const addToHead = R.identity;  // <---- **** EDIT HERE ****
 
 const add10ToHead = addToHead(10);
 
-assert.equals(
-  add10ToHead([2, 5, 6]).getOrElse(0),
-  12
-);
-
-assert.equals(
-  add10ToHead([]).getOrElse(0),
-  0
-);
+assert.equals(add10ToHead([2, 5, 6]), Just(12));
+assert.equals(add10ToHead([]), Nothing());

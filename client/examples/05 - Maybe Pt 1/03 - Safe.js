@@ -15,15 +15,8 @@ const safe = fn => R.curryN(
 // safeHead :: [a] → Maybe a
 const safeHead = R.identity;  // <---- **** EDIT HERE ****
 
-assert.equals(
-  safeHead(["a", "b", "c"]).getOrElse("N/A"),
-  "a"
-);
-
-assert.equals(
-  safeHead([]).getOrElse("N/A"),
-  "N/A"
-);
+assert.equals(safeHead(["a", "b", "c"]), Just("a"));
+assert.equals(safeHead([]), Nothing());
 
 // Use safe to create a safer version of R.prop
 // (hint: R.prop returns undefined if the prop doesn't exist)
@@ -32,13 +25,6 @@ const safeProp = R.identity;  // <---- **** EDIT HERE ****
 
 const superman = heroes[0];
 
-assert.equals(
-  safeProp("vehicle", superman).getOrElse("N/A"),
-  "N/A"
-);
-
-assert.equals(
-  safeProp("alignment", superman).getOrElse("N/A"),
-  "good"
-);
+assert.equals(safeProp("vehicle", superman), Nothing());
+assert.equals(safeProp("alignment", superman), Just("good"));
 
