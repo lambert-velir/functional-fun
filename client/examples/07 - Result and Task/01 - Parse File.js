@@ -4,8 +4,12 @@ import Result, { Ok, Error } from "folktale/result";
 
 // tryParse :: String → Result a
 const tryParse = s => {
-  try { return Ok(JSON.parse(s)); }
-  catch(e) { return Error(e.toString()); }
+  try {
+    return Ok(JSON.parse(s));
+  }
+  catch(e) {
+    return Error(e.toString());
+  }
 };
 
 // Use readFile (see "docs" dropdown for details) and tryParse to
