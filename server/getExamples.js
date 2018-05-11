@@ -29,6 +29,7 @@ export default function getExamples(dir){
       encodeURIComponent,
       R.toLower,
       R.replace(/-+/g, "-"), // collapse repeats
+      R.replace(/[\(\)]/g, ""),
       R.replace(/[\s\/]/g, "-")
     )(displayName);
 

@@ -16,8 +16,8 @@ const safeHead = safe(R.head);
 // innerHead :: [[a]] -> Maybe a
 const innerHead = R.identity;  // <---- **** EDIT HERE ****
 
-assert.equals(innerHead([['a', 'b', 'c'], ['d', 'e', 'f']]), Just('a'));
-assert.equals(innerHead([[], ['d', 'e', 'f']]), Nothing());
+assert.equals(innerHead([["a", "b", "c"], ["d", "e", "f"]]), Just("a"));
+assert.equals(innerHead([[], ["d", "e", "f"]]), Nothing());
 
 // Write a function that takes a nested array [[a]] and returns
 // the first value of the last array. If **ANY** arrays are empty,
@@ -26,8 +26,8 @@ assert.equals(innerHead([[], ['d', 'e', 'f']]), Nothing());
 // allHeads :: [[a]] -> Maybe a
 const lastHead = R.identity;  // <---- **** EDIT HERE ****
 
-assert.equals(lastHead([['a', 'b', 'c'], ['d', 'e', 'f'], ['g']]), Just('g'));
-assert.equals(lastHead([[], ['d', 'e', 'f']]), Nothing());
+assert.equals(lastHead([["a", "b", "c"], ["d", "e", "f"], ["g"]]), Just("g"));
+assert.equals(lastHead([[], ["d", "e", "f"]]), Nothing());
 assert.equals(lastHead([[]]), Nothing());
 
 // Write a function that takes a nested array [[a]] and returns
@@ -37,6 +37,6 @@ assert.equals(lastHead([[]]), Nothing());
 // allHeads :: [[a]] -> Maybe [a]
 const allHeads = R.identity;  // <---- **** EDIT HERE ****
 
-assert.equals(allHeads([['a', 'b', 'c'], ['d', 'e', 'f'], ['g']]), Just(['a', 'd', 'g']));
-assert.equals(allHeads([[], ['d', 'e', 'f']]), Nothing());
+assert.equals(allHeads([["a", "b", "c"], ["d", "e", "f"], ["g"]]), Just(["a", "d", "g"]));
+assert.equals(allHeads([[], ["d", "e", "f"]]), Nothing());
 assert.equals(allHeads([[]]), Nothing());
