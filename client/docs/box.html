@@ -1,0 +1,49 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+    <title>Box docs</title>
+    <link rel="stylesheet" href="docs-generated.css">
+  </head>
+  <body>
+    <h1>Box API</h1>
+
+    <div class="functions">
+      <div class="function">
+        <pre><strong>Box</strong> :: a → Box a</pre>
+        <p>
+          Constructs a box.
+        </p>
+
+        <code>import Box from "box";
+
+Box(41); // Box(41)
+</code>
+      <div class="function">
+        <pre><strong>.map</strong> :: (a → b) → Box b</pre>
+        <p>
+          Applies the supplied function to the value in the Box.
+        </p>
+
+        <code>import Box from "box";
+
+Box(41).map(R.add(1)); // Box(42)
+</code>
+      </div>
+      <div class="function">
+        <pre><strong>.unbox</strong> :: () → a</pre>
+        <p>
+          Returns the value from the Box.
+        </p>
+
+        <code>import Box from "box";
+
+Box(41).map(R.add(1)).unbox(); // 42
+</code>
+      </div>
+    </div>
+
+  </body>
+</html>
