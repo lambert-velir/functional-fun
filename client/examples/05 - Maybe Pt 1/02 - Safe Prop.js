@@ -6,6 +6,7 @@ import Maybe, { Just, Nothing } from "folktale/maybe";
 // that returns a Maybe. If the property doesn't exist, it
 // should return Nothing, if it does exist, it returns Just(result).
 // safeProp :: String → Object → Maybe a
+// Hint: R.has
 const safeProp = R.identity;  // <---- **** EDIT HERE ****
 
 const superman = heroes[0];
