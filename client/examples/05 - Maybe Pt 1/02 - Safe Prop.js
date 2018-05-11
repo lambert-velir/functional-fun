@@ -19,3 +19,20 @@ assert.equals(
   safeProp("alignment", superman).getOrElse("N/A"),
   "good"
 );
+
+// Use safeProp to
+// 1) get a property from an object
+// 2) transform it to all uppercase
+// 3) add an exclamation point
+// safeYellProp :: String -> Object -> Maybe String
+const safeYellProp = R.identity;  // <---- **** EDIT HERE ****
+
+assert.equals(
+  safeYellProp("vehicle", superman).getOrElse("N/A"),
+  "N/A"
+);
+
+assert.equals(
+  safeYellProp("alignment", superman).getOrElse("N/A"),
+  "GOOD!"
+);

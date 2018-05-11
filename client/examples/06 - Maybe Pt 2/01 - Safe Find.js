@@ -21,10 +21,18 @@ const safeFindByName = R.curry(
 
 // Write a getAlignment function that will get a superhero by name
 // and return their alignment. Use safeProp, safeFind and safeFindByName
-// getAlignment :: String → [a] → Maybe String
+// getAlignment :: String → [a] → Maybe Maybe String
 const getAlignment = R.identity;  // <---- **** EDIT HERE ****
 
-// NOTE: See how the Maybes stack is flattened!
-assert.equals(getAlignment("Superman", heroes), Just("good"));
-assert.equals(getAlignment("Joker", heroes), Just("bad"));
+assert.equals(getAlignment("Superman", heroes), Just(Just("good")));
+assert.equals(getAlignment("Joker", heroes), Just(Just("bad")));
 assert.equals(getAlignment("Bane", heroes), Nothing());
+
+// Rewrite getAlignment to flatten the Maybe stack
+// getAlignment2 :: String → [a] → Maybe String
+const getAlignment2 = R.identity;  // <---- **** EDIT HERE ****
+
+// NOTE: See how the Maybes stack is flattened to just a single Just or Nothing!
+assert.equals(getAlignment2("Superman", heroes), Just("good"));
+assert.equals(getAlignment2("Joker", heroes), Just("bad"));
+assert.equals(getAlignment2("Bane", heroes), Nothing());
