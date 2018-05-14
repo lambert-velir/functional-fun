@@ -22,7 +22,7 @@ const safeFindByName = R.curry(
 
 
 // Write a getAlignment function that will get a superhero by name
-// and return their alignment. Use safeProp, safeFind and safeFindByName
+// and return their alignment. Use safeProp and safeFindByName
 // getAlignment :: String → [a] → Maybe Maybe String
 const getAlignment = R.identity;  // <---- **** EDIT HERE ****
 
