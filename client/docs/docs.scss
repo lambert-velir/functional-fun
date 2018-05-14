@@ -24,6 +24,10 @@ code {
   border-radius: 6px;
   border: 0;
   white-space: pre-wrap;
+
+  span {
+    display: inline-block; // so they wrap as a whole
+  }
 }
 
 .functions {
