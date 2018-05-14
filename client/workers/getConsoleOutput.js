@@ -58,11 +58,11 @@ export default function getConsoleOutput(...args) {
           })
         ],
         [
-          arg => arg.constructor.name === "Task",
-          () => "Task()"
+          arg => !R.isNil(arg._computation) && !R.isNil(arg.run) && !R.isNil(arg.mapRejected),
+          task => "Task()"
         ],
         [
-          arg => arg.constructor.name === "TaskExecution",
+          arg => !R.isNil(arg._task) && !R.isNil(arg._deferred) && !R.isNil(arg.listen),
           taskExecution => "TaskExecution()"
         ],
         [ // if an arg is an object, print out the JSON instead of [object Object]
