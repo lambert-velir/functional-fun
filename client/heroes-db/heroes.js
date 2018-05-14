@@ -58,7 +58,6 @@ module.exports = [
     },
     "appearance": {
       "gender": "male",
-      "race": "-",
       "height": "6'3 // 191 cm",
       "weight": "191 lb // 86 kg",
       "eyeColor": "green",
@@ -80,11 +79,8 @@ module.exports = [
     },
     "appearance": {
       "gender": "male",
-      "race": "-",
       "height": "6'0 // 183 cm",
-      "weight": "182 lb // 82 kg",
-      "eyeColor": "-",
-      "hairColor": "-"
+      "weight": "182 lb // 82 kg"
     }
   },
   {
@@ -204,7 +200,6 @@ module.exports = [
     },
     "appearance": {
       "gender": "female",
-      "race": "-",
       "height": "5'6 // 168 cm",
       "weight": "135 lb // 61 kg",
       "eyeColor": "blue",
@@ -248,7 +243,6 @@ module.exports = [
     },
     "appearance": {
       "gender": "female",
-      "race": "-",
       "height": "5'10 // 178 cm",
       "weight": "132 lb // 59 kg",
       "eyeColor": "blue",
@@ -301,7 +295,6 @@ module.exports = [
   },
   {
     "name": "Anti-Monitor",
-    "nickName": "-",
     "publisher": "dc comics",
     "alignment": "bad",
     "stats": {
@@ -314,11 +307,7 @@ module.exports = [
     },
     "appearance": {
       "gender": "male",
-      "race": "-",
-      "height": "- // 0 cm",
-      "weight": "- lb // 0 kg",
-      "eyeColor": "yellow",
-      "hairColor": "-"
+      "eyeColor": "yellow"
     }
   },
   {
@@ -358,12 +347,7 @@ module.exports = [
       "combat": 14
     },
     "appearance": {
-      "gender": "male",
-      "race": "-",
-      "height": "- // 0 cm",
-      "weight": "- lb // 0 kg",
-      "eyeColor": "-",
-      "hairColor": "-"
+      "gender": "male"
     }
   },
   {
@@ -381,7 +365,6 @@ module.exports = [
     },
     "appearance": {
       "gender": "female",
-      "race": "-",
       "height": "5'11 // 180 cm",
       "weight": "130 lb // 59 kg",
       "eyeColor": "blue",
@@ -425,7 +408,6 @@ module.exports = [
     },
     "appearance": {
       "gender": "male",
-      "race": "-",
       "height": "8'0 // 244 cm",
       "weight": "790 lb // 356 kg",
       "eyeColor": "red",
