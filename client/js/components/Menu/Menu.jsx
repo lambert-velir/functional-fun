@@ -28,15 +28,15 @@ const docsItems = [
   },
   {
     name: "Maybe",
-    href: "http://folktale.origamitower.com/api/v2.0.0/en/folktale.maybe.html"
+    href: "./docs/maybe.html"
   },
   {
     name: "Result",
-    href: "http://folktale.origamitower.com/api/v2.0.0/en/folktale.result.html"
+    href: "./docs/result.html"
   },
   {
     name: "Task",
-    href: "http://folktale.origamitower.com/api/v2.0.0/en/folktale.concurrency.task.html"
+    href: "./docs/task.html"
   }
 ];
 

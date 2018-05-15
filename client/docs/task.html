@@ -1,0 +1,88 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+    <title>Task docs</title>
+    <link rel="stylesheet" href="docs-generated.css">
+  </head>
+  <body>
+    <h1>Task API</h1>
+
+    <p>
+      <strong>Task</strong> is a data structure that models asynchronous actions.  <strong>Task</strong> is analogous to the imperative style of <strong>callbacks</strong>.
+    </p>
+    <p>
+      Full docs located <a href="http://folktale.origamitower.com/api/v2.0.0/en/folktale.concurrency.task.html">here</a>.
+    </p>
+
+    <div class="functions">
+      <div class="function">
+        <pre><strong>Task.task</strong> :: (resolver → *) → Task e a</pre>
+        <p>
+          Constructs a Task. The computation function is provided one argument, <em>resolver</em>.  This function doesn't need to return anything, but should call <strong>resolver.resolve(value)</strong> and/or <strong>resolver.reject(reason)</strong>.
+        </p>
+
+<code>import Task from "folktale/concurrency/task";
+
+const later = ms => Task.task(
+  resolver => {
+    setTimeout(() => {
+      resolver.resolve(`it's been ${ms}ms!`)
+    }, ms);
+  }
+)
+
+later(100); // Task()
+</code>
+      </div>
+
+
+      <div class="function">
+        <pre><strong>.map</strong> :: (a → b) → Task b</pre>
+        <p>
+          Applies the supplied function to the value of a successful Task when the Task completes.  This function is ignored for rejected Tasks.
+        </p>
+
+<code>import Task from "folktale/concurrency/task";
+
+later(100).map(R.toUpper); // Task("IT'S BEEN 100MS!")
+</code>
+      </div>
+
+
+      <div class="function">
+        <pre><strong>.chain</strong> :: (a → Task b) → Task b</pre>
+        <p>
+          Applies the supplied function (that returns a Task) to the value and flattens the result. This function is ignored for rejected tasks.
+        </p>
+
+<code>import Task from "folktale/concurrency/task";
+
+later(50).map(later(50)); // Task(Task())
+
+later(50).chain(later(50)); // Task()
+</code>
+      </div>
+
+
+      <div class="function">
+        <pre><strong>.run().listen</strong> :: Object → * </pre>
+        <p>
+          Kick off a task and react to the resolved or rejected value.  The supplied callback functions are side-effecty.
+        </p>
+
+<code>import Task from "folktale/concurrency/task";
+
+later(50).run().listen({
+  onRejected: error => console.log("there was an error!"),
+  onResolved: value => console.log("the task returned!", value)
+})
+</code>
+      </div>
+
+    </div>
+
+  </body>
+</html>

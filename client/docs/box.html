@@ -10,17 +10,20 @@
   <body>
     <h1>Box API</h1>
 
+    <p>A container for a value.</p>
+
     <div class="functions">
       <div class="function">
         <pre><strong>Box</strong> :: a → Box a</pre>
         <p>
-          Constructs a box.
+          Constructs a box with a value.
         </p>
 
         <code>import Box from "box";
 
 Box(41); // Box(41)
 </code>
+      </div>
       <div class="function">
         <pre><strong>.map</strong> :: (a → b) → Box b</pre>
         <p>

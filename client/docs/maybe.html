@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" type="image/png" href="../img/favicon.png">
+    <title>Maybe docs</title>
+    <link rel="stylesheet" href="docs-generated.css">
+  </head>
+  <body>
+    <h1>Maybe API</h1>
+
+    <p>
+      <strong>Maybe</strong> is a data structure that models the presence or absence of a value.  <strong>Maybe</strong> is analogous to the imperative style of <strong>null checks</strong>.
+    </p>
+    <p>
+      Full docs located <a href="http://folktale.origamitower.com/api/v2.0.0/en/folktale.maybe.html">here</a>.
+    </p>
+
+
+    <div class="functions">
+      <div class="function">
+        <pre><strong>Just</strong> :: a → Just a</pre>
+        <p>
+          Constructs a Maybe with a value.
+        </p>
+
+        <code>import Maybe, { Just, Nothing } from "folktale/maybe";
+
+Just(41); // Just(41)</code>
+      </div>
+
+
+      <div class="function">
+        <pre><strong>Nothing</strong> :: () → Nothing</pre>
+        <p>
+          Constructs a Maybe with no value.
+        </p>
+
+        <code>import Maybe, { Just, Nothing } from "folktale/maybe";
+
+Nothing(); // Nothing()</code>
+      </div>
+
+
+      <div class="function">
+        <pre><strong>.map</strong> :: (a → b) → Maybe b</pre>
+        <p>
+          Applies the supplied function to the value only if it's a Just. The function is ignored if applied to a Nothing.
+        </p>
+
+        <code>import Maybe, { Just, Nothing } from "folktale/maybe";
+
+Just(41).map(R.add(1)); // Just(42)
+Nothing().map(R.add(1)); // Nothing()
+</code>
+      </div>
+
+
+      <div class="function">
+        <pre><strong>.chain</strong> :: (a → Maybe b) → Maybe b</pre>
+        <p>
+          Applies the supplied function (that returns a Maybe) to the value and flattens the result only if it's a Just. The function is ignored if applied to a Nothing.
+        </p>
+
+        <code>import Maybe, { Just, Nothing } from "folktale/maybe";
+
+// nested Just when using .map
+Just(41).map(n => Just(n+1)); // Just(Just(42))
+
+Just(41).chain(n => Just(n+1)); // Just(42)
+Nothing().chain(n => Just(n+1)); // Nothing()
+</code>
+      </div>
+
+
+      <div class="function">
+        <pre><strong>.getOrElse</strong> :: a → a</pre>
+        <p>
+          Returns the value from a Just, or a fallback .
+        </p>
+
+        <code>import Maybe, { Just, Nothing } from "folktale/maybe";
+
+Just(41).map(R.add(1)).getOrElse(0); // 42
+Nothing().map(R.add(1)).getOrElse(0); // 0
+</code>
+      </div>
+    </div>
+
+  </body>
+</html>

@@ -12,6 +12,10 @@ h2 {
   margin: 14px 0;
 }
 
+p {
+  line-height: 1.5;
+}
+
 pre,
 code {
   font-family: inherit;
@@ -31,8 +35,10 @@ code {
 }
 
 .functions {
-  margin: 0;
-  padding: 0;
+  margin: 48px 0 0;
+  padding: 32px 0 0;
+
+  border-top: 1px dotted #ddd;
 
   .function + .function {
     margin-top: 48px;
