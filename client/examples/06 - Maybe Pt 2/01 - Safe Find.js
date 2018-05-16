@@ -21,21 +21,21 @@ const safeFindByName = R.curry(
 
 
 
-// Write a getAlignment function that will get a superhero by name
-// and return their alignment. Use safeProp and safeFindByName
-// getAlignment :: String → [a] → Maybe Maybe String
-const getAlignment = R.identity;  // <---- **** EDIT HERE ****
+// Write a getRealName function that will get a superhero by name
+// and return their real name. Use safeProp and safeFindByName
+// getRealName :: String → [a] → Maybe Maybe String
+const getRealName = R.identity;  // <---- **** EDIT HERE ****
 
-assert.equals(getAlignment("Superman", heroes), Just(Just("good")));
-assert.equals(getAlignment("Joker", heroes), Just(Just("bad")));
-assert.equals(getAlignment("Bane", heroes), Nothing());
+assert.equals(getRealName("Superman", heroes), Just(Just("Clark Kent")));
+assert.equals(getRealName("Anti-Monitor", heroes), Just(Nothing()));
+assert.equals(getRealName("Bane", heroes), Nothing());
 
 
-// Rewrite getAlignment to flatten the Maybe stack
-// getAlignment2 :: String → [a] → Maybe String
-const getAlignment2 = R.identity;  // <---- **** EDIT HERE ****
+// Rewrite getRealName to flatten the Maybe stack
+// getRealName2 :: String → [a] → Maybe String
+const getRealName2 = R.identity;  // <---- **** EDIT HERE ****
 
 // NOTE: See how the Maybes stack is flattened to just a single Just or Nothing!
-assert.equals(getAlignment2("Superman", heroes), Just("good"));
-assert.equals(getAlignment2("Joker", heroes), Just("bad"));
-assert.equals(getAlignment2("Bane", heroes), Nothing());
+assert.equals(getRealName2("Superman", heroes), Just("Clark Kent"));
+assert.equals(getRealName2("Anti-Monitor", heroes), Nothing());
+assert.equals(getRealName2("Bane", heroes), Nothing());
