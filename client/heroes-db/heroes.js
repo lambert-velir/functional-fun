@@ -1,7 +1,7 @@
 module.exports = [
   {
     "name": "Superman",
-    "nickName": "Clark Kent (Kal-El)",
+    "realName": "Clark Kent",
     "publisher": "dc comics",
     "alignment": "good",
     "stats": {
@@ -23,7 +23,7 @@ module.exports = [
   },
   {
     "name": "Batman",
-    "nickName": "Bruce Wayne",
+    "realName": "Bruce Wayne",
     "publisher": "dc comics",
     "alignment": "good",
     "stats": {
@@ -45,7 +45,7 @@ module.exports = [
   },
   {
     "name": "Joker",
-    "nickName": "Jack Napier",
+    "realName": "Jack Napier",
     "publisher": "dc comics",
     "alignment": "bad",
     "stats": {
@@ -66,7 +66,7 @@ module.exports = [
   },
   {
     "name": "Two-Face",
-    "nickName": "Harvey Dent",
+    "realName": "Harvey Dent",
     "publisher": "dc comics",
     "alignment": "bad",
     "stats": {
@@ -85,7 +85,7 @@ module.exports = [
   },
   {
     "name": "Penguin",
-    "nickName": "Oswald Chesterfield Cobblepot",
+    "realName": "Oswald Chesterfield Cobblepot",
     "publisher": "dc comics",
     "alignment": "bad",
     "stats": {
@@ -107,7 +107,7 @@ module.exports = [
   },
   {
     "name": "Nightwing",
-    "nickName": "Richard John Grayson",
+    "realName": "Richard John Grayson",
     "publisher": "dc comics",
     "alignment": "good",
     "stats": {
@@ -129,7 +129,7 @@ module.exports = [
   },
   {
     "name": "Red Robin",
-    "nickName": "Timothy Jackson Drake",
+    "realName": "Timothy Jackson Drake",
     "publisher": "dc comics",
     "alignment": "good",
     "stats": {
@@ -151,7 +151,7 @@ module.exports = [
   },
   {
     "name": "Robin I",
-    "nickName": "Richard John Grayson",
+    "realName": "Richard John Grayson",
     "publisher": "dc comics",
     "alignment": "good",
     "appearance": {
@@ -165,7 +165,7 @@ module.exports = [
   },
   {
     "name": "Catwoman",
-    "nickName": "Selina Kyle",
+    "realName": "Selina Kyle",
     "publisher": "dc comics",
     "alignment": "good",
     "stats": {
@@ -187,7 +187,7 @@ module.exports = [
   },
   {
     "name": "Batgirl VI",
-    "nickName": "Stephanie Brown",
+    "realName": "Stephanie Brown",
     "publisher": "dc comics",
     "alignment": "good",
     "stats": {
@@ -208,7 +208,7 @@ module.exports = [
   },
   {
     "name": "Harley Quinn",
-    "nickName": "Harleen Francis Quinzel",
+    "realName": "Harleen Francis Quinzel",
     "publisher": "dc comics",
     "alignment": "bad",
     "stats": {
@@ -230,7 +230,7 @@ module.exports = [
   },
   {
     "name": "Oracle (DC)",
-    "nickName": "Barbara Gordon",
+    "realName": "Barbara Gordon",
     "publisher": "dc comics",
     "alignment": "good",
     "stats": {
@@ -251,7 +251,7 @@ module.exports = [
   },
   {
     "name": "Red Hood",
-    "nickName": "Jason Peter Todd",
+    "realName": "Jason Peter Todd",
     "publisher": "dc comics",
     "alignment": "neutral",
     "stats": {
@@ -273,7 +273,7 @@ module.exports = [
   },
   {
     "name": "Deathstroke",
-    "nickName": "Slade Joseph Wilson",
+    "realName": "Slade Joseph Wilson",
     "publisher": "dc comics",
     "alignment": "neutral",
     "stats": {
@@ -312,7 +312,7 @@ module.exports = [
   },
   {
     "name": "Darkseid",
-    "nickName": "Uxas",
+    "realName": "Uxas",
     "publisher": "dc comics",
     "alignment": "bad",
     "stats": {
@@ -335,7 +335,7 @@ module.exports = [
   },
   {
     "name": "Riddler",
-    "nickName": "Edward Nigma",
+    "realName": "Edward Nigma",
     "publisher": "dc comics",
     "alignment": "bad",
     "stats": {
@@ -352,7 +352,7 @@ module.exports = [
   },
   {
     "name": "Huntress",
-    "nickName": "Helena Rosa Bertinelli",
+    "realName": "Helena Rosa Bertinelli",
     "publisher": "dc comics",
     "alignment": "good",
     "stats": {
@@ -373,7 +373,7 @@ module.exports = [
   },
   {
     "name": "Ra's Al Ghul",
-    "nickName": "Ra's Al Ghul",
+    "realName": "Ra's Al Ghul",
     "publisher": "dc comics",
     "alignment": "bad",
     "stats": {
@@ -395,7 +395,7 @@ module.exports = [
   },
   {
     "name": "Killer Croc",
-    "nickName": "Waylon Jones",
+    "realName": "Waylon Jones",
     "publisher": "dc comics",
     "alignment": "bad",
     "stats": {

@@ -28,3 +28,13 @@ const superman = heroes[0];
 assert.equals(safeProp("vehicle", superman), Nothing());
 assert.equals(safeProp("alignment", superman), Just("good"));
 
+
+// Get the hero's real last name. (use safeProp)
+// If they have no realName, return N/A
+// lastName :: Hero → String
+// hint: R.split, R.last
+const lastName = R.identity;  // <---- **** EDIT HERE ****
+
+assert.equals(lastName(heroes[0]), "Kent");
+assert.equals(lastName(heroes[14]), "N/A");
+
