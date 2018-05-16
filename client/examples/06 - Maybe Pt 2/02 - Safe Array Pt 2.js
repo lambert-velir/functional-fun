@@ -22,24 +22,24 @@ assert.equals(innerHead([[], ["d", "e", "f"]]), Nothing());
 
 
 // Write a function that takes a nested array [[a]] and returns
-// the first value of the last array. If **ANY** arrays are empty,
-// the whole result should be a Nothing.
-// Use safeHead, reduce
-// allHeads :: [[a]] → Maybe a
-const lastHead = R.identity;  // <---- **** EDIT HERE ****
+// the first value of each inner array, wrapped in a Maybe.
+// Use safeHead
+// allHeads :: [[a]] → [Maybe a]
+const allHeads = R.identity;  // <---- **** EDIT HERE ****
 
-assert.equals(lastHead([["a", "b", "c"], ["d", "e", "f"], ["g"]]), Just("g"));
-assert.equals(lastHead([[], ["d", "e", "f"]]), Nothing());
-assert.equals(lastHead([[]]), Nothing());
+assert.equals(allHeads([["a", "b", "c"], ["d", "e", "f"], ["g"]]), [Just("a"), Just("d"), Just("g")]);
+assert.equals(allHeads([[], ["d", "e", "f"]]), [Nothing(), Just("d")]);
+assert.equals(allHeads([[]]), [Nothing()]);
 
 
 // Write a function that takes a nested array [[a]] and returns
-// the first value of every inner array. If **ANY** arrays are empty,
+// the first value of each inner array. If **ANY** arrays are empty,
 // the whole result should be a Nothing.
+// Similar to allHeads, except this time, the array is wrapped in one outer Maybe.
 // Use safeHead, reduce
 // allHeads :: [[a]] → Maybe [a]
-const allHeads = R.identity;  // <---- **** EDIT HERE ****
+const allHeads2 = R.identity;  // <---- **** EDIT HERE ****
 
-assert.equals(allHeads([["a", "b", "c"], ["d", "e", "f"], ["g"]]), Just(["a", "d", "g"]));
-assert.equals(allHeads([[], ["d", "e", "f"]]), Nothing());
-assert.equals(allHeads([[]]), Nothing());
+assert.equals(allHeads2([["a", "b", "c"], ["d", "e", "f"], ["g"]]), Just(["a", "d", "g"]));
+assert.equals(allHeads2([[], ["d", "e", "f"]]), Nothing());
+assert.equals(allHeads2([[]]), Nothing());
