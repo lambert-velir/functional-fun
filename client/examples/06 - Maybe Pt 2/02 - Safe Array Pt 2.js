@@ -24,7 +24,7 @@ assert.equals(innerHead([[], ["d", "e", "f"]]), Nothing());
 // Write a function that takes a nested array [[a]] and returns
 // the first value of the last array. If **ANY** arrays are empty,
 // the whole result should be a Nothing.
-// Use safeHead, R.reduce
+// Use safeHead, reduce
 // allHeads :: [[a]] → Maybe a
 const lastHead = R.identity;  // <---- **** EDIT HERE ****
 
@@ -36,7 +36,7 @@ assert.equals(lastHead([[]]), Nothing());
 // Write a function that takes a nested array [[a]] and returns
 // the first value of every inner array. If **ANY** arrays are empty,
 // the whole result should be a Nothing.
-// Use safeHead, R.reduce
+// Use safeHead, reduce
 // allHeads :: [[a]] → Maybe [a]
 const allHeads = R.identity;  // <---- **** EDIT HERE ****
 
