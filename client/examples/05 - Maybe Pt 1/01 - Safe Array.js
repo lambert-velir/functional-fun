@@ -13,11 +13,10 @@ assert.equals(safeHead([]), Nothing());
 // Write a function that takes 2 arguments, a number and an array of numbers.
 // The function gets the first value in the array and adds the number.
 // Your function should also be curried.
-// Hint: R.curry, safeHead
+// Hint: safeHead
 // addToHead :: Number → [Number] → Maybe Number
 const addToHead = (n, arr) => R.identity;  // <---- **** EDIT HERE ****
 
-const add10ToHead = addToHead(10);
 
-assert.equals(add10ToHead([2, 5, 6]), Just(12));
-assert.equals(add10ToHead([]), Nothing());
+assert.equals(addToHead(10, [2, 5, 6]), Just(12));
+assert.equals(addToHead(10, []), Nothing());
