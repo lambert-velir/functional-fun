@@ -30,6 +30,9 @@
   flex-direction: column;
   align-items: stretch;
 
+  // https://stackoverflow.com/questions/33790219/firefox-not-respecting-flex-shrink
+  min-height: 0; // needed for firefox to shrink properly
+
   flex: auto;
 
   > * {
