@@ -39,3 +39,14 @@ const getRealName2 = R.identity;  // <---- **** EDIT HERE ****
 assert.equals(getRealName2("Superman", heroes), Just("Clark Kent"));
 assert.equals(getRealName2("Anti-Monitor", heroes), Nothing());
 assert.equals(getRealName2("Bane", heroes), Nothing());
+
+
+
+// render a sentence exposing the hero's secret identity!
+// Hint: safeProp, safeFind
+// renderSecretIdentity :: String → String
+const renderSecretIdentity = R.identity; // <---- **** EDIT HERE ****
+
+
+assert.equals(renderSecretIdentity("Superman", heroes), "Superman's secret identity is Clark Kent");
+assert.equals(renderSecretIdentity("Anti-Monitor", heroes), "Anti-Monitor doesn't have a secret identity");
