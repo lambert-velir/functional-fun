@@ -37,6 +37,10 @@ const docsItems = [
   {
     name: "Task",
     href: "./docs/task.html"
+  },
+  {
+    name: "crocks",
+    href: "https://evilsoft.github.io/crocks/docs/"
   }
 ];
 

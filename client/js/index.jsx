@@ -24,6 +24,7 @@ import Task from "folktale/concurrency/task";
 import Box from "box";
 import heroes from "heroes-db";
 import files from "files";
+import crocks from "crocks";
 
 window.Maybe = Maybe;
 window.Result = Result;
@@ -31,6 +32,8 @@ window.Task = Task;
 window.R = R;
 window.heroes = heroes;
 window.Box = Box;
+window.files = files;
+window.crocks = crocks;
 
 
 const store = configureStore(rootReducer, {}, [ thunkMiddleware ]);

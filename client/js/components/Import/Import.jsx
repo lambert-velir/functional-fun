@@ -38,6 +38,11 @@ const imports = [
     name: "Task",
     variable: "Task",
     npm: "folktale/concurrency/task"
+  },
+  {
+    name: "crocks",
+    variable: "crocks",
+    npm: "crocks"
   }
 ];
 

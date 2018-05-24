@@ -30,10 +30,6 @@ export default function getConsoleOutput(...args) {
           typeIs("String"),
           string => `"${string.toString()}"`
         ],
-        // [
-        //   typeIs("Function"),
-        //   () => "Function"
-        // ],
         [ // if an object has it's own toString, use that
           // instead of JSON.stringify
           R.has("toString"),
