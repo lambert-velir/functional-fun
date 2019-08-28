@@ -1,3 +1,4 @@
+import * as R from "ramda";
 import { connect } from "react-redux";
 import { selectExample } from "../redux/examples/examplesActions.js";
 import { prependCode, rerunCode } from "../redux/code/codeActions.js";
@@ -5,8 +6,11 @@ import { prependCode, rerunCode } from "../redux/code/codeActions.js";
 import Menu from "../components/Menu/Menu.jsx";
 
 function mapStateToProps(state){
+
   return {
-    examples: state.examples,
+    // exclude the first folder (00) these shouldn't be in the menu, but should still
+    // load the example with the hash, eg, /#dogs
+    examples: R.state.examples,
     code: state.code
   };
 }
