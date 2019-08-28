@@ -5,23 +5,24 @@ import { prependCode, rerunCode } from "../redux/code/codeActions.js";
 
 import Menu from "../components/Menu/Menu.jsx";
 
-function mapStateToProps(state){
-
+function mapStateToProps(state) {
   return {
     // exclude the first folder (00) these shouldn't be in the menu, but should still
     // load the example with the hash, eg, /#dogs
-    examples: R.state.examples,
+    examples: R.tail(state.examples),
     code: state.code
   };
 }
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
   return {
-    onLoadChange: (slug) => dispatch(selectExample(slug)),
-    onImport: (code) => dispatch(prependCode(code)),
+    onLoadChange: slug => dispatch(selectExample(slug)),
+    onImport: code => dispatch(prependCode(code)),
     onRerun: () => dispatch(rerunCode())
   };
 }
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(Menu);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Menu);
