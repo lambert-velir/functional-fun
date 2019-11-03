@@ -7,11 +7,12 @@ const malformedHeroesText = heroesText.slice(0, 100);
 
 const files = {
   "heroes.json": heroesText,
-  "malformed-heroes.json": malformedHeroesText
+  "malformed-heroes.json": malformedHeroesText,
 };
 
 module.exports = {
-  readFile: name => R.has(name, files) ?
-    Result.Ok(files[name]) :
-    Result.Error("Cannot find file")
+  readFile: name =>
+    R.has(name, files)
+      ? Result.Ok(files[name])
+      : Result.Error("Cannot find file"),
 };

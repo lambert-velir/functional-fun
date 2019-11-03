@@ -29,7 +29,7 @@ $padding: 8px;
 
 // make the modal 4 wide
 .modal--examples .modal__content {
-  max-width: ($width + ($padding*2)) * 4;
+  max-width: ($width + ($padding * 2)) * 4;
 }
 
 .example__holder {
@@ -38,7 +38,7 @@ $padding: 8px;
   padding: $padding;
 
   @media (max-width: $bp-vertical) {
-    width: $width*3/4;
+    width: $width * 3/4;
   }
 }
 
@@ -55,9 +55,7 @@ a.example {
   color: inherit;
   text-decoration: inherit;
 
-
   &:hover {
-
     .example__name {
       background-color: $yellow-highlight;
     }

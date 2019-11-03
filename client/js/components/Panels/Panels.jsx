@@ -7,11 +7,10 @@ import ConsoleContainer from "../../containers/ConsoleContainer.js";
 
 const propTypes = {
   sizes: arrayOf(number).isRequired,
-  onResize: func.isRequired
+  onResize: func.isRequired,
 };
 
-const Panels = (props) => {
-
+const Panels = props => {
   const { onResize, sizes } = props;
 
   const handleResize = data => {
@@ -19,7 +18,7 @@ const Panels = (props) => {
   };
 
   return (
-    <Splitter sizes={sizes} onResize={handleResize} >
+    <Splitter sizes={sizes} onResize={handleResize}>
       <Left />
       <ConsoleContainer />
     </Splitter>

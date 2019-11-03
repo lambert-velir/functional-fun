@@ -7,17 +7,16 @@ import Check from "../Svg/Check.jsx";
 import CodeMirror from "codemirror";
 
 export default class Console extends React.Component {
-
-
   static propTypes = {
-    entries: arrayOf(shape({
-      type: oneOf(["pass", "fail", "error", "warn", "log"]),
-      message: string
-    }))
+    entries: arrayOf(
+      shape({
+        type: oneOf(["pass", "fail", "error", "warn", "log"]),
+        message: string,
+      }),
+    ),
   };
 
   componentDidUpdate = () => {
-
     // handling the CodeMirror manually (instead of react-codemirror2)
     // beacuse it's about twice as fast to initialize
 
@@ -26,10 +25,9 @@ export default class Console extends React.Component {
     const els = this.console.querySelectorAll(selector);
 
     els.forEach(el => {
-
       // don't run code mirror on this element if it's already been run
       const mirrors = el.getElementsByClassName("CodeMirror");
-      if (mirrors.length > 0){
+      if (mirrors.length > 0) {
         return;
       }
 
@@ -37,7 +35,7 @@ export default class Console extends React.Component {
         value: el.innerText,
         mode: {
           name: "javascript",
-          json: true
+          json: true,
         },
         readOnly: true,
         foldGutter: true,
@@ -45,47 +43,40 @@ export default class Console extends React.Component {
         theme: "github",
         height: "auto",
         width: "auto",
-        lineWrapping: true
+        lineWrapping: true,
       };
 
       // console.log(); will have no message so el will be empty
-      if (el.firstChild){
-        CodeMirror((cm) => el.replaceChild(cm, el.firstChild), options);
+      if (el.firstChild) {
+        CodeMirror(cm => el.replaceChild(cm, el.firstChild), options);
       }
-
     });
-  }
-
+  };
 
   render = () => {
-
     const { entries } = this.props;
 
     return (
-      <div className="console" ref={el => this.console = el}>
-        {
-          entries.map((entry, i) => {
+      <div className="console" ref={el => (this.console = el)}>
+        {entries.map((entry, i) => {
+          const { type, message } = entry;
 
-            const { type, message } = entry;
+          const classes = classNames("console__message", `is-${entry.type}`);
 
-            const classes = classNames(
-              "console__message",
-              `is-${entry.type}`
-            );
+          const icon =
+            type === "pass" ? (
+              <Check title={"pass!"} />
+            ) : type === "fail" ? (
+              <X title={"fail!"} />
+            ) : null;
 
-            const icon =
-                (type === "pass") ? <Check title={"pass!"} />
-              : (type === "fail") ? <X title={"fail!"} />
-              : null;
-
-            return (
-              <div key={message + i} className={classes}>
-                {icon && <div className="console__icon">{icon}</div>}
-                <div className="console__text">{message}</div>
-              </div>
-            );
-          })
-        }
+          return (
+            <div key={message + i} className={classes}>
+              {icon && <div className="console__icon">{icon}</div>}
+              <div className="console__text">{message}</div>
+            </div>
+          );
+        })}
       </div>
     );
   };

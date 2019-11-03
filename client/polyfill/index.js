@@ -11,7 +11,6 @@ import "./closest.js";
 import "core-js/es6/map.js";
 import "core-js/es6/set.js";
 
-
 // window.fetch and window.Promise
 import "whatwg-fetch";
 import Promise from "promise-polyfill";

@@ -3,17 +3,19 @@ import { setSize } from "../redux/split/splitActions.js";
 
 import Panels from "../components/Panels/Panels.jsx";
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
   return {
-    sizes: [state.split]
+    sizes: [state.split],
   };
 }
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
   return {
-    onResize: (size) => dispatch(setSize(size))
+    onResize: size => dispatch(setSize(size)),
   };
 }
 
-
-export default connect(mapStateToProps, mapDispatchToProps)(Panels);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Panels);

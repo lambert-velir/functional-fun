@@ -5,7 +5,7 @@
 
   max-height: 100%; // needed for firefox not to overflow
 
-  @media(max-width: $bp-vertical) {
+  @media (max-width: $bp-vertical) {
     display: block;
 
     & > * {
@@ -32,7 +32,7 @@
     background-color: $yellow-highlight;
   }
 
-  @media(max-width: $bp-vertical) {
+  @media (max-width: $bp-vertical) {
     display: none;
   }
 }

@@ -1,6 +1,5 @@
 @import "../../../scss/_variables.scss";
 
-
 .dropdown {
   position: relative;
 }
@@ -22,7 +21,6 @@
   .is-open & {
     display: none;
   }
-
 }
 
 .dropdown__items {

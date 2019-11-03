@@ -1,13 +1,12 @@
 /**
  *  See ./readme.md for usage
-**/
+ **/
 
 // Include gulp and plugins
 import gulp from "gulp";
 import quench from "./quench/quench.js";
 import path from "path";
 import createBuildTask from "./tasks/build.js";
-
 
 const projectRoot = path.resolve(__dirname, "..");
 
@@ -18,8 +17,6 @@ const projectRoot = path.resolve(__dirname, "..");
  *    gulp build --no-watch --env production
  */
 gulp.task("build", createBuildTask(projectRoot));
-
-
 
 /* gulp */
 gulp.task("default", quench.logHelp);

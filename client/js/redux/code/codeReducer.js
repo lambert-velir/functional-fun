@@ -6,11 +6,8 @@ import Maybe from "folktale/maybe";
 
 const initialState = "";
 
-
 export default function codeReducer(state = initialState, action, examples) {
-
-  switch(action.type) {
-
+  switch (action.type) {
     case CODE_UPDATE: {
       const { code } = action.payload;
       return code;
@@ -28,7 +25,7 @@ export default function codeReducer(state = initialState, action, examples) {
         m => m.getOrElse(state),
         R.map(R.prop("code")),
         Maybe.fromNullable,
-        R.find(R.propEq("slug", slug))
+        R.find(R.propEq("slug", slug)),
       )(examples);
 
       return code;

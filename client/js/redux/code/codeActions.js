@@ -6,23 +6,21 @@ export const CODE_PREPEND = "CODE/CODE_PREPEND";
 export const CODE_RELOAD = "CODE/CODE_RELOAD";
 
 // action creators
-export function updateCode(code){
+export function updateCode(code) {
   return {
     type: CODE_UPDATE,
-    payload: { code }
+    payload: { code },
   };
 }
 
-
-export function prependCode(code){
+export function prependCode(code) {
   return {
     type: CODE_PREPEND,
-    payload: { code }
+    payload: { code },
   };
 }
 
-
-export function rerunCode(){
+export function rerunCode() {
   return (dispatch, getState) => {
     const { code } = getState();
 
@@ -36,7 +34,7 @@ export function rerunCode(){
     setTimeout(() => {
       // HACK if the user clicks the button again before 250ms, it will clear the code
       // prevent that from happening!
-      if (code !== ""){
+      if (code !== "") {
         dispatch(updateCode(code));
       }
     }, 250);

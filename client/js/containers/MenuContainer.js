@@ -10,7 +10,7 @@ function mapStateToProps(state) {
     // exclude the first folder (00) these shouldn't be in the menu, but should still
     // load the example with the hash, eg, /#dogs
     examples: R.tail(state.examples),
-    code: state.code
+    code: state.code,
   };
 }
 
@@ -18,11 +18,11 @@ function mapDispatchToProps(dispatch) {
   return {
     onLoadChange: slug => dispatch(selectExample(slug)),
     onImport: code => dispatch(prependCode(code)),
-    onRerun: () => dispatch(rerunCode())
+    onRerun: () => dispatch(rerunCode()),
   };
 }
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Menu);

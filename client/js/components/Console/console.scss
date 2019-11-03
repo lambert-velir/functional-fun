@@ -1,6 +1,5 @@
 @import "../../../scss/_variables.scss";
 
-
 .console {
   position: absolute;
   top: 0;
@@ -16,11 +15,11 @@
   overflow: auto;
   // border-left: 1px solid $grey-ddd;
 
-  @media(max-width: $bp-vertical) {
+  @media (max-width: $bp-vertical) {
     position: relative;
     border-top: 2px solid $grey-ddd;
 
-    &:before {
+    &::before {
       content: "Output";
       display: block;
       padding: 8px;
@@ -44,7 +43,6 @@ $text-padding: 8px;
     padding: $text-padding 0; // padding here so the line can be below
     max-width: 100%; // make sure the code editor isn't too wide
   }
-
 
   .console__icon {
     display: flex;
@@ -100,6 +98,4 @@ $text-padding: 8px;
       fill: white;
     }
   }
-
-
 }

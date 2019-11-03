@@ -13,15 +13,15 @@
  *   logYellow
  *   logError
  */
-const gulp         = require("gulp");
-const plumber      = require("gulp-plumber");
-const notify       = require("gulp-notify");
-const env          = require("gulp-environments");
-const fs           = require("fs");
-const path         = require("path");
-const chalk        = require("chalk");
-const watch        = require("gulp-watch");
-const R            = require("ramda");
+const gulp = require("gulp");
+const plumber = require("gulp-plumber");
+const notify = require("gulp-notify");
+const env = require("gulp-environments");
+const fs = require("fs");
+const path = require("path");
+const chalk = require("chalk");
+const watch = require("gulp-watch");
+const R = require("ramda");
 
 const environments = ["development", "production", "local"];
 
@@ -38,14 +38,14 @@ const environments = ["development", "production", "local"];
  *   eg. gulp build --no-watch --env production
  */
 const yargOptions = {
-  "watch": {
+  watch: {
     default: true,
-    type: "boolean"
+    type: "boolean",
   },
-  "env": {
+  env: {
     default: "local",
-    type: "string"
-  }
+    type: "string",
+  },
 };
 
 const yargs = require("yargs").options(yargOptions);
@@ -64,9 +64,6 @@ environments.forEach(function(environment) {
   env[environment] = env.make(environment);
 });
 
-
-
-
 /**
  * set the defaults for yargOptions
  * @param  {Object} lookup lookup of the yargOptions defaults
@@ -76,21 +73,22 @@ environments.forEach(function(environment) {
  *        });
  * @return {Nothing} nothing
  */
-module.exports.setDefaults = function setDefaults(lookup){
-
+module.exports.setDefaults = function setDefaults(lookup) {
   // [watch, env]
   const validArgs = R.keys(yargOptions);
 
   // make sure all the given keys are in the yargOptions
   const valid = R.compose(
     R.all(R.contains(R.__, validArgs)),
-    R.keys
+    R.keys,
   )(lookup);
 
-  if (!valid){
+  if (!valid) {
     throwError(
-      `quench.setDefaults can only set the following: ${validArgs.join(", ")}\n`,
-      `given: ${JSON.stringify(lookup, null, 2)}`
+      `quench.setDefaults can only set the following: ${validArgs.join(
+        ", ",
+      )}\n`,
+      `given: ${JSON.stringify(lookup, null, 2)}`,
     );
   }
 
@@ -98,27 +96,23 @@ module.exports.setDefaults = function setDefaults(lookup){
 
   // set the new options
   yargs.options(newYargOptions);
-
 };
-
 
 /**
  * @return {Object} the contents of local.js
  */
-module.exports.loadLocalJs = function loadLocalJs(){
+module.exports.loadLocalJs = function loadLocalJs() {
   return localJs;
 };
-
 
 /**
  * set the environment
  * @param {String} _env the environment to use
  * @return {Nothing} nothing
  */
-function setEnv(_env){
-
+function setEnv(_env) {
   // this might be called multiple times, abort if this _env is already set
-  if (process.env.NODE_ENV === _env){
+  if (process.env.NODE_ENV === _env) {
     return;
   }
 
@@ -126,7 +120,7 @@ function setEnv(_env){
   if (environments.indexOf(_env) === -1) {
     throwError(
       `Environment '${_env}' not found! Check your spelling or add a new environment in quench.js.\n`,
-      `Valid environments: ${environments.join(", ")}`
+      `Valid environments: ${environments.join(", ")}`,
     );
   }
 
@@ -139,20 +133,17 @@ function setEnv(_env){
   console.log(chalk.green(`Building for '${_env}' environment`));
 }
 
-
 /**
  * getEnv
  * https://github.com/gunpowderlabs/gulp-environments
  * @return {Function} an instance of gulp-environments
  */
-module.exports.getEnv = function getEnv(){
-
+module.exports.getEnv = function getEnv() {
   // make sure the environment is set first, setEnv will abort if it's already set
   setEnv(yargs.argv.env);
 
   return env;
 };
-
 
 /**
  * Returns the value of yargs.argv.watch
@@ -163,10 +154,9 @@ module.exports.getEnv = function getEnv(){
  * it can also be changed in code via quench.setDefaults
  * @return {Boolean} true, false, or undefined
  */
-const isWatching = module.exports.isWatching = function isWatching(){
+const isWatching = (module.exports.isWatching = function isWatching() {
   return yargs.argv.watch;
-};
-
+});
 
 /**
  * watches the glob if yargs.argv.watch is true
@@ -175,29 +165,24 @@ const isWatching = module.exports.isWatching = function isWatching(){
  * @param  {Function} task *optional - task to run
  * @return {Nothing} nothing
  */
-module.exports.maybeWatch = function maybeWatch(taskName, glob, task){
-
+module.exports.maybeWatch = function maybeWatch(taskName, glob, task) {
   // if we're watching
-  if (yargs.argv.watch){
-
+  if (yargs.argv.watch) {
     // alert the console that we're watching
     logYellow("watching", taskName + ":", JSON.stringify(glob, null, 2));
 
     // if there is a task, watch and run that task
-    if (task){
+    if (task) {
       return watch(glob, task);
     }
     // otherwise, watch and start the taskName
     else {
-      return watch(glob, function(){
-        gulp.start([ taskName ]);
+      return watch(glob, function() {
+        gulp.start([taskName]);
       });
     }
-
   }
-
 };
-
 
 /**
  * drano: make plumber with error handler attached
@@ -208,13 +193,12 @@ module.exports.maybeWatch = function maybeWatch(taskName, glob, task){
 module.exports.drano = function drano() {
   return plumber({
     errorHandler: function(error) {
-
       // gulp notify is freezing jenkins builds, so we're only going to show this message if we're watching
       if (isWatching()) {
         notify.onError({
           title: "<%= error.plugin %>",
           message: "<%= error.message %>",
-          sound: "Beep"
+          sound: "Beep",
         })(error);
       }
       else {
@@ -227,17 +211,15 @@ module.exports.drano = function drano() {
       // this allows the rest of the pipeline to continue
       // eg. will flow through gulp-debug
       this.emit("end");
-    }
+    },
   });
 };
-
 
 /**
  * log out a help message, including available gulp tasks and --watch/env details
  * @return {Nothing} will print to the console
  */
-module.exports.logHelp = function logHelp(){
-
+module.exports.logHelp = function logHelp() {
   const indent = " ";
   const code = chalk.yellow;
 
@@ -256,13 +238,19 @@ module.exports.logHelp = function logHelp(){
 
   console.log(chalk.bold("Watching"));
   console.log(indent, "By default, all tasks will run with `watch` as true.");
-  console.log(indent, `You can pass ${code("--no-watch")} to disable watching.`);
+  console.log(
+    indent,
+    `You can pass ${code("--no-watch")} to disable watching.`,
+  );
 
   console.log("");
 
   console.log(chalk.bold("Environments"));
   console.log(indent, "By default, the environment is set to `local`.");
-  console.log(indent, `You can override this by passing ${code("--env")} [anotherEnv].`);
+  console.log(
+    indent,
+    `You can override this by passing ${code("--env")} [anotherEnv].`,
+  );
   const envs = environments.map(env => `"${env}"`).join(", ");
   console.log(indent, `Valid environments are ${envs}`);
 
@@ -276,64 +264,55 @@ module.exports.logHelp = function logHelp(){
   console.log("");
 };
 
-
 /**
  * logYellow: will log the output with the first arg as yellow
  * eg. logYellow("watching", "css:", files) >> [watching] css: ["some", "files"]
  * @return {Nothing} nothing
  */
-const logYellow = module.exports.logYellow = function logYellow() {
-
-  const args = (Array.prototype.slice.call(arguments));
+const logYellow = (module.exports.logYellow = function logYellow() {
+  const args = Array.prototype.slice.call(arguments);
   const first = args.shift();
 
   if (args.length) {
-
-    const argString = args.map(function(arg) {
-      return (typeof arg === "object")
-        ? JSON.stringify(arg)
-        : arg.toString();
-    }).join(" ");
+    const argString = args
+      .map(function(arg) {
+        return typeof arg === "object" ? JSON.stringify(arg) : arg.toString();
+      })
+      .join(" ");
 
     console.log("[" + chalk.yellow(first) + "]", argString);
   }
-};
-
+});
 
 /**
  * logError: will log the output in red
  * @return {Nothing} nothing
  */
-const logError = module.exports.logError = function logError() {
-
-  const args = (Array.prototype.slice.call(arguments));
+const logError = (module.exports.logError = function logError() {
+  const args = Array.prototype.slice.call(arguments);
 
   if (args.length) {
-
-    const argString = args.map(function(arg) {
-      // return (typeof arg  === "object") ? JSON.stringify(arg) : arg.toString();
-      return arg.toString();
-    }).join("");
+    const argString = args
+      .map(function(arg) {
+        // return (typeof arg  === "object") ? JSON.stringify(arg) : arg.toString();
+        return arg.toString();
+      })
+      .join("");
 
     console.log("[" + chalk.red("error") + "]", chalk.red(argString));
-
   }
-
-};
-
+});
 
 /**
  * throwError: will log the output in red, and log out the stack trace.
  * This will also stop the node process.
  * @return {Nothing} nothing
  */
-const throwError = module.exports.throwError = function throwError() {
-
+const throwError = (module.exports.throwError = function throwError() {
   logError(...arguments);
 
   throw new Error("quench.throwError stack trace: ");
-};
-
+});
 
 /**
  * fileExists
@@ -345,7 +324,7 @@ function fileExists(filepath) {
     fs.accessSync(filepath, fs.R_OK);
     return true;
   }
-  catch(e) {
+  catch (e) {
     return false;
   }
 }

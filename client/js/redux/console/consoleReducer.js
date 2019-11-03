@@ -1,21 +1,24 @@
 import R from "ramda";
-import { CONSOLE_MESSAGE, CONSOLE_MESSAGES, CLEAR_CONSOLE } from "./consoleActions.js";
-
+import {
+  CONSOLE_MESSAGE,
+  CONSOLE_MESSAGES,
+  CLEAR_CONSOLE,
+} from "./consoleActions.js";
 
 const initialState = [];
 
-
 export default function consoleReducer(state = initialState, action) {
-
-  switch(action.type) {
-
+  switch (action.type) {
     // type is log, error, etc;
     case CONSOLE_MESSAGE: {
       const { type, message } = action.payload;
-      return R.append({
-        type,
-        message
-      }, state);
+      return R.append(
+        {
+          type,
+          message,
+        },
+        state,
+      );
     }
 
     case CONSOLE_MESSAGES: {

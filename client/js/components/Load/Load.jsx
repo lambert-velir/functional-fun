@@ -7,29 +7,31 @@ const isModifiedEvent = event =>
   !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
 
 export default class Load extends React.Component {
-
   static propTypes = {
-    examples: arrayOf(shape({
-      title: string.isRequired,
-      examples: arrayOf(shape({
-        displayName: string.isRequired,
-        slug: string.isRequired,
-        code: string.isRequired
-      })).isRequired
-    })).isRequired,
-    onChange: func.isRequired
+    examples: arrayOf(
+      shape({
+        title: string.isRequired,
+        examples: arrayOf(
+          shape({
+            displayName: string.isRequired,
+            slug: string.isRequired,
+            code: string.isRequired,
+          }),
+        ).isRequired,
+      }),
+    ).isRequired,
+    onChange: func.isRequired,
   };
 
   state = {
-    isOpen: false
-  }
+    isOpen: false,
+  };
 
-  open = (e) => this.setState({ isOpen: true })
+  open = e => this.setState({ isOpen: true });
 
-  close = (e) => this.setState({ isOpen: false })
+  close = e => this.setState({ isOpen: false });
 
-  handleExampleClick = (slug) => (event) => {
-
+  handleExampleClick = slug => event => {
     // don't do anything if the user is holding down cmd/ctrl (to open in a new tab)
     // https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/modules/Link.js#L35-L55
     if (
@@ -40,15 +42,16 @@ export default class Load extends React.Component {
       this.props.onChange(slug);
       this.close();
     }
-  }
+  };
 
   renderExample = example => {
-
     const { displayName, slug, code } = example;
 
     return (
       <div key={slug} className="example__holder">
-        <a href={`#${slug}`} className="example"
+        <a
+          href={`#${slug}`}
+          className="example"
           onClick={this.handleExampleClick(slug)}
         >
           <div className="example__name">{displayName}</div>
@@ -60,14 +63,14 @@ export default class Load extends React.Component {
                 mode: "javascript",
                 readOnly: true,
                 theme: "github",
-                lineWrapping: false
+                lineWrapping: false,
               }}
             />
           </div>
         </a>
       </div>
     );
-  }
+  };
 
   render = () => {
     const { examples } = this.props;
@@ -75,20 +78,20 @@ export default class Load extends React.Component {
 
     return (
       <div className="load">
-        <button type="button" onClick={this.open}>Load challenge</button>
+        <button type="button" onClick={this.open}>
+          Load challenge
+        </button>
 
         <Modal isOpen={isOpen} onClose={this.close} className="modal--examples">
           <div className="examples">
-            {
-              examples.map(({ title, examples }) => (
-                <div key={title} className="examples__section">
-                  <div className="examples__section-title">{title}</div>
-                  <div className="examples__buttons">
-                    {examples.map(this.renderExample)}
-                  </div>
+            {examples.map(({ title, examples }) => (
+              <div key={title} className="examples__section">
+                <div className="examples__section-title">{title}</div>
+                <div className="examples__buttons">
+                  {examples.map(this.renderExample)}
                 </div>
-              ))
-            }
+              </div>
+            ))}
           </div>
         </Modal>
       </div>

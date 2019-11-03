@@ -4,6 +4,7 @@
   "version": "4.2.0",
   "description": "This project is based of Velir.Frontend.Starter v4.2.0",
   "private": true,
+  "prettier": {},
   "babel": {
     "presets": [
       "react",
@@ -30,7 +31,9 @@
     "detective-es6": "^1.2.0",
     "eslint": "^4.19.1",
     "eslint-plugin-class-property": "^1.1.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.7.0",
+    "eslint-plugin-react-hooks": "^2.2.0",
     "find-up": "^2.1.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^5.0.0",
@@ -54,7 +57,8 @@
     "merge-stream": "^1.0.1",
     "nodemon": "^1.17.3",
     "run-sequence": "^2.2.1",
-    "sass-lint": "^1.12.1",
+    "stylelint": "^11.1.1",
+    "stylelint-scss": "^3.12.1",
     "through2": "^2.0.3",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0",

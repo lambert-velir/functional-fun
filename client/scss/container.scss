@@ -10,10 +10,9 @@
   bottom: 0;
   left: 0;
 
-  @media(max-width: $bp-vertical) {
+  @media (max-width: $bp-vertical) {
     position: relative;
   }
-
 }
 
 .container__top {
@@ -22,7 +21,6 @@
   box-sizing: border-box;
 
   border-bottom: 1px solid $grey-ddd;
-
 }
 
 .container__bottom {

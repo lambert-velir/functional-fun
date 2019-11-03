@@ -8,40 +8,40 @@ import Rerun from "../Svg/Rerun.jsx";
 const docsItems = [
   {
     name: "Ramda",
-    href: "http://ramdajs.com/docs/"
+    href: "http://ramdajs.com/docs/",
   },
   {
     name: "heroes.json",
-    href: "./docs/heroes.json"
+    href: "./docs/heroes.json",
   },
   {
     name: "heroes-db",
-    href: "./docs/heroes-db.html"
+    href: "./docs/heroes-db.html",
   },
   {
     name: "files",
-    href: "./docs/files.html"
+    href: "./docs/files.html",
   },
   {
     name: "Box",
-    href: "./docs/box.html"
+    href: "./docs/box.html",
   },
   {
     name: "Maybe",
-    href: "./docs/maybe.html"
+    href: "./docs/maybe.html",
   },
   {
     name: "Result",
-    href: "./docs/result.html"
+    href: "./docs/result.html",
   },
   {
     name: "Task",
-    href: "./docs/task.html"
+    href: "./docs/task.html",
   },
   {
     name: "crocks",
-    href: "https://evilsoft.github.io/crocks/docs/"
-  }
+    href: "https://evilsoft.github.io/crocks/docs/",
+  },
 ];
 
 import { array, func, string } from "prop-types";
@@ -51,13 +51,11 @@ const propTypes = {
   examples: array,
   onLoadChange: func,
   onImport: func,
-  onRerun: func.isRequired
+  onRerun: func.isRequired,
 };
 
-const Menu = (props) => {
-
+const Menu = props => {
   const { code, examples, onImport, onLoadChange, onRerun } = props;
-
 
   return (
     <div className="menu">
@@ -75,7 +73,12 @@ const Menu = (props) => {
           <Import code={code} onImport={onImport} />
         </div>
         <div className="menu__item">
-          <button type="button" className="button--icon" title="rerun code" onClick={onRerun}>
+          <button
+            type="button"
+            className="button--icon"
+            title="rerun code"
+            onClick={onRerun}
+          >
             <Rerun />
           </button>
         </div>

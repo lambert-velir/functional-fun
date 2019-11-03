@@ -9,9 +9,7 @@ $red-d73a49: #d73a49;
 $orange-e36209: #e36209;
 $purple-6f42c1: #6f42c1;
 
-
 .cm-s-github {
-
   .CodeMirror {
     color: $dark;
   }
@@ -31,7 +29,7 @@ $purple-6f42c1: #6f42c1;
 
   .CodeMirror-linenumber {
     color: #959da5;
-    padding: 0 16px 0 16px;
+    padding: 0 16px;
   }
 
   .CodeMirror-cursor {
@@ -41,7 +39,7 @@ $purple-6f42c1: #6f42c1;
   div.CodeMirror-selected,
   .CodeMirror-line::selection,
   .CodeMirror-line > span::selection,
-  .CodeMirror-line > span > span::selection, {
+  .CodeMirror-line > span > span::selection {
     background-color: rgba($blue-b2d7fe, 0.5);
   }
 
@@ -138,9 +136,8 @@ $purple-6f42c1: #6f42c1;
     border-radius: 4px;
   }
 
-  .CodeMirror-foldgutter-open:after,
-  .CodeMirror-foldgutter-folded:after {
-
+  .CodeMirror-foldgutter-open::after,
+  .CodeMirror-foldgutter-folded::after {
     position: absolute;
     top: 0;
     left: 0;
@@ -161,21 +158,21 @@ $purple-6f42c1: #6f42c1;
   }
 
   .CodeMirror-foldgutter-open {
-    &:after {
+    &::after {
       @include chevron-down(#ddd);
     }
 
-    &:hover:after {
+    &:hover::after {
       @include chevron-down($blue-032f62);
     }
   }
 
   .CodeMirror-foldgutter-folded {
-    &:after {
+    &::after {
       @include chevron-right(#ddd);
     }
 
-    &:hover:after {
+    &:hover::after {
       @include chevron-right($blue-032f62);
     }
   }

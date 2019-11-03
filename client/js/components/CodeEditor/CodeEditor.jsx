@@ -16,21 +16,18 @@ import "codemirror/keymap/vim.js";
 
 import { func, string } from "prop-types";
 
-
 export default class CodeEditor extends React.Component {
-
   static propTypes = {
     code: string.isRequired,
-    onCodeChange: func.isRequired
-  }
+    onCodeChange: func.isRequired,
+  };
 
   handleChange = (editor, data, code) => {
     this.props.onCodeChange(code);
-  }
+  };
 
   render = () => {
     const { code, onCodeChange, ...rest } = this.props; // eslint-disable-line no-unused-vars
-
 
     return (
       <CodeMirror
@@ -50,11 +47,10 @@ export default class CodeEditor extends React.Component {
           insertSoftTab: true,
           tabSize: 2,
           lineWrapping: true,
-          keyMap: window.location.search.match(/vim/) ? "vim" : "mike"
+          keyMap: window.location.search.match(/vim/) ? "vim" : "mike",
         }}
         {...rest}
       />
-
     );
-  }
+  };
 }

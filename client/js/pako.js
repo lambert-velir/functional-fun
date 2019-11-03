@@ -6,20 +6,23 @@ import Result from "folktale/result";
 // https://github.com/jbt/markdown-editor
 // using the DEFLATE algorithm
 // encryptCode : String -> Result String
-function encryptCode(text){
+function encryptCode(text) {
   try {
     return Result.Ok(
-      btoa( // base64 so url-safe
-        pako.deflate( // gzip
-          unescape(encodeURIComponent( // convert to utf8
-            text
-          )),
-          { to: "string" }
-        )
-      )
+      // base64 so url-safe
+      btoa(
+        // gzip
+        pako.deflate(
+          unescape(
+            // convert to utf8
+            encodeURIComponent(text),
+          ),
+          { to: "string" },
+        ),
+      ),
     );
   }
-  catch(e) {
+  catch (e) {
     return Result.Error(e);
   }
 }
@@ -27,26 +30,18 @@ function encryptCode(text){
 // given the compressed, encryped string from the hash, inflate it back to real
 // code that can go in the es6CodeMirror
 // decryptCode : String -> Result String
-function decryptCode(hash){
+function decryptCode(hash) {
   try {
     return Result.Ok(
-      decodeURIComponent(escape(
-        pako.inflate(
-          atob(
-            hash
-          ),
-          { to: "string" }
-        )
-      ))
+      decodeURIComponent(escape(pako.inflate(atob(hash), { to: "string" }))),
     );
   }
-  catch(e){
+  catch (e) {
     return Result.Error(e);
   }
 }
 
-
 export default {
   encryptCode,
-  decryptCode
+  decryptCode,
 };

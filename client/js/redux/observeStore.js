@@ -1,4 +1,3 @@
-
 // https://github.com/reactjs/redux/issues/303#issuecomment-125184409
 export default function observeStore(store, select, onChange) {
   let currentState = select(store.getState());
