@@ -1,7 +1,11 @@
 import * as R from "ramda";
 import { connect } from "react-redux";
 import { selectExample } from "../redux/examples/examplesActions.js";
-import { prependCode, rerunCode } from "../redux/code/codeActions.js";
+import {
+  prependCode,
+  rerunCode,
+  formatCode,
+} from "../redux/code/codeActions.js";
 
 import Menu from "../components/Menu/Menu.jsx";
 
@@ -19,6 +23,7 @@ function mapDispatchToProps(dispatch) {
     onLoadChange: slug => dispatch(selectExample(slug)),
     onImport: code => dispatch(prependCode(code)),
     onRerun: () => dispatch(rerunCode()),
+    onFormat: () => dispatch(formatCode()),
   };
 }
 

@@ -3,7 +3,7 @@ import R from "ramda";
 import "codemirror/addon/search/searchcursor.js"; // cm.getSearchCursor, etc
 import "codemirror/addon/edit/matchbrackets.js";
 
-import { rerunCode } from "../../redux/code/codeActions.js";
+import { rerunCode, formatCode } from "../../redux/code/codeActions.js";
 
 export default function attachKeyMap(CodeMirror, store) {
   // console.log(CodeMirror.commands);
@@ -12,6 +12,10 @@ export default function attachKeyMap(CodeMirror, store) {
   attachCommands(CodeMirror, store);
 
   const actionMap = {
+    formatCode: {
+      mac: ["Cmd-S"],
+      pc: ["Ctrl-S"],
+    },
     swapLineUp: {
       mac: ["Cmd-Ctrl-Up", "Alt-Up"],
       pc: "Ctrl-Up",
@@ -84,6 +88,10 @@ export default function attachKeyMap(CodeMirror, store) {
 function attachCommands(CodeMirror, store) {
   const cmds = CodeMirror.commands;
   const Pos = CodeMirror.Pos;
+
+  cmds.formatCode = function(cm) {
+    store.dispatch(formatCode());
+  };
 
   cmds.rerunCode = function(cm) {
     store.dispatch(rerunCode());

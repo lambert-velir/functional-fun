@@ -80,6 +80,7 @@
     "lodash.debounce": "^4.0.8",
     "lodash.template": "^4.4.0",
     "pako": "^1.0.6",
+    "prettier": "^1.18.2",
     "promise-polyfill": "^7.1.2",
     "prop-types": "^15.6.1",
     "ramda": "^0.25.0",

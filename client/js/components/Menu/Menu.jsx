@@ -52,10 +52,11 @@ const propTypes = {
   onLoadChange: func,
   onImport: func,
   onRerun: func.isRequired,
+  onFormat: func.isRequired,
 };
 
 const Menu = props => {
-  const { code, examples, onImport, onLoadChange, onRerun } = props;
+  const { code, examples, onImport, onLoadChange, onRerun, onFormat } = props;
 
   return (
     <div className="menu">
@@ -71,6 +72,11 @@ const Menu = props => {
         </div>
         <div className="menu__item">
           <Import code={code} onImport={onImport} />
+        </div>
+        <div className="menu__item">
+          <button type="button" onClick={onFormat}>
+            Format
+          </button>
         </div>
         <div className="menu__item">
           <button

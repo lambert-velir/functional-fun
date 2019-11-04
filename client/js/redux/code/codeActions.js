@@ -4,6 +4,7 @@ import { clearConsole } from "../console/consoleActions.js";
 export const CODE_UPDATE = "CODE/CODE_UPDATE";
 export const CODE_PREPEND = "CODE/CODE_PREPEND";
 export const CODE_RELOAD = "CODE/CODE_RELOAD";
+export const CODE_FORMAT = "CODE/CODE_FORMAT";
 
 // action creators
 export function updateCode(code) {
@@ -17,6 +18,12 @@ export function prependCode(code) {
   return {
     type: CODE_PREPEND,
     payload: { code },
+  };
+}
+
+export function formatCode() {
+  return {
+    type: CODE_FORMAT,
   };
 }
 
