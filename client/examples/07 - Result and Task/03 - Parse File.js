@@ -7,7 +7,7 @@ const tryParse = s => {
   try {
     return Ok(JSON.parse(s));
   }
-  catch(e) {
+  catch (e) {
     return Error(e.toString());
   }
 };
@@ -18,19 +18,13 @@ const tryParse = s => {
 // heroes.json contains JSON of the heroes list.
 // Your function should be error safe
 // getFirstHeroFromFile :: String → String
-const getFirstHeroFromFile = R.identity;  // <---- **** EDIT HERE ****
+const getFirstHeroFromFile = R.identity; // <---- **** EDIT HERE ****
 
-assert.equals(
-  getFirstHeroFromFile("heroes.json"),
-  Ok("Superman")
-);
+assert.equals(getFirstHeroFromFile("heroes.json"), Ok("Superman"));
 
 assert.equals(
   getFirstHeroFromFile("malformed-heroes.json"),
-  Error("SyntaxError: Unexpected end of JSON input")
+  Error("SyntaxError: Unexpected end of JSON input"),
 );
 
-assert.equals(
-  getFirstHeroFromFile("foo.json"),
-  Error("Cannot find file")
-);
+assert.equals(getFirstHeroFromFile("foo.json"), Error("Cannot find file"));

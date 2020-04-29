@@ -8,15 +8,10 @@ Laddy, blue
 Laddy, green
 `;
 
-
-const parseCsv = R.compose(
-  R.identity
-);
-
-
+const parseCsv = R.compose(R.identity);
 
 assert.equals(parseCsv(csv), {
-  "Hamilton": [ "blue", "red" ],
-  "Sassafras": [ "green" ],
-  "Laddy": [ "blue", "green" ]
+  Hamilton: ["blue", "red"],
+  Sassafras: ["green"],
+  Laddy: ["blue", "green"],
 });

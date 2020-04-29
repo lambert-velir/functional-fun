@@ -10,18 +10,17 @@ const joker = heroes[2];
 // should return Nothing(), otherwise, it should return Just(result).
 // safeProp :: String → Object → Maybe a
 // Hint: R.has
-const safeProp = R.identity;  // <---- **** EDIT HERE ****
+const safeProp = R.identity; // <---- **** EDIT HERE ****
 
 assert.equals(safeProp("vehicle", batman), Nothing());
 assert.equals(safeProp("alignment", batman), Just("good"));
-
 
 // Use safeProp to
 // 1) get a property from an object
 // 2) transform it to all uppercase
 // 3) add an exclamation point
 // safeYellProp :: String → Object → Maybe String
-const safeYellProp = R.identity;  // <---- **** EDIT HERE ****
+const safeYellProp = R.identity; // <---- **** EDIT HERE ****
 
 assert.equals(safeYellProp("canFly", joker), Nothing());
 assert.equals(safeYellProp("alignment", joker), Just("BAD!"));

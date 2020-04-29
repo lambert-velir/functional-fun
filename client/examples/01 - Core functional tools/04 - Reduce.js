@@ -9,27 +9,22 @@
  */
 
 const dogs = [
-  { name: "Hamilton"   , age: 5  },
-  { name: "Sassafras"  , age: 12 },
-  { name: "Laddy"      , age: 10 }
+  { name: "Hamilton", age: 5 },
+  { name: "Sassafras", age: 12 },
+  { name: "Laddy", age: 10 },
 ];
-
 
 // this is one (bad) way to compute the average age
 let avgAge1 = 0;
-for(let i = 0; i < dogs.length; i ++){
+for (let i = 0; i < dogs.length; i++) {
   let dog = dogs[i];
   avgAge1 += dog.age / dogs.length;
 }
 
-
 // use .reduce instead!
-const avgAge2 = null;  // <---- **** EDIT HERE ****
-
+const avgAge2 = null; // <---- **** EDIT HERE ****
 
 assert.equals(avgAge2, avgAge1);
-
-
 
 /**
  * Bonus challenges!
@@ -37,27 +32,16 @@ assert.equals(avgAge2, avgAge1);
  * functions (map, filter, etc) can be implemented in terms of reduce.
  */
 
-
 // Use reduce to implement map
-const map = (fn, arr) => null;  // <---- **** EDIT HERE ****
-
+const map = (fn, arr) => null; // <---- **** EDIT HERE ****
 
 const getName = dog => dog.name;
 
-assert.equals(
-  map(getName, dogs),
-  dogs.map(getName)
-);
-
-
+assert.equals(map(getName, dogs), dogs.map(getName));
 
 // Use reduce to implement filter
-const filter = (pred, arr) => null;  // <---- **** EDIT HERE ****
-
+const filter = (pred, arr) => null; // <---- **** EDIT HERE ****
 
 const isOld = dog => dog.age > 10;
 
-assert.equals(
-  filter(isOld, dogs),
-  dogs.filter(isOld)
-);
+assert.equals(filter(isOld, dogs), dogs.filter(isOld));

@@ -5,7 +5,7 @@ import { findByName, query } from "heroes-db";
 // i.e. all other heroes that have the same alignment
 // Returns a comma separated list of names
 // heroTeam :: String → Task String
-const heroTeam = R.identity;  // <---- **** EDIT HERE ****
+const heroTeam = R.identity; // <---- **** EDIT HERE ****
 
 heroTeam("Superman")
   .run()
@@ -13,17 +13,14 @@ heroTeam("Superman")
     onResolved: value =>
       assert.equals(
         value,
-        "Superman, Batman, Nightwing, Red Robin, Robin I, Catwoman, Batgirl VI, Oracle (DC), Huntress"
+        "Superman, Batman, Nightwing, Red Robin, Robin I, Catwoman, Batgirl VI, Oracle (DC), Huntress",
       ),
-    onRejected: () =>
-      assert.fail("This task should not be rejected")
+    onRejected: () => assert.fail("This task should not be rejected"),
   });
 
 heroTeam("Bane")
   .run()
   .listen({
-    onResolved: () =>
-      assert.fail("This task should not be resolved"),
-    onRejected: e =>
-      assert.equals(e, "Could not find hero by name")
+    onResolved: () => assert.fail("This task should not be resolved"),
+    onRejected: e => assert.equals(e, "Could not find hero by name"),
   });
