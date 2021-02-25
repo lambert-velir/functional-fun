@@ -13,7 +13,7 @@ assert.equals(slowestSpeed(heroes), 12);
 // slowestHeroes :: [Hero] → [String]
 // return a list of all the names of the heroes who are the slowest
 // Hint: R.pathEq
-const slowestHeroes = heroes =>
+const slowestHeroes = (heroes) =>
   R.compose(
     R.identity, // <---- **** EDIT HERE ****
   )(heroes);

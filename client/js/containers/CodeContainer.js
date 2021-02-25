@@ -14,12 +14,9 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onSizeChange: size => dispatch(sizeChange(size)),
-    onCodeChange: code => dispatch(updateCode(code)),
+    onSizeChange: (size) => dispatch(sizeChange(size)),
+    onCodeChange: (code) => dispatch(updateCode(code)),
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(CodeEditor);
+export default connect(mapStateToProps, mapDispatchToProps)(CodeEditor);

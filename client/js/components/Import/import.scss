@@ -25,15 +25,14 @@
 }
 
 .import__button {
-  margin-left: 3px;
+  display: none;
   margin-right: 3px;
+  margin-left: 3px;
   padding: 4px 6px; // 4px matches .import__label
 
   line-height: 19px;
-  border: 0;
   text-decoration: underline;
-
-  display: none;
+  border: 0;
 
   .is-open & {
     display: inline-block;

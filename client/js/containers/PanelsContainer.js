@@ -11,11 +11,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onResize: size => dispatch(setSize(size)),
+    onResize: (size) => dispatch(setSize(size)),
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Panels);
+export default connect(mapStateToProps, mapDispatchToProps)(Panels);

@@ -1,0 +1,215 @@
+@import "../../../scss/_colors.scss";
+@import "../../../scss/_z-index.scss";
+
+$select-padding-right: 56px;
+
+.select {
+  --select-background-color: #fff;
+  --select-highlight-background: #{$yellow-highlight};
+  --select-highlight-color: inherit;
+  --select-menu-color: inherit;
+
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+
+  text-align: left;
+
+  background-color: transparent;
+
+  &.select--open {
+    position: relative;
+    z-index: $z-dropdown;
+  }
+}
+
+.select__dropdown {
+  position: relative; // for dropdown__menu
+
+  text-align: center;
+}
+
+.select__label {
+  display: block;
+  padding-bottom: 12px;
+
+  color: #4c4c4e;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: left;
+}
+
+.select__button-holder {
+  position: relative; // for __clear
+
+  .select__clear-holder {
+    position: absolute;
+
+    top: 0;
+    right: $select-padding-right - 22px;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    width: 20px;
+
+    > * {
+      flex: none;
+    }
+  }
+
+  .select__clear {
+    height: 20px;
+    width: 20px;
+    margin-left: auto;
+
+    background-color: transparent; // override button
+    // TODO how to style this better to make colors more flexible?
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" viewBox="0 0 24 24"><circle fill="#ddd" cx="12" cy="12" r="10"></circle><g stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></g></svg>');
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    border: 0; // override button
+    content: "";
+    cursor: pointer;
+
+    &:hover {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" viewBox="0 0 24 24"><circle fill="#d01500" cx="12" cy="12" r="10"></circle><g stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></g></svg>');
+    }
+  }
+}
+
+.select__button {
+  position: relative; // for &::after
+  width: 100%;
+  padding: 6px $select-padding-right 6px 12px;
+
+  color: inherit;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.25;
+  text-align: inherit;
+
+  background-color: var(--select-background-color, white);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  cursor: pointer;
+
+  .select.select--no-selection & {
+    padding-right: #{$select-padding-right - 20};
+  }
+
+  &:active {
+    outline: none;
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
+  }
+
+  // dropdown arrow
+  &::after {
+    position: absolute;
+    top: 50%;
+    right: 6px;
+    height: 100%;
+    width: 24px;
+
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+    background-position: center center;
+    background-repeat: no-repeat;
+    content: "";
+    transform: translateY(-50%);
+
+    .select--open & {
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up"><polyline points="18 15 12 9 6 15"></polyline></svg>');
+    }
+  }
+
+  .select__button-text {
+    max-width: 100%;
+    overflow: hidden;
+
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+ul.select__menu {
+  position: absolute;
+  top: 100%;
+  // right: 0; allow to be as wide as content
+  left: 0;
+
+  display: none;
+  max-height: 320px;
+
+  box-sizing: border-box;
+  overflow: auto;
+  margin: 0;
+  padding: 12px 0;
+
+  background-color: var(--select-background-color, white);
+  border-color: var(--select-background-color, white);
+  box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.1);
+  list-style: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::after {
+    position: absolute;
+    top: 0;
+    right: 28px;
+    left: 28px;
+    height: 2px;
+    background-color: white;
+    content: "";
+  }
+
+  .select--open & {
+    display: block;
+  }
+}
+
+li.select__menu-item {
+  position: relative;
+  margin: 0; // override
+  padding: 12px 24px 12px;
+
+  color: var(--select-menu-color, #333);
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+  white-space: nowrap;
+
+  border-bottom: 1px solid white;
+  cursor: pointer;
+  list-style: none;
+
+  .select__checkmark {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    height: 100%;
+    width: 24px;
+
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="auto" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>');
+    background-position: center center;
+    background-repeat: no-repeat;
+    content: "";
+    transform: translateY(-50%);
+  }
+
+  &.select__menu-item--highlighted {
+    color: var(--select-highlight-color, var(--select-menu-color, #333));
+    background-color: var(--select-highlight-background, #eee);
+  }
+}

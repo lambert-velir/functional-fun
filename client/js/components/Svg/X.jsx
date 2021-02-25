@@ -7,7 +7,7 @@ const propTypes = {
 };
 
 // https://octicons.github.com/icon/x/
-const X = props => {
+const X = (props) => {
   const { width = "16", height = "16", ...rest } = props;
 
   return (

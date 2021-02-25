@@ -1,4 +1,5 @@
-@import "../../../scss/_variables.scss";
+@import "../../../scss/_colors.scss";
+@import "../../../scss/_breakpoints.scss";
 
 .panel {
   display: flex;
@@ -15,8 +16,8 @@
 }
 
 .panel__code {
-  max-height: 100%;
   min-height: 100%;
+  max-height: 100%;
   overflow: auto;
   cursor: text;
 }
@@ -25,8 +26,8 @@
   position: relative;
   flex: none;
   width: 11px;
-  cursor: ew-resize;
   content: "";
+  cursor: ew-resize;
 
   &:hover {
     background-color: $yellow-highlight;
@@ -39,9 +40,9 @@
 
 .panel__resizer-inner {
   position: absolute;
-  left: 50%;
   top: 0;
   bottom: 0;
+  left: 50%;
   width: 1px;
   background-color: $grey-ddd;
 }

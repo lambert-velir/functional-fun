@@ -7,7 +7,7 @@ const propTypes = {
 };
 
 // https://octicons.github.com/icon/sync/
-const Rerun = props => {
+const Rerun = (props) => {
   const { width = "24", height = "24", ...rest } = props;
 
   return (

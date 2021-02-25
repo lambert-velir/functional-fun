@@ -6,16 +6,16 @@
 // A rough approximation of Sublime Text's keybindings
 // Depends on addon/search/searchcursor.js and optionally addon/dialog/dialogs.js
 
-(function(mod) {
-  if (typeof exports == "object" && typeof module == "object")
+(function (mod) {
+  if (typeof exports === "object" && typeof module === "object")
     // CommonJS
     mod(require("codemirror"));
-  else if (typeof define == "function" && define.amd)
+  else if (typeof define === "function" && define.amd)
     // AMD
     define(["codemirror"], mod);
   // Plain browser env
   else mod(CodeMirror);
-})(function(CodeMirror) {
+})(function (CodeMirror) {
   "use strict";
 
   var cmds = CodeMirror.commands;
@@ -42,8 +42,7 @@
           state = "in";
           type = cat;
         }
-      }
-      else if (state == "in") {
+      } else if (state == "in") {
         if (type != cat) {
           if (type == "w" && cat == "W" && dir < 0) pos--;
           if (type == "W" && cat == "w" && dir > 0) {
@@ -58,21 +57,21 @@
   }
 
   function moveSubword(cm, dir) {
-    cm.extendSelectionsBy(function(range) {
+    cm.extendSelectionsBy(function (range) {
       if (cm.display.shift || cm.doc.extend || range.empty())
         return findPosSubword(cm.doc, range.head, dir);
       else return dir < 0 ? range.from() : range.to();
     });
   }
 
-  cmds.goSubwordLeft = function(cm) {
+  cmds.goSubwordLeft = function (cm) {
     moveSubword(cm, -1);
   };
-  cmds.goSubwordRight = function(cm) {
+  cmds.goSubwordRight = function (cm) {
     moveSubword(cm, 1);
   };
 
-  cmds.scrollLineUp = function(cm) {
+  cmds.scrollLineUp = function (cm) {
     var info = cm.getScrollInfo();
     if (!cm.somethingSelected()) {
       var visibleBottomLine = cm.lineAtHeight(
@@ -83,7 +82,7 @@
     }
     cm.scrollTo(null, info.top - cm.defaultTextHeight());
   };
-  cmds.scrollLineDown = function(cm) {
+  cmds.scrollLineDown = function (cm) {
     var info = cm.getScrollInfo();
     if (!cm.somethingSelected()) {
       var visibleTopLine = cm.lineAtHeight(info.top, "local") + 1;
@@ -92,7 +91,7 @@
     cm.scrollTo(null, info.top + cm.defaultTextHeight());
   };
 
-  cmds.splitSelectionByLine = function(cm) {
+  cmds.splitSelectionByLine = function (cm) {
     var ranges = cm.listSelections(),
       lineRanges = [];
     for (var i = 0; i < ranges.length; i++) {
@@ -108,12 +107,12 @@
     cm.setSelections(lineRanges, 0);
   };
 
-  cmds.singleSelectionTop = function(cm) {
+  cmds.singleSelectionTop = function (cm) {
     var range = cm.listSelections()[0];
     cm.setSelection(range.anchor, range.head, { scroll: false });
   };
 
-  cmds.selectLine = function(cm) {
+  cmds.selectLine = function (cm) {
     var ranges = cm.listSelections(),
       extended = [];
     for (var i = 0; i < ranges.length; i++) {
@@ -128,7 +127,7 @@
 
   function insertLine(cm, above) {
     if (cm.isReadOnly()) return CodeMirror.Pass;
-    cm.operation(function() {
+    cm.operation(function () {
       var len = cm.listSelections().length,
         newSelection = [],
         last = -1;
@@ -146,11 +145,11 @@
     cm.execCommand("indentAuto");
   }
 
-  cmds.insertLineAfter = function(cm) {
+  cmds.insertLineAfter = function (cm) {
     return insertLine(cm, false);
   };
 
-  cmds.insertLineBefore = function(cm) {
+  cmds.insertLineBefore = function (cm) {
     return insertLine(cm, true);
   };
 
@@ -167,7 +166,7 @@
     };
   }
 
-  cmds.selectNextOccurrence = function(cm) {
+  cmds.selectNextOccurrence = function (cm) {
     var from = cm.getCursor("from"),
       to = cm.getCursor("to");
     var fullWord = cm.state.sublimeFindFullWord == cm.doc.sel;
@@ -176,8 +175,7 @@
       if (!word.word) return;
       cm.setSelection(word.from, word.to);
       fullWord = true;
-    }
-    else {
+    } else {
       var text = cm.getRange(from, to);
       var query = fullWord ? new RegExp("\\b" + text + "\\b") : text;
       var cur = cm.getSearchCursor(query, to);
@@ -219,10 +217,10 @@
     }
     cm.setSelections(newRanges);
   }
-  cmds.addCursorToPrevLine = function(cm) {
+  cmds.addCursorToPrevLine = function (cm) {
     addCursorToSelection(cm, -1);
   };
-  cmds.addCursorToNextLine = function(cm) {
+  cmds.addCursorToNextLine = function (cm) {
     addCursorToSelection(cm, 1);
   };
 
@@ -252,8 +250,7 @@
           ) {
             opening = cm.scanForBracket(opening.pos, -1);
             if (!opening) return false;
-          }
-          else {
+          } else {
             newRanges.push({ anchor: startPos, head: closing.pos });
             break;
           }
@@ -265,15 +262,15 @@
     return true;
   }
 
-  cmds.selectScope = function(cm) {
+  cmds.selectScope = function (cm) {
     selectBetweenBrackets(cm) || cm.execCommand("selectAll");
   };
-  cmds.selectBetweenBrackets = function(cm) {
+  cmds.selectBetweenBrackets = function (cm) {
     if (!selectBetweenBrackets(cm)) return CodeMirror.Pass;
   };
 
-  cmds.goToBracket = function(cm) {
-    cm.extendSelectionsBy(function(range) {
+  cmds.goToBracket = function (cm) {
+    cm.extendSelectionsBy(function (range) {
       var next = cm.scanForBracket(range.head, 1);
       if (next && CodeMirror.cmpPos(next.pos, range.head) != 0) return next.pos;
       var prev = cm.scanForBracket(range.head, -1);
@@ -281,7 +278,7 @@
     });
   };
 
-  cmds.swapLineUp = function(cm) {
+  cmds.swapLineUp = function (cm) {
     if (cm.isReadOnly()) return CodeMirror.Pass;
     var ranges = cm.listSelections(),
       linesToMove = [],
@@ -300,7 +297,7 @@
       else if (linesToMove.length) linesToMove[linesToMove.length - 1] = to;
       at = to;
     }
-    cm.operation(function() {
+    cm.operation(function () {
       for (var i = 0; i < linesToMove.length; i += 2) {
         var from = linesToMove[i],
           to = linesToMove[i + 1];
@@ -315,7 +312,7 @@
     });
   };
 
-  cmds.swapLineDown = function(cm) {
+  cmds.swapLineDown = function (cm) {
     if (cm.isReadOnly()) return CodeMirror.Pass;
     var ranges = cm.listSelections(),
       linesToMove = [],
@@ -329,7 +326,7 @@
       else if (linesToMove.length) linesToMove[linesToMove.length - 1] = to;
       at = to;
     }
-    cm.operation(function() {
+    cm.operation(function () {
       for (var i = linesToMove.length - 2; i >= 0; i -= 2) {
         var from = linesToMove[i],
           to = linesToMove[i + 1];
@@ -343,11 +340,11 @@
     });
   };
 
-  cmds.toggleCommentIndented = function(cm) {
+  cmds.toggleCommentIndented = function (cm) {
     cm.toggleComment({ indent: true });
   };
 
-  cmds.joinLines = function(cm) {
+  cmds.joinLines = function (cm) {
     var ranges = cm.listSelections(),
       joined = [];
     for (var i = 0; i < ranges.length; i++) {
@@ -359,7 +356,7 @@
         end = ranges[++i].to().line;
       joined.push({ start: start, end: end, anchor: !range.empty() && from });
     }
-    cm.operation(function() {
+    cm.operation(function () {
       var offset = 0,
         ranges = [];
       for (var i = 0; i < joined.length; i++) {
@@ -386,8 +383,8 @@
   };
 
   // TODO duplicate selection that spans more than one line!
-  cmds.duplicateLine = function(cm) {
-    cm.operation(function() {
+  cmds.duplicateLine = function (cm) {
+    cm.operation(function () {
       var rangeCount = cm.listSelections().length;
       for (var i = 0; i < rangeCount; i++) {
         var range = cm.listSelections()[i];
@@ -421,7 +418,7 @@
     if (toSort.length) selected = true;
     else toSort.push(cm.firstLine(), cm.lastLine());
 
-    cm.operation(function() {
+    cm.operation(function () {
       var ranges = [];
       for (var i = 0; i < toSort.length; i += 2) {
         var from = toSort[i],
@@ -431,7 +428,7 @@
         var lines = cm.getRange(start, end, false);
         if (caseSensitive) lines.sort();
         else
-          lines.sort(function(a, b) {
+          lines.sort(function (a, b) {
             var au = a.toUpperCase(),
               bu = b.toUpperCase();
             if (au != bu) {
@@ -447,14 +444,14 @@
     });
   }
 
-  cmds.sortLines = function(cm) {
+  cmds.sortLines = function (cm) {
     sortLines(cm, true);
   };
-  cmds.sortLinesInsensitive = function(cm) {
+  cmds.sortLinesInsensitive = function (cm) {
     sortLines(cm, false);
   };
 
-  cmds.nextBookmark = function(cm) {
+  cmds.nextBookmark = function (cm) {
     var marks = cm.state.sublimeBookmarks;
     if (marks)
       while (marks.length) {
@@ -467,7 +464,7 @@
       }
   };
 
-  cmds.prevBookmark = function(cm) {
+  cmds.prevBookmark = function (cm) {
     var marks = cm.state.sublimeBookmarks;
     if (marks)
       while (marks.length) {
@@ -478,7 +475,7 @@
       }
   };
 
-  cmds.toggleBookmark = function(cm) {
+  cmds.toggleBookmark = function (cm) {
     var ranges = cm.listSelections();
     var marks = cm.state.sublimeBookmarks || (cm.state.sublimeBookmarks = []);
     for (var i = 0; i < ranges.length; i++) {
@@ -505,13 +502,13 @@
     }
   };
 
-  cmds.clearBookmarks = function(cm) {
+  cmds.clearBookmarks = function (cm) {
     var marks = cm.state.sublimeBookmarks;
     if (marks) for (var i = 0; i < marks.length; i++) marks[i].clear();
     marks.length = 0;
   };
 
-  cmds.selectBookmarks = function(cm) {
+  cmds.selectBookmarks = function (cm) {
     var marks = cm.state.sublimeBookmarks,
       ranges = [];
     if (marks)
@@ -524,7 +521,7 @@
   };
 
   function modifyWordOrSelection(cm, mod) {
-    cm.operation(function() {
+    cm.operation(function () {
       var ranges = cm.listSelections(),
         indices = [],
         replacements = [];
@@ -533,8 +530,7 @@
         if (range.empty()) {
           indices.push(i);
           replacements.push("");
-        }
-        else replacements.push(mod(cm.getRange(range.from(), range.to())));
+        } else replacements.push(mod(cm.getRange(range.from(), range.to())));
       }
       cm.replaceSelections(replacements, "around", "case");
       for (var i = indices.length - 1, at; i >= 0; i--) {
@@ -547,10 +543,10 @@
     });
   }
 
-  cmds.smartBackspace = function(cm) {
+  cmds.smartBackspace = function (cm) {
     if (cm.somethingSelected()) return CodeMirror.Pass;
 
-    cm.operation(function() {
+    cm.operation(function () {
       var cursors = cm.listSelections();
       var indentUnit = cm.getOption("indentUnit");
 
@@ -589,8 +585,8 @@
     });
   };
 
-  cmds.delLineRight = function(cm) {
-    cm.operation(function() {
+  cmds.delLineRight = function (cm) {
+    cm.operation(function () {
       var ranges = cm.listSelections();
       for (var i = ranges.length - 1; i >= 0; i--)
         cm.replaceRange(
@@ -603,26 +599,26 @@
     });
   };
 
-  cmds.upcaseAtCursor = function(cm) {
-    modifyWordOrSelection(cm, function(str) {
+  cmds.upcaseAtCursor = function (cm) {
+    modifyWordOrSelection(cm, function (str) {
       return str.toUpperCase();
     });
   };
-  cmds.downcaseAtCursor = function(cm) {
-    modifyWordOrSelection(cm, function(str) {
+  cmds.downcaseAtCursor = function (cm) {
+    modifyWordOrSelection(cm, function (str) {
       return str.toLowerCase();
     });
   };
 
-  cmds.setSublimeMark = function(cm) {
+  cmds.setSublimeMark = function (cm) {
     if (cm.state.sublimeMark) cm.state.sublimeMark.clear();
     cm.state.sublimeMark = cm.setBookmark(cm.getCursor());
   };
-  cmds.selectToSublimeMark = function(cm) {
+  cmds.selectToSublimeMark = function (cm) {
     var found = cm.state.sublimeMark && cm.state.sublimeMark.find();
     if (found) cm.setSelection(cm.getCursor(), found);
   };
-  cmds.deleteToSublimeMark = function(cm) {
+  cmds.deleteToSublimeMark = function (cm) {
     var found = cm.state.sublimeMark && cm.state.sublimeMark.find();
     if (found) {
       var from = cm.getCursor(),
@@ -636,7 +632,7 @@
       cm.replaceRange("", from, to);
     }
   };
-  cmds.swapWithSublimeMark = function(cm) {
+  cmds.swapWithSublimeMark = function (cm) {
     var found = cm.state.sublimeMark && cm.state.sublimeMark.find();
     if (found) {
       cm.state.sublimeMark.clear();
@@ -644,12 +640,12 @@
       cm.setCursor(found);
     }
   };
-  cmds.sublimeYank = function(cm) {
+  cmds.sublimeYank = function (cm) {
     if (cm.state.sublimeKilled != null)
       cm.replaceSelection(cm.state.sublimeKilled, null, "paste");
   };
 
-  cmds.showInCenter = function(cm) {
+  cmds.showInCenter = function (cm) {
     var pos = cm.cursorCoords(null, "local");
     cm.scrollTo(
       null,
@@ -677,8 +673,7 @@
 
     if (forward ? cur.findNext() : cur.findPrevious()) {
       cm.setSelection(cur.from(), cur.to());
-    }
-    else {
+    } else {
       cur = cm.getSearchCursor(
         query,
         forward ? Pos(cm.firstLine(), 0) : cm.clipPos(Pos(cm.lastLine())),
@@ -688,13 +683,13 @@
       else if (target.word) cm.setSelection(target.from, target.to);
     }
   }
-  cmds.findUnder = function(cm) {
+  cmds.findUnder = function (cm) {
     findAndGoTo(cm, true);
   };
-  cmds.findUnderPrevious = function(cm) {
+  cmds.findUnderPrevious = function (cm) {
     findAndGoTo(cm, false);
   };
-  cmds.findAllUnder = function(cm) {
+  cmds.findAllUnder = function (cm) {
     var target = getTarget(cm);
     if (!target) return;
     var cur = cm.getSearchCursor(target.query);

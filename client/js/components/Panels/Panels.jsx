@@ -10,10 +10,10 @@ const propTypes = {
   onResize: func.isRequired,
 };
 
-const Panels = props => {
+const Panels = (props) => {
   const { onResize, sizes } = props;
 
-  const handleResize = data => {
+  const handleResize = (data) => {
     onResize(data.percent);
   };
 

@@ -5,11 +5,6 @@ import R from "ramda";
 // Use R.tap below to show the value as it changes flowing through the pipeline
 
 // nextNumber :: String → String
-const nextNumber = R.compose(
-  R.toString,
-  n => n + 1,
-  parseInt,
-  R.trim,
-);
+const nextNumber = R.compose(R.toString, (n) => n + 1, parseInt, R.trim);
 
 assert.equals(nextNumber("     41    "), "42");

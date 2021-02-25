@@ -1,5 +1,5 @@
 // implement createGreeting
-const createGreeting = greeting => {};
+const createGreeting = (greeting) => {};
 
 const sayHello = createGreeting("hello");
 

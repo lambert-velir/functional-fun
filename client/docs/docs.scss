@@ -1,4 +1,4 @@
-@import "../scss/_variables.scss";
+@import "../scss/_fonts.scss";
 
 body {
   max-width: 800px;
@@ -24,10 +24,11 @@ code {
 code {
   display: block;
   padding: 16px;
-  background-color: #fdf6e4;
-  border-radius: 6px;
-  border: 0;
+
   white-space: pre-wrap;
+  background-color: #fdf6e4;
+  border: 0;
+  border-radius: 6px;
 
   span {
     display: inline-block; // so they wrap as a whole
@@ -49,8 +50,8 @@ code {
   padding-left: 24px;
 
   li {
-    list-style: circle;
     font-style: italic;
+    list-style: circle;
   }
 
   li + li {

@@ -9,7 +9,7 @@ const propTypes = {
 };
 
 // https://octicons.github.com
-const LinkExternal = props => {
+const LinkExternal = (props) => {
   const { width = "12", height = "16", className, ...rest } = props;
 
   return (

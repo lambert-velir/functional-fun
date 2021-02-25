@@ -36,8 +36,7 @@ export default class Splitter extends React.Component {
 
     if (resizing !== NOT_RESIZING) {
       this.attachMouseMove();
-    }
-    else {
+    } else {
       this.detachMouseMove();
     }
   };
@@ -52,7 +51,7 @@ export default class Splitter extends React.Component {
     document.removeEventListener("mouseup", this.detachMouseMove);
   };
 
-  handleMouseMove = mouseEvent => {
+  handleMouseMove = (mouseEvent) => {
     // prevent user selecting while dragging
     mouseEvent.preventDefault();
 
@@ -84,30 +83,30 @@ export default class Splitter extends React.Component {
     // if a size was given, remove flex styles and add width
     const styles = sizes[i]
       ? R.merge(childrenStyles, {
-        width: `${sizes[i] * 100}%`,
-        flex: "none",
-      })
+          width: `${sizes[i] * 100}%`,
+          flex: "none",
+        })
       : childrenStyles;
 
     return (
       <div
         key={`child-${i}`}
         style={styles}
-        ref={el => (this.children[i] = el)}
+        ref={(el) => (this.children[i] = el)}
       >
         {c}
       </div>
     );
   };
 
-  renderResizer = i => {
+  renderResizer = (i) => {
     return (
       <div
         key={`resizer-${i}`}
-        ref={el => (this.resizers[i] = el)}
+        ref={(el) => (this.resizers[i] = el)}
         className="panel__resizer"
-        onMouseDown={e => this.setState({ resizing: i })}
-        onMouseUp={e => this.setState({ resizing: NOT_RESIZING })}
+        onMouseDown={(e) => this.setState({ resizing: i })}
+        onMouseUp={(e) => this.setState({ resizing: NOT_RESIZING })}
       >
         <div className="panel__resizer-inner"></div>
       </div>
@@ -118,12 +117,11 @@ export default class Splitter extends React.Component {
     const children = React.Children.toArray(this.props.children);
 
     return (
-      <div className="panel" ref={el => (this.panel = el)}>
+      <div className="panel" ref={(el) => (this.panel = el)}>
         {children.map(this.renderChild).reduce((list, c, i) => {
           if (i < children.length - 1) {
             return list.concat([c, this.renderResizer(i)]);
-          }
-          else {
+          } else {
             return list.concat([c]);
           }
         }, [])}

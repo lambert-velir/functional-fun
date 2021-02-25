@@ -7,6 +7,6 @@ import { heroes } from "heroes-db";
 // rounded to the nearest whole number
 // exclude heroes that don't have stats.
 // Hint: R.path, R.reject, R.isNil, Math.round
-const averageIntelligence = heroes => Box(heroes); // <---- **** EDIT HERE ****
+const averageIntelligence = (heroes) => Box(heroes); // <---- **** EDIT HERE ****
 
 assert.equals(averageIntelligence(heroes), 82);

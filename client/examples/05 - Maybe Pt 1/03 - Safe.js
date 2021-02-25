@@ -5,14 +5,7 @@ import Maybe, { Just, Nothing } from "folktale/maybe";
 // safe takes a function that may return a null/undefined
 // and turns it into a function that returns a Maybe
 // safe :: (* → a) → (* → Maybe a)
-const safe = fn =>
-  R.curryN(
-    fn.length,
-    R.compose(
-      Maybe.fromNullable,
-      fn,
-    ),
-  );
+const safe = (fn) => R.curryN(fn.length, R.compose(Maybe.fromNullable, fn));
 
 // Use safe to create a safer version of R.head
 // (hint: R.head returns undefined if the array is empty)

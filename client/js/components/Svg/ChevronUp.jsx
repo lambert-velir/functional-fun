@@ -9,7 +9,7 @@ const propTypes = {
 };
 
 // https://octicons.github.com
-const ChevronUp = props => {
+const ChevronUp = (props) => {
   const { width = "10", height = "16", className, ...rest } = props;
 
   return (

@@ -1,9 +1,11 @@
+import * as R from "ramda";
 import React from "react";
 
 import Load from "../Load/Load.jsx";
 import Import from "../Import/Import.jsx";
-import Dropdown from "../Dropdown/Dropdown.jsx";
 import Rerun from "../Svg/Rerun.jsx";
+import Select from "../Select/Select.jsx";
+import LinkExternal from "../Svg/LinkExternal.jsx";
 
 const docsItems = [
   {
@@ -55,7 +57,7 @@ const propTypes = {
   onFormat: func.isRequired,
 };
 
-const Menu = props => {
+const Menu = (props) => {
   const { code, examples, onImport, onLoadChange, onRerun, onFormat } = props;
 
   return (
@@ -68,7 +70,38 @@ const Menu = props => {
           <Load examples={examples} onChange={onLoadChange} />
         </div>
         <div className="menu__item">
-          <Dropdown items={docsItems}>Docs</Dropdown>
+          <Select
+            placeholder="Docs"
+            renderItem={(item) => {
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="menu__dropdown-item"
+                >
+                  {item.name} <LinkExternal className="dropdown__link-icon" />
+                </a>
+              );
+            }}
+            selectProps={{
+              items: docsItems,
+              itemToString: R.prop("name"),
+              stateReducer: (state, actionAndChanges) => {
+                const { changes } = actionAndChanges;
+
+                if (changes.selectedItem) {
+                  return {
+                    ...changes,
+                    selectedItem: null,
+                  };
+                }
+
+                return changes;
+              },
+            }}
+          />
         </div>
         <div className="menu__item">
           <Import code={code} onImport={onImport} />

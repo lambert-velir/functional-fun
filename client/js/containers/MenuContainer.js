@@ -20,14 +20,11 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    onLoadChange: slug => dispatch(selectExample(slug)),
-    onImport: code => dispatch(prependCode(code)),
+    onLoadChange: (slug) => dispatch(selectExample(slug)),
+    onImport: (code) => dispatch(prependCode(code)),
     onRerun: () => dispatch(rerunCode()),
     onFormat: () => dispatch(formatCode()),
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Menu);
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);

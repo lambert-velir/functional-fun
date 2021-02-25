@@ -1,7 +1,7 @@
 import React from "react";
 import R from "ramda";
 import { func, string } from "prop-types";
-import Dropdown from "../Dropdown/Dropdown.jsx";
+import Select from "../Select/Select.jsx";
 
 const imports = [
   {
@@ -69,9 +69,28 @@ export default class Import extends React.Component {
     }
 
     return (
-      <Dropdown items={filteredImports} onSelect={addImport}>
-        Import
-      </Dropdown>
+      <Select
+        placeholder="Import"
+        selectProps={{
+          items: filteredImports,
+          itemToString: R.prop("name"),
+          stateReducer: (state, actionAndChanges) => {
+            const { type, changes } = actionAndChanges;
+
+            if (changes.selectedItem) {
+              window.requestAnimationFrame(() => {
+                addImport(changes.selectedItem);
+              });
+              return {
+                ...changes,
+                selectedItem: null,
+              };
+            }
+
+            return changes;
+          },
+        }}
+      />
     );
   };
 }

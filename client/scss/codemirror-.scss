@@ -1,9 +1,9 @@
 /* BASICS */
 
 .CodeMirror {
+  color: black;
   /* Set height, width, borders, and global font properties here */
   font-family: monospace;
-  color: black;
   direction: ltr;
 }
 
@@ -25,19 +25,20 @@
 /* GUTTER */
 
 .CodeMirror-gutters {
-  border-right: 1px solid #ddd;
-  background-color: #f7f7f7;
   white-space: nowrap;
+  background-color: #f7f7f7;
+  border-right: 1px solid #ddd;
 }
 
 .CodeMirror-linenumbers {
 }
 
 .CodeMirror-linenumber {
-  padding: 0 3px 0 5px;
   min-width: 20px;
-  text-align: right;
+  padding: 0 3px 0 5px;
+
   color: #999;
+  text-align: right;
   white-space: nowrap;
 }
 
@@ -52,9 +53,9 @@
 /* CURSOR */
 
 .CodeMirror-cursor {
+  width: 0;
   border-left: 1px solid black;
   border-right: none;
-  width: 0;
 }
 /* Shown when moving in bi-directional text */
 .CodeMirror div.CodeMirror-secondarycursor {
@@ -63,8 +64,8 @@
 
 .cm-fat-cursor .CodeMirror-cursor {
   width: auto;
-  border: 0 !important;
   background: #7e7;
+  border: 0 !important;
 }
 
 .cm-fat-cursor div.CodeMirror-cursors {
@@ -72,19 +73,19 @@
 }
 
 .cm-fat-cursor-mark {
-  background-color: rgba(20, 255, 20, 0.5);
   -webkit-animation: blink 1.06s steps(1) infinite;
   -moz-animation: blink 1.06s steps(1) infinite;
   animation: blink 1.06s steps(1) infinite;
+  background-color: rgba(20, 255, 20, 0.5);
 }
 
 .cm-animate-fat-cursor {
   width: auto;
-  border: 0;
   -webkit-animation: blink 1.06s steps(1) infinite;
   -moz-animation: blink 1.06s steps(1) infinite;
   animation: blink 1.06s steps(1) infinite;
   background-color: #7e7;
+  border: 0;
 }
 
 @-moz-keyframes blink {
@@ -129,23 +130,24 @@
 
 .cm-tab {
   display: inline-block;
+
   text-decoration: inherit;
 }
 
 .CodeMirror-rulers {
   position: absolute;
-  left: 0;
-  right: 0;
   top: -50px;
+  right: 0;
   bottom: -20px;
+  left: 0;
   overflow: hidden;
 }
 
 .CodeMirror-ruler {
-  border-left: 1px solid #ccc;
+  position: absolute;
   top: 0;
   bottom: 0;
-  position: absolute;
+  border-left: 1px solid #ccc;
 }
 
 /* DEFAULT THEME */
@@ -300,15 +302,15 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
 }
 
 .CodeMirror-scroll {
+  position: relative;
+  height: 100%;
   overflow: scroll !important; /* Things will break if this is overridden */
+  margin-right: -30px;
   /* 30px is the magic margin used to hide the element's real scrollbars */
   /* See overflow: hidden in .CodeMirror */
   margin-bottom: -30px;
-  margin-right: -30px;
   padding-bottom: 30px;
-  height: 100%;
   outline: none; /* Prevent dragging from highlighting the element */
-  position: relative;
 }
 
 .CodeMirror-sizer {
@@ -329,8 +331,8 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
 }
 
 .CodeMirror-vscrollbar {
-  right: 0;
   top: 0;
+  right: 0;
   overflow-x: hidden;
   overflow-y: scroll;
 }
@@ -338,8 +340,8 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
 .CodeMirror-hscrollbar {
   bottom: 0;
   left: 0;
-  overflow-y: hidden;
   overflow-x: scroll;
+  overflow-y: hidden;
 }
 
 .CodeMirror-scrollbar-filler {
@@ -348,24 +350,25 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
 }
 
 .CodeMirror-gutter-filler {
-  left: 0;
   bottom: 0;
+  left: 0;
 }
 
 .CodeMirror-gutters {
   position: absolute;
-  left: 0;
   top: 0;
-  min-height: 100%;
+  left: 0;
   z-index: 3;
+  min-height: 100%;
 }
 
 .CodeMirror-gutter {
-  white-space: normal;
-  height: 100%;
   display: inline-block;
-  vertical-align: top;
+  height: 100%;
   margin-bottom: -30px;
+
+  vertical-align: top;
+  white-space: normal;
 }
 
 .CodeMirror-gutter-wrapper {
@@ -384,8 +387,8 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
 
 .CodeMirror-gutter-elt {
   position: absolute;
-  cursor: default;
   z-index: 4;
+  cursor: default;
 }
 
 .CodeMirror-gutter-wrapper ::selection {
@@ -397,44 +400,45 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
 }
 
 .CodeMirror-lines {
-  cursor: text;
   min-height: 1px; /* prevents collapsing before first draw */
+  cursor: text;
 }
 
 .CodeMirror pre {
+  position: relative;
+  z-index: 2;
+  overflow: visible;
+  margin: 0;
+
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  -webkit-font-variant-ligatures: contextual;
+  font-variant-ligatures: contextual;
+  line-height: inherit;
+  white-space: pre;
+  background: transparent;
   /* Reset some styles that the rest of the page might have set */
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
   border-radius: 0;
   border-width: 0;
-  background: transparent;
-  font-family: inherit;
-  font-size: inherit;
-  margin: 0;
-  white-space: pre;
-  word-wrap: normal;
-  line-height: inherit;
-  color: inherit;
-  z-index: 2;
-  position: relative;
-  overflow: visible;
   -webkit-tap-highlight-color: transparent;
-  -webkit-font-variant-ligatures: contextual;
-  font-variant-ligatures: contextual;
+  word-wrap: normal;
 }
 
 .CodeMirror-wrap pre {
-  word-wrap: break-word;
   white-space: pre-wrap;
   word-break: normal;
+  word-wrap: break-word;
 }
 
 .CodeMirror-linebackground {
   position: absolute;
-  left: 0;
-  right: 0;
   top: 0;
+  right: 0;
   bottom: 0;
+  left: 0;
   z-index: 0;
 }
 
@@ -467,8 +471,8 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
 
 .CodeMirror-measure {
   position: absolute;
-  width: 100%;
   height: 0;
+  width: 100%;
   overflow: hidden;
   visibility: hidden;
 }
@@ -483,9 +487,9 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {
 }
 
 div.CodeMirror-cursors {
-  visibility: hidden;
   position: relative;
   z-index: 3;
+  visibility: hidden;
 }
 
 div.CodeMirror-dragcursors {

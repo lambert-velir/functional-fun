@@ -24,7 +24,7 @@ assert.equals(getHeightInM(heroes[0]), 1.905);
  * Overweight = 25–29.9
  * Obesity = BMI of 30 or greater
  */
-const calcBMI = hero => getWeightInKg(hero) / getHeightInM(hero) ** 2;
+const calcBMI = (hero) => getWeightInKg(hero) / getHeightInM(hero) ** 2;
 
 assert.equals(calcBMI(heroes[0]), 27.83);
 

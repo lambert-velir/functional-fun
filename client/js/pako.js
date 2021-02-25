@@ -21,8 +21,7 @@ function encryptCode(text) {
         ),
       ),
     );
-  }
-  catch (e) {
+  } catch (e) {
     return Result.Error(e);
   }
 }
@@ -35,8 +34,7 @@ function decryptCode(hash) {
     return Result.Ok(
       decodeURIComponent(escape(pako.inflate(atob(hash), { to: "string" }))),
     );
-  }
-  catch (e) {
+  } catch (e) {
     return Result.Error(e);
   }
 }

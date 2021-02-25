@@ -3,14 +3,7 @@ import { heroes } from "heroes-db";
 import Maybe, { Just, Nothing } from "folktale/maybe";
 
 // safe :: (* → a) → (* → Maybe a)
-const safe = fn =>
-  R.curryN(
-    fn.length,
-    R.compose(
-      Maybe.fromNullable,
-      fn,
-    ),
-  );
+const safe = (fn) => R.curryN(fn.length, R.compose(Maybe.fromNullable, fn));
 
 // safeProp :: String → Object → Maybe a
 const safeProp = safe(R.prop);

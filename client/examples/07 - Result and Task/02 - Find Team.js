@@ -10,7 +10,7 @@ const heroTeam = R.identity; // <---- **** EDIT HERE ****
 heroTeam("Superman")
   .run()
   .listen({
-    onResolved: value =>
+    onResolved: (value) =>
       assert.equals(
         value,
         "Superman, Batman, Nightwing, Red Robin, Robin I, Catwoman, Batgirl VI, Oracle (DC), Huntress",
@@ -22,5 +22,5 @@ heroTeam("Bane")
   .run()
   .listen({
     onResolved: () => assert.fail("This task should not be resolved"),
-    onRejected: e => assert.equals(e, "Could not find hero by name"),
+    onRejected: (e) => assert.equals(e, "Could not find hero by name"),
   });

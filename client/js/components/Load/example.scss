@@ -1,4 +1,5 @@
-@import "../../../scss/_variables.scss";
+@import "../../../scss/_breakpoints.scss";
+@import "../../../scss/_colors.scss";
 
 $width: 200px;
 $padding: 8px;
@@ -23,8 +24,8 @@ $padding: 8px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-left: -8px;
   margin-right: -8px;
+  margin-left: -8px;
 }
 
 // make the modal 4 wide
@@ -45,15 +46,15 @@ $padding: 8px;
 a.example {
   display: block;
   height: 150px;
-  padding-bottom: 24px;
   overflow: hidden;
+  padding-bottom: 24px;
+
+  color: inherit;
+  text-decoration: inherit;
 
   border: 1px solid $grey-ddd;
   border-radius: 4px;
   cursor: pointer;
-
-  color: inherit;
-  text-decoration: inherit;
 
   &:hover {
     .example__name {
@@ -73,18 +74,19 @@ a.example {
 
 .example__name {
   padding: 8px 0;
-  text-align: center;
+
   font-size: 18px;
   line-height: 1.2;
+  text-align: center;
 }
 
 .example__preview {
   position: relative;
-  padding: 2px;
+  z-index: 1;
 
   overflow: hidden;
+  padding: 2px;
   user-select: none;
-  z-index: 1;
 
   .CodeMirror {
     font-size: 7px;
@@ -99,9 +101,9 @@ a.example {
     right: 0;
     bottom: 0;
     left: 0;
+    z-index: 2;
     content: " ";
     cursor: pointer;
-    z-index: 2;
   }
 
   @media (max-width: $bp-vertical) {

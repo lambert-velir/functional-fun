@@ -28,8 +28,9 @@ $purple-6f42c1: #6f42c1;
   }
 
   .CodeMirror-linenumber {
-    color: #959da5;
     padding: 0 16px;
+
+    color: #959da5;
   }
 
   .CodeMirror-cursor {
@@ -57,8 +58,8 @@ $purple-6f42c1: #6f42c1;
   .CodeMirror-lines {
     font-family: inherit;
     font-size: inherit;
-    background-color: inherit;
     line-height: 1.5;
+    background-color: inherit;
   }
 
   .cm-comment {
@@ -79,17 +80,17 @@ $purple-6f42c1: #6f42c1;
 
   .cm-def,
   .cm-entity {
-    font-weight: normal;
-    font-style: normal;
-    text-decoration: none;
     color: $purple-6f42c1;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
   }
 
   .cm-keyword {
-    font-weight: normal;
-    font-style: normal;
-    text-decoration: none;
     color: $red-d73a49;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
   }
 
   .cm-storage {
@@ -101,17 +102,17 @@ $purple-6f42c1: #6f42c1;
   }
 
   .cm-string {
-    font-weight: normal;
-    font-style: normal;
-    text-decoration: none;
     color: $blue-032f62;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
   }
 
   .cm-support {
-    font-weight: normal;
-    font-style: normal;
-    text-decoration: none;
     color: $blue-005cc5;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
   }
 
   .cm-property {
@@ -119,21 +120,21 @@ $purple-6f42c1: #6f42c1;
   }
 
   .cm-variable {
-    font-weight: normal;
-    font-style: normal;
-    text-decoration: none;
     color: $dark;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
   }
 
   .CodeMirror-foldmarker {
-    padding: 0px 6px 1px;
     margin: 0 4px;
+    padding: 0px 6px 1px;
 
     color: black;
-    text-shadow: none;
 
     background-color: $blue-b2d7fe;
     border-radius: 4px;
+    text-shadow: none;
   }
 
   .CodeMirror-foldgutter-open::after,
@@ -141,11 +142,11 @@ $purple-6f42c1: #6f42c1;
     position: absolute;
     top: 0;
     left: 0;
-    background-position: center center;
-    background-size: 80%;
-    background-repeat: no-repeat;
-    width: 10px;
     height: 24px;
+    width: 10px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: 80%;
     content: "";
   }
 

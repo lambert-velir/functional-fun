@@ -1,11 +1,12 @@
-@import "./_variables.scss";
+@import "./_colors.scss";
 
 .button,
 button {
   padding: 6px 12px;
 
-  font-size: 16px;
-  line-height: 20px;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 1.25;
 
   background-color: white;
   border: 1px solid $grey-ddd;
@@ -17,8 +18,8 @@ button {
 
     svg {
       display: block; // remove whitespace below the icon
-      width: 24px;
       height: 24px;
+      width: 24px;
     }
   }
 
@@ -29,5 +30,6 @@ button {
 
 .button__icon {
   padding-left: 12px;
+
   vertical-align: middle;
 }

@@ -33,8 +33,8 @@ export default function initSandbox(store) {
   // when it changes
   observeStore(
     store,
-    state => state.code,
-    debounce(newCode => {
+    (state) => state.code,
+    debounce((newCode) => {
       updateHash(newCode);
       store.dispatch(clearConsole());
       logIt("code has changed!");
@@ -94,7 +94,7 @@ function spawnSandbox(store) {
   const sandbox = new Worker("workers/sandbox-generated.js");
 
   // forward messages to the console UI
-  sandbox.addEventListener("message", e => {
+  sandbox.addEventListener("message", (e) => {
     // the results of running against _code_
     // this code may or may not be what is currently in the editor
     const { messages, code, confirmationId } = e.data;
@@ -123,7 +123,7 @@ function spawnSandbox(store) {
 }
 
 // update the hash after the user has stopped typing
-const updateHash = debounce(newCode => {
+const updateHash = debounce((newCode) => {
   const file = R.compose(
     R.find(R.propEq("code", newCode)),
     R.chain(R.prop("examples")), // flat list of examples
@@ -133,8 +133,7 @@ const updateHash = debounce(newCode => {
   // the hash to be the slug
   if (file) {
     history.pushState(null, null, `#${file.slug}`);
-  }
-  else {
+  } else {
     pako.encryptCode(newCode).matchWith({
       Ok: ({ value }) => {
         history.pushState(null, null, `#${value}`);

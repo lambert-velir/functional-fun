@@ -3,6 +3,7 @@ import { CODE_UPDATE, CODE_PREPEND, CODE_FORMAT } from "./codeActions.js";
 import { SELECT_EXAMPLE } from "../examples/examplesActions.js";
 
 import prettier from "prettier/standalone";
+import parserBabel from "prettier/parser-babel.js";
 
 import Maybe from "folktale/maybe";
 
@@ -13,6 +14,7 @@ export default function codeReducer(state = initialState, action, examples) {
     case CODE_FORMAT: {
       const formattedCode = prettier.format(state, {
         parser: "babel",
+        plugins: [parserBabel],
       });
 
       return formattedCode;

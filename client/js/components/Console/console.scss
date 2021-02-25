@@ -1,4 +1,6 @@
-@import "../../../scss/_variables.scss";
+@import "../../../scss/_breakpoints.scss";
+@import "../../../scss/_colors.scss";
+@import "../../../scss/_fonts.scss";
 
 .console {
   position: absolute;
@@ -7,12 +9,13 @@
   bottom: 0;
   left: 0;
   flex: 1 1 auto;
+  overflow: auto;
   padding: 5px 5px 5px 0; // the left is taken care of by the resizer
-  background: white;
+
+  color: #666;
   font-family: $monospace;
   font-size: 16px;
-  color: #666;
-  overflow: auto;
+  background: white;
   // border-left: 1px solid $grey-ddd;
 
   @media (max-width: $bp-vertical) {
@@ -20,11 +23,12 @@
     border-top: 2px solid $grey-ddd;
 
     &::before {
-      content: "Output";
       display: block;
       padding: 8px;
+
       font-size: 18px;
       border-bottom: 1px solid $grey-ddd;
+      content: "Output";
     }
   }
 }
@@ -33,24 +37,25 @@ $text-padding: 8px;
 
 .console__message {
   display: flex;
+  padding: 0 8px;
+
   white-space: pre-wrap;
   word-break: break-all;
-  padding: 0 8px;
 
   .console__text {
     flex: auto;
-    border-bottom: 1px solid #eee;
-    padding: $text-padding 0; // padding here so the line can be below
     max-width: 100%; // make sure the code editor isn't too wide
+    padding: $text-padding 0; // padding here so the line can be below
+    border-bottom: 1px solid #eee;
   }
 
   .console__icon {
     display: flex;
-    justify-content: center;
     align-items: center;
     flex: none;
-    width: 24px;
+    justify-content: center;
     height: 24px;
+    width: 24px;
     margin: $text-padding 4px $text-padding 0;
     border-radius: 50%;
   }

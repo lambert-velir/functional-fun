@@ -1,4 +1,4 @@
-(function(ElementProto) {
+(function (ElementProto) {
   if (typeof ElementProto.matches !== "function") {
     ElementProto.matches =
       ElementProto.msMatchesSelector ||

@@ -3,7 +3,7 @@ import { arrayOf, func, shape, string } from "prop-types";
 import Modal from "../Modal/Modal.jsx";
 import { Controlled as CodeMirror } from "react-codemirror2";
 
-const isModifiedEvent = event =>
+const isModifiedEvent = (event) =>
   !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
 
 export default class Load extends React.Component {
@@ -27,11 +27,11 @@ export default class Load extends React.Component {
     isOpen: false,
   };
 
-  open = e => this.setState({ isOpen: true });
+  open = (e) => this.setState({ isOpen: true });
 
-  close = e => this.setState({ isOpen: false });
+  close = (e) => this.setState({ isOpen: false });
 
-  handleExampleClick = slug => event => {
+  handleExampleClick = (slug) => (event) => {
     // don't do anything if the user is holding down cmd/ctrl (to open in a new tab)
     // https://github.com/ReactTraining/react-router/blob/master/packages/react-router-dom/modules/Link.js#L35-L55
     if (
@@ -44,7 +44,7 @@ export default class Load extends React.Component {
     }
   };
 
-  renderExample = example => {
+  renderExample = (example) => {
     const { displayName, slug, code } = example;
 
     return (

@@ -69,8 +69,7 @@ function loadFromHash() {
 
   if (file) {
     store.dispatch(updateCode(file.code));
-  }
-  else if (hash) {
+  } else if (hash) {
     pako.decryptCode(hash).matchWith({
       Ok: ({ value }) => {
         store.dispatch(updateCode(value));

@@ -24,16 +24,15 @@ export default class Modal extends React.Component {
     this.toggleKeydownHandler(this.props.isOpen);
   };
 
-  toggleKeydownHandler = isOpen => {
+  toggleKeydownHandler = (isOpen) => {
     if (isOpen) {
       window.addEventListener("keydown", this.keydownHandler);
-    }
-    else {
+    } else {
       window.removeEventListener("keydown", this.keydownHandler);
     }
   };
 
-  keydownHandler = e => {
+  keydownHandler = (e) => {
     if (e.key === "Escape") {
       this.props.onClose();
     }

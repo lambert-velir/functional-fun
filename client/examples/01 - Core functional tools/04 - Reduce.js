@@ -35,13 +35,13 @@ assert.equals(avgAge2, avgAge1);
 // Use reduce to implement map
 const map = (fn, arr) => null; // <---- **** EDIT HERE ****
 
-const getName = dog => dog.name;
+const getName = (dog) => dog.name;
 
 assert.equals(map(getName, dogs), dogs.map(getName));
 
 // Use reduce to implement filter
 const filter = (pred, arr) => null; // <---- **** EDIT HERE ****
 
-const isOld = dog => dog.age > 10;
+const isOld = (dog) => dog.age > 10;
 
 assert.equals(filter(isOld, dogs), dogs.filter(isOld));

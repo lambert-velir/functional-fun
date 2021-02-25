@@ -2,7 +2,7 @@ import R from "ramda";
 import { heroes } from "heroes-db";
 
 // average :: [Number] → Number
-const average = arr => R.sum(arr) / R.length(arr);
+const average = (arr) => R.sum(arr) / R.length(arr);
 
 // averageStrength :: [Hero] → Number
 // given a list of heroes, return the average strength of all the heroes

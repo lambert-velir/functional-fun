@@ -3,11 +3,10 @@ import { readFile } from "files";
 import Result, { Ok, Error } from "folktale/result";
 
 // tryParse :: String → Result a
-const tryParse = s => {
+const tryParse = (s) => {
   try {
     return Ok(JSON.parse(s));
-  }
-  catch (e) {
+  } catch (e) {
     return Error(e.toString());
   }
 };

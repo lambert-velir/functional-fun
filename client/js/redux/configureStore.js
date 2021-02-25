@@ -14,9 +14,9 @@ export default function configureStore(
       applyMiddleware(...middlewares),
       // https://github.com/zalmoxisus/redux-devtools-extension#1-with-redux
       // check if window is defined so this will also work on the server
-      typeof window !== "undefined" && window.devToolsExtension
-        ? window.devToolsExtension()
-        : x => x,
+      typeof window !== "undefined" && window.__REDUX_DEVTOOLS_EXTENSION__
+        ? window.__REDUX_DEVTOOLS_EXTENSION__()
+        : (x) => x,
     ),
   );
 }
