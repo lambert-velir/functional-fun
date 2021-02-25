@@ -1,5 +1,5 @@
 {
-  "parser": "babel-eslint",
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module",
@@ -13,9 +13,10 @@
     "browser": true,
     "es6": true
   },
-  "plugins": ["react", "react-hooks", "jsx-a11y"],
+  "plugins": ["react", "react-hooks", "jsx-a11y", "prettier"],
   "extends": ["plugin:jsx-a11y/recommended"],
   "rules": {
+    "prettier/prettier": [1, { "trailingComma": "all" }],
     "react/display-name": 0,
     "react/jsx-boolean-value": 0,
     "react/jsx-curly-spacing": 0,
@@ -196,18 +197,23 @@
     "arrow-spacing": 0,
     "accessor-pairs": 0,
     "block-scoped-var": 0,
-    "brace-style": [1, "stroustrup"],
+    "brace-style": [
+      0,
+      "stroustrup",
+      "// now handled by prettier and can't use stroustrup because of https://github.com/prettier/prettier/issues/840"
+    ],
     "callback-return": 0,
     "camelcase": 0,
     "comma-dangle": [
-      1,
+      0,
       {
         "arrays": "always-multiline",
         "objects": "always-multiline",
         "imports": "always-multiline",
         "exports": "always-multiline",
         "functions": "always-multiline"
-      }
+      },
+      "// now handled by prettier"
     ],
     "comma-spacing": 0,
     "comma-style": 0,
@@ -221,14 +227,19 @@
     "dot-location": 0,
     "dot-notation": [0, { "allowKeywords": true }],
     "eol-last": 1,
-    "eqeqeq": 0,
+    "eqeqeq": [1, "always"],
     "func-names": 0,
     "func-style": [0, "declaration"],
     "generator-star-spacing": 0,
     "guard-for-in": 0,
     "handle-callback-err": 0,
     "id-length": 0,
-    "indent": [1, 2, { "SwitchCase": 1, "flatTernaryExpressions": true }],
+    "indent": [
+      0,
+      2,
+      { "SwitchCase": 1, "flatTernaryExpressions": true },
+      "// now handled by prettier"
+    ],
     "init-declarations": 0,
     "jsx-quotes": [1, "prefer-double"],
     "key-spacing": [0, { "beforeColon": false, "afterColon": true }],

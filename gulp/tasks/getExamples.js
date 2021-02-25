@@ -1,18 +1,15 @@
-import path from "path";
-import fs from "fs";
-import R from "ramda";
+const path = require("path");
+const fs = require("fs");
+const R = require("ramda");
 
-export default function getExamples(dir) {
+module.exports = function getExamples(dir) {
   // remove number prefix and extension
   // eg. 01 - Map.js -> Map
   // eg. 01 - Core functional tools -> Core functional tools
-  const toTitle = R.compose(
-    R.replace(/\...$/, ""),
-    R.replace(/^\d\d - /, ""),
-  );
+  const toTitle = R.compose(R.replace(/\...$/, ""), R.replace(/^\d\d - /, ""));
 
   // getJsFiles :: String → { displayName, slug, code }
-  const getJsFile = filepath => {
+  const getJsFile = (filepath) => {
     const code = fs.readFileSync(filepath, "utf8");
 
     // remove extension and replace : with /
@@ -36,19 +33,19 @@ export default function getExamples(dir) {
 
   // Example :: { displayName, slug, code }
   // getJsFiles :: String → [Example]
-  const getJsFiles = dir =>
+  const getJsFiles = (dir) =>
     R.compose(
       R.map(getJsFile),
-      R.filter(dirOrFilePath => path.extname(dirOrFilePath) === ".js"),
-      R.map(dirOrFile => `${dir}/${dirOrFile}`),
+      R.filter((dirOrFilePath) => path.extname(dirOrFilePath) === ".js"),
+      R.map((dirOrFile) => `${dir}/${dirOrFile}`),
       fs.readdirSync,
     )(dir);
 
   // String → [{ title, examples }, ...]
-  const getExampleSections = dir =>
+  const getExampleSections = (dir) =>
     R.compose(
       R.reject(R.isNil),
-      R.map(dirOrFile => {
+      R.map((dirOrFile) => {
         const dirOrFilePath = `${dir}/${dirOrFile}`;
 
         if (fs.statSync(dirOrFilePath).isDirectory()) {
@@ -56,8 +53,7 @@ export default function getExamples(dir) {
             title: toTitle(dirOrFile),
             examples: getJsFiles(dirOrFilePath),
           };
-        }
-        else {
+        } else {
           return undefined;
         }
       }),
@@ -67,4 +63,4 @@ export default function getExamples(dir) {
   const json = getExampleSections(dir);
 
   return json;
-}
+};

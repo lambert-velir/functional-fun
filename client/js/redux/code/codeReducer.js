@@ -3,7 +3,6 @@ import { CODE_UPDATE, CODE_PREPEND, CODE_FORMAT } from "./codeActions.js";
 import { SELECT_EXAMPLE } from "../examples/examplesActions.js";
 
 import prettier from "prettier/standalone";
-import babelParser from "prettier/parser-babylon";
 
 import Maybe from "folktale/maybe";
 
@@ -14,7 +13,6 @@ export default function codeReducer(state = initialState, action, examples) {
     case CODE_FORMAT: {
       const formattedCode = prettier.format(state, {
         parser: "babel",
-        plugins: [babelParser],
       });
 
       return formattedCode;
@@ -34,7 +32,7 @@ export default function codeReducer(state = initialState, action, examples) {
       const { slug } = action.payload;
 
       const code = R.compose(
-        m => m.getOrElse(state),
+        (m) => m.getOrElse(state),
         R.map(R.prop("code")),
         Maybe.fromNullable,
         R.find(R.propEq("slug", slug)),

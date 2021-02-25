@@ -16,41 +16,40 @@ import "codemirror/keymap/vim.js";
 
 import { func, string } from "prop-types";
 
-export default class CodeEditor extends React.Component {
-  static propTypes = {
-    code: string.isRequired,
-    onCodeChange: func.isRequired,
-  };
+const propTypes = {
+  code: string.isRequired,
+  onCodeChange: func.isRequired,
+};
 
-  handleChange = (editor, data, code) => {
-    this.props.onCodeChange(code);
-  };
+const CodeEditor = (props) => {
+  const { code, onCodeChange, ...rest } = props;
 
-  render = () => {
-    const { code, onCodeChange, ...rest } = this.props; // eslint-disable-line no-unused-vars
+  return (
+    <CodeMirror
+      value={code}
+      onBeforeChange={(editor, data, code) => {
+        onCodeChange(code);
+      }}
+      options={{
+        mode: "javascript",
+        readOnly: false,
+        foldGutter: true,
+        lineNumbers: true,
+        matchBrackets: true,
+        autoCloseBrackets: true,
+        gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
+        theme: "github",
+        height: "auto",
+        width: "auto",
+        insertSoftTab: true,
+        tabSize: 2,
+        lineWrapping: true,
+        keyMap: window.location.search.match(/vim/) ? "vim" : "mike",
+      }}
+      {...rest}
+    />
+  );
+};
 
-    return (
-      <CodeMirror
-        value={code}
-        onBeforeChange={this.handleChange}
-        options={{
-          mode: "javascript",
-          readOnly: false,
-          foldGutter: true,
-          lineNumbers: true,
-          matchBrackets: true,
-          autoCloseBrackets: true,
-          gutters: ["CodeMirror-linenumbers", "CodeMirror-foldgutter"],
-          theme: "github",
-          height: "auto",
-          width: "auto",
-          insertSoftTab: true,
-          tabSize: 2,
-          lineWrapping: true,
-          keyMap: window.location.search.match(/vim/) ? "vim" : "mike",
-        }}
-        {...rest}
-      />
-    );
-  };
-}
+CodeEditor.propTypes = propTypes;
+export default CodeEditor;

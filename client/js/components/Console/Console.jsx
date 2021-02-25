@@ -21,10 +21,10 @@ export default class Console extends React.Component {
     // beacuse it's about twice as fast to initialize
 
     const types = ["log", "fail", "pass"];
-    const selector = types.map(t => `.is-${t} .console__text`).join(", ");
+    const selector = types.map((t) => `.is-${t} .console__text`).join(", ");
     const els = this.console.querySelectorAll(selector);
 
-    els.forEach(el => {
+    els.forEach((el) => {
       // don't run code mirror on this element if it's already been run
       const mirrors = el.getElementsByClassName("CodeMirror");
       if (mirrors.length > 0) {
@@ -48,7 +48,7 @@ export default class Console extends React.Component {
 
       // console.log(); will have no message so el will be empty
       if (el.firstChild) {
-        CodeMirror(cm => el.replaceChild(cm, el.firstChild), options);
+        CodeMirror((cm) => el.replaceChild(cm, el.firstChild), options);
       }
     });
   };
@@ -57,7 +57,7 @@ export default class Console extends React.Component {
     const { entries } = this.props;
 
     return (
-      <div className="console" ref={el => (this.console = el)}>
+      <div className="console" ref={(el) => (this.console = el)}>
         {entries.map((entry, i) => {
           const { type, message } = entry;
 
